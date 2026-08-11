@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Termos de Uso" description="Termos de uso dos serviços digitais da Realeiros Play e do Olha a Batida.">
+  <PageHero eyebrow="Legal" title="Termos de Uso" text="Regras gerais para utilização dos serviços digitais da Realeiros Play." />
+  <section class="section">
+    <div class="container prose">
+      <p class="notice"><strong>Rascunho de implantação.</strong> Esta página organiza a estrutura mínima dos termos, mas deve passar por revisão final antes do cutover do novo site.</p>
+      <h2>1. Serviço</h2>
+      <p>A Realeiros Play disponibiliza jogos, páginas institucionais, suporte e conteúdos digitais relacionados aos seus produtos. Recursos, disponibilidade e requisitos técnicos podem mudar ao longo do tempo.</p>
+      <h2>2. Uso do Olha a Batida</h2>
+      <p>O usuário deve utilizar o jogo de acordo com as regras das lojas, das plataformas e dos serviços de terceiros necessários ao funcionamento do aplicativo. É vedado usar o serviço para fraude, abuso, exploração indevida, tentativa de interferência técnica ou violação de direitos de terceiros.</p>
+      <h2>3. Conteúdo e propriedade intelectual</h2>
+      <p>Software, identidade visual, textos, artes, interfaces e demais ativos próprios da Realeiros são protegidos conforme a legislação aplicável. Marcas, nomes e conteúdos de terceiros permanecem sujeitos aos direitos de seus respectivos titulares.</p>
+      <h2>4. Anúncios e compras</h2>
+      <p>O jogo pode exibir anúncios e oferecer compras dentro do aplicativo. Cobrança, estorno e processamento de pagamento seguem também as regras da Google Play, App Store e demais intermediários aplicáveis.</p>
+      <h2>5. Atualizações e disponibilidade</h2>
+      <p>A Realeiros pode corrigir, alterar, adicionar ou remover recursos para manter, melhorar ou adequar o produto. Nenhum recurso anunciado como roadmap público constitui promessa de data de lançamento.</p>
+      <h2>6. Responsabilidade e suporte</h2>
+      <p>Problemas técnicos podem ser reportados pela página de <a href="/suporte">suporte</a>. A Realeiros buscará investigar as ocorrências com base nas informações disponíveis, sem garantia de disponibilidade ininterrupta do serviço.</p>
+      <h2>7. Privacidade</h2>
+      <p>O tratamento de dados relacionado ao produto é descrito na <a href="/privacidade">Política de Privacidade</a>.</p>
+      <h2>8. Contato</h2>
+      <p>Questões relacionadas a estes termos podem ser enviadas para <a href={`mailto:${site.email}?subject=Termos%20de%20Uso%20-%20Realeiros%20Play`}>{site.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

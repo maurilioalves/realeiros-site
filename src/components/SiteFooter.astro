@@ -1,0 +1,44 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand brand-footer">
+        <span class="brand-mark" aria-hidden="true">RP</span>
+        <span class="brand-text"><strong>REALEIROS</strong><small>PLAY</small></span>
+      </div>
+      <p class="footer-pitch">{site.slogan}</p>
+      <p class="footer-muted">Estúdio indie brasileiro de jogos mobile.</p>
+    </div>
+
+    <div>
+      <h2>Explore</h2>
+      <a href="/olha-a-batida">Olha a Batida</a>
+      <a href="/sobre">Sobre</a>
+      <a href="/novidades">Novidades</a>
+      <a href="/contato">Contato</a>
+    </div>
+
+    <div>
+      <h2>Jogador</h2>
+      <a href="/suporte">Suporte</a>
+      <a href="/privacidade">Privacidade</a>
+      <a href="/termos">Termos de uso</a>
+      <a href="/exclusao-de-dados">Exclusão de dados</a>
+    </div>
+
+    <div>
+      <h2>Acompanhe</h2>
+      <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href={site.playStore} target="_blank" rel="noreferrer">Google Play</a>
+      <a href={site.appStore} target="_blank" rel="noreferrer">App Store</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {year} Realeiros Play.</span>
+    <span>Futebol digital com identidade brasileira.</span>
+  </div>
+</footer>

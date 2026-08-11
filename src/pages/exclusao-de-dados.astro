@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Exclusão de Dados" description="Como solicitar exclusão de dados relacionados aos serviços da Realeiros Play.">
+  <PageHero eyebrow="Privacidade" title="Exclusão de dados" text="Um caminho direto para solicitar análise e exclusão de dados que possam estar sob controle da Realeiros Play." />
+  <section class="section">
+    <div class="container prose">
+      <h2>Como solicitar</h2>
+      <p>Envie um e-mail para <a href={`mailto:${site.email}?subject=Solicitacao%20de%20Exclusao%20de%20Dados`}>{site.email}</a> com o assunto <strong>“Solicitação de exclusão de dados”</strong>.</p>
+      <p>Para ajudar na identificação correta da solicitação, informe apenas o necessário:</p>
+      <ul>
+        <li>jogo ou serviço relacionado;</li>
+        <li>plataforma utilizada (Android ou iOS);</li>
+        <li>identificador do jogo/conta, caso exista e seja necessário;</li>
+        <li>descrição objetiva do que deseja excluir.</li>
+      </ul>
+      <h2>O que acontece depois</h2>
+      <p>A Realeiros analisará quais informações estão efetivamente sob seu controle e orientará sobre os próximos passos. Dados processados diretamente por lojas, plataformas ou provedores de terceiros podem exigir solicitação nos canais desses fornecedores.</p>
+      <h2>Segurança da solicitação</h2>
+      <p>Não envie senha, número completo de cartão, documento desnecessário ou qualquer credencial de acesso. Se for preciso validar uma solicitação, será usado o mínimo de informação possível.</p>
+      <p>Consulte também a <a href="/privacidade">Política de Privacidade</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

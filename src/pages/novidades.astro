@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<BaseLayout title="Novidades" description="Atualizações importantes, bastidores de desenvolvimento e comunicados da Realeiros Play e do Olha a Batida.">
+  <PageHero eyebrow="Novidades" title="O jogo está vivo. Aqui ficam os capítulos importantes." text="Nada de blog diário para encher calendário. Esta área existe para updates relevantes, lançamentos, grandes notas de versão e bastidores que valem registro." />
+  <section class="section">
+    <div class="container news-list">
+      <article class="news-card">
+        <time datetime="2026-08">Agosto de 2026</time>
+        <div><h2>Novo site da Realeiros Play</h2><p>A casa digital da Realeiros está sendo reconstruída com identidade própria, melhor desempenho e páginas dedicadas ao Olha a Batida.</p></div>
+        <span class="news-status">Institucional</span>
+      </article>
+      <article class="news-card">
+        <time datetime="2026-06-27">27 de junho de 2026</time>
+        <div><h2>Copa 2026, recompensas diárias e missões</h2><p>Atualização do Olha a Batida com conteúdo da Copa, sistema de recompensa diária, missões e melhorias de estabilidade.</p></div>
+        <span class="news-status">Olha a Batida</span>
+      </article>
+      <article class="news-card">
+        <time>Em desenvolvimento</time>
+        <div><h2>Temporadas, Career e expansão de conteúdo</h2><p>As próximas grandes frentes públicas do produto estão concentradas em continuidade, escalabilidade de competições e mais motivos para voltar ao jogo.</p></div>
+        <span class="news-status">Roadmap</span>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

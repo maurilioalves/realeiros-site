@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Olha a Batida" description="Olha a Batida é o jogo mobile de futebol da Realeiros Play: pênaltis, temporadas, copas, clubes, seleções, estádios e personalização no Android e iOS.">
+  <section class="game-hero">
+    <div class="container game-hero-grid">
+      <div class="game-hero-copy">
+        <img class="game-icon-large" src="/images/oab/icon.png" alt="Ícone do Olha a Batida" width="240" height="240" />
+        <p class="eyebrow">Jogo mobile • Android e iOS</p>
+        <h1>Olha a <span>Batida</span></h1>
+        <p>
+          A fantasia do futebol brasileiro e mundial condensada nos momentos decisivos. Entre em campeonatos, escolha seu time e carregue a pressão de cada cobrança de pênalti.
+        </p>
+        <StoreButtons />
+      </div>
+      <div class="game-hero-poster">
+        <img src="/images/oab/store-hero.png" alt="Arte promocional oficial do Olha a Batida" width="526" height="296" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Por que jogar"
+        title="Simples na batida. Grande no contexto."
+        text="O pênalti é a ação. Competições, temporadas, personalização e progressão dão significado ao que acontece antes e depois dele."
+      />
+      <div class="feature-grid">
+        <article class="feature-box"><div class="icon">⚽</div><h3>Pênaltis que decidem</h3><p>Cobre, defenda e lide com a pressão de partidas resolvidas nos detalhes.</p></article>
+        <article class="feature-box"><div class="icon">🏆</div><h3>Competições</h3><p>Dispute campeonatos, copas nacionais e torneios continentais com clubes e seleções.</p></article>
+        <article class="feature-box"><div class="icon">📅</div><h3>Temporadas</h3><p>Avance rodada a rodada, acompanhe resultados e construa campanhas que vão além de uma partida isolada.</p></article>
+        <article class="feature-box"><div class="icon">🏟️</div><h3>Estádios</h3><p>Ambientes inspirados no futebol sul-americano ajudam cada partida a ter sua própria atmosfera.</p></article>
+        <article class="feature-box"><div class="icon">🎨</div><h3>Personalização</h3><p>Edite jogadores e represente o seu time dentro da identidade visual do jogo.</p></article>
+        <article class="feature-box"><div class="icon">🎁</div><h3>Progressão</h3><p>Recompensas, missões e sistemas recorrentes dão motivo para voltar e continuar evoluindo.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="Dentro do jogo" title="Futebol com cara própria." text="Capturas oficiais publicadas na loja do jogo." />
+      <div class="screenshot-grid">
+        <figure class="screenshot-card"><img src="/images/oab/gameplay.png" alt="Cobranças de pênalti no Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Cobranças e defesas com controles acessíveis.</figcaption></figure>
+        <figure class="screenshot-card"><img src="/images/oab/competitions.png" alt="Competições do Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Competições e temporadas para dar contexto às partidas.</figcaption></figure>
+        <figure class="screenshot-card"><img src="/images/oab/customization.png" alt="Personalização de jogadores no Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Personalização do elenco e do jogador.</figcaption></figure>
+        <figure class="screenshot-card"><img src="/images/oab/stadiums.png" alt="Estádios do Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Estádios e atmosferas diferentes para cada disputa.</figcaption></figure>
+        <figure class="screenshot-card"><img src="/images/oab/teams.png" alt="Clubes disponíveis no Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Clubes e identidade de torcida.</figcaption></figure>
+        <figure class="screenshot-card"><img src="/images/oab/champion.png" alt="Tela de campeão no Olha a Batida" width="526" height="296" loading="lazy" /><figcaption>Campanhas que terminam com taça — ou com vontade de tentar de novo.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <SectionHeading eyebrow="Perguntas frequentes" title="Antes de entrar em campo." />
+      <div class="faq">
+        <details><summary>O Olha a Batida é gratuito?</summary><p>Sim. O jogo pode ser baixado gratuitamente. Ele utiliza anúncios e pode oferecer compras dentro do aplicativo conforme a versão disponível nas lojas.</p></details>
+        <details><summary>Em quais plataformas está disponível?</summary><p>Atualmente, o Olha a Batida está publicado para Android e iOS.</p></details>
+        <details><summary>O jogo é uma simulação 11x11?</summary><p>Não. A proposta é outra: concentrar a emoção do futebol nos momentos decisivos, com pênaltis como core gameplay e competições/temporadas como contexto.</p></details>
+        <details><summary>Há novas ligas e modo carreira a caminho?</summary><p>Essas frentes fazem parte do roadmap público. A Realeiros evita prometer datas antes de cada atualização estar pronta para lançamento.</p></details>
+        <details><summary>Preciso de ajuda com o jogo?</summary><p>Acesse a página de <a href="/suporte">suporte</a> ou escreva para <a href={`mailto:${site.email}`}>{site.email}</a>.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-panel">
+      <div><p class="eyebrow">Sua vez</p><h2>Olhou a batida. Agora bate.</h2><p>Baixe no celular e entre nas competições do Olha a Batida.</p></div>
+      <div class="cta-panel-actions"><StoreButtons /></div>
+    </div>
+  </section>
+</BaseLayout>

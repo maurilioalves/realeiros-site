@@ -1,0 +1,15 @@
+---
+import { site } from '../data/site';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<div class:list={['store-buttons', compact && 'store-buttons-compact']}>
+  <a class="store-button" href={site.playStore} target="_blank" rel="noreferrer" aria-label="Baixar Olha a Batida na Google Play">
+    <span class="store-icon" aria-hidden="true">▶</span>
+    <span><small>DISPONÍVEL NO</small><strong>Google Play</strong></span>
+  </a>
+  <a class="store-button" href={site.appStore} target="_blank" rel="noreferrer" aria-label="Baixar Olha a Batida na App Store">
+    <span class="store-icon apple" aria-hidden="true">●</span>
+    <span><small>BAIXAR NA</small><strong>App Store</strong></span>
+  </a>
+</div>

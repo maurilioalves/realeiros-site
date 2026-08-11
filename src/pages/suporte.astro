@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Suporte" description="Central de suporte do Olha a Batida e da Realeiros Play.">
+  <PageHero eyebrow="Suporte" title="Deu ruim no jogo? Conta pra gente direito que fica mais fácil resolver." text="Envie as informações básicas do problema e, quando possível, um print ou vídeo curto. Isso reduz bastante o tempo até entender o que aconteceu." />
+  <section class="section">
+    <div class="container support-grid">
+      <article class="support-card"><h2>Problema técnico</h2><p>Informe modelo do aparelho, versão do Android/iOS, versão do jogo, tela onde ocorreu e o que você estava tentando fazer.</p><a class="button button-primary" href={`mailto:${site.email}?subject=Bug%20-%20Olha%20a%20Batida&body=Aparelho:%0AVersao%20do%20sistema:%0AVersao%20do%20jogo:%0AO%20que%20aconteceu:%0AComo%20reproduzir:%0A`}>Reportar bug</a></article>
+      <article class="support-card"><h2>Compras e anúncios</h2><p>Não envie dados completos de cartão ou senha. Informe apenas o problema e, se necessário, o identificador de pedido fornecido pela loja.</p><a class="button button-secondary" href={`mailto:${site.email}?subject=Compra%20ou%20Anuncio%20-%20Olha%20a%20Batida`}>Pedir ajuda</a></article>
+      <article class="support-card"><h2>Privacidade e dados</h2><p>Consulte a política de privacidade e a página de exclusão de dados antes de abrir a solicitação.</p><a class="button button-secondary" href="/privacidade">Ver privacidade</a></article>
+      <article class="support-card"><h2>Feedback e sugestões</h2><p>Ideias de competições, modos e melhorias são bem-vindas. Elas entram como sinal para o produto, não como promessa automática de implementação.</p><a class="button button-secondary" href={site.instagram} target="_blank" rel="noreferrer">Falar no Instagram</a></article>
+    </div>
+  </section>
+</BaseLayout>
