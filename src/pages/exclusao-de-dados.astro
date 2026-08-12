@@ -3,24 +3,146 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { site } from '../data/site';
 ---
-<BaseLayout title="Exclusão de Dados" description="Como solicitar exclusão de dados relacionados aos serviços da Realeiros Play.">
-  <PageHero eyebrow="Privacidade" title="Exclusão de dados" text="Um caminho direto para solicitar análise e exclusão de dados que possam estar sob controle da Realeiros Play." />
+
+<BaseLayout
+  title="Exclusão de Dados"
+  description="Como solicitar exclusão de dados relacionados aos serviços da Realeiros Play."
+>
+  <PageHero
+    eyebrow="Privacidade"
+    title="Exclusão de dados"
+    text="Como solicitar análise e exclusão de dados relacionados ao Olha a Batida e aos serviços da Realeiros Play."
+  />
+
   <section class="section">
     <div class="container prose">
+
+      <h2>O Olha a Batida possui conta de usuário?</h2>
+
+      <p>
+        Atualmente, o Olha a Batida não exige nem oferece a criação de uma conta própria
+        da Realeiros Play para jogar.
+      </p>
+
+      <p>
+        Grande parte das informações de progresso, preferências, configurações e partidas
+        salvas permanece armazenada localmente no dispositivo.
+      </p>
+
+      <h2>Dados armazenados no dispositivo</h2>
+
+      <p>
+        Dados locais do jogo podem ser removidos utilizando os recursos disponíveis no
+        próprio sistema operacional, como limpeza dos dados do aplicativo ou desinstalação.
+      </p>
+
+      <p>
+        A Realeiros Play não consegue apagar remotamente dados que estejam armazenados
+        exclusivamente no dispositivo do jogador.
+      </p>
+
+      <h2>Dados tratados por serviços online</h2>
+
+      <p>
+        O aplicativo utiliza serviços de terceiros para funcionalidades como analytics,
+        publicidade, diagnóstico, distribuição e processamento de compras.
+      </p>
+
+      <p>
+        Dependendo do serviço utilizado, determinadas informações técnicas ou de uso
+        podem ser tratadas por fornecedores como Google, Firebase, Unity e pelas lojas
+        de aplicativos.
+      </p>
+
+      <p>
+        Caso você queira solicitar análise ou exclusão de dados que possam estar
+        relacionados ao uso do Olha a Batida, entre em contato conosco.
+      </p>
+
       <h2>Como solicitar</h2>
-      <p>Envie um e-mail para <a href={`mailto:${site.email}?subject=Solicitacao%20de%20Exclusao%20de%20Dados`}>{site.email}</a> com o assunto <strong>“Solicitação de exclusão de dados”</strong>.</p>
-      <p>Para ajudar na identificação correta da solicitação, informe apenas o necessário:</p>
+
+      <p>
+        Envie um e-mail para
+        <a href={`mailto:${site.email}?subject=Solicitacao%20de%20Exclusao%20de%20Dados`}>
+          {site.email}
+        </a>
+        com o assunto <strong>“Solicitação de exclusão de dados”</strong>.
+      </p>
+
+      <p>Informe apenas os dados necessários para que possamos analisar a solicitação:</p>
+
       <ul>
         <li>jogo ou serviço relacionado;</li>
-        <li>plataforma utilizada (Android ou iOS);</li>
-        <li>identificador do jogo/conta, caso exista e seja necessário;</li>
-        <li>descrição objetiva do que deseja excluir.</li>
+        <li>plataforma utilizada, como Android ou iOS;</li>
+        <li>descrição objetiva do dado ou informação que deseja excluir;</li>
+        <li>
+          identificador técnico, comprovante ou outra informação de referência somente
+          quando necessário para localizar os dados relacionados à solicitação.
+        </li>
       </ul>
+
       <h2>O que acontece depois</h2>
-      <p>A Realeiros analisará quais informações estão efetivamente sob seu controle e orientará sobre os próximos passos. Dados processados diretamente por lojas, plataformas ou provedores de terceiros podem exigir solicitação nos canais desses fornecedores.</p>
+
+      <p>
+        A Realeiros Play analisará a solicitação e verificará quais informações podem
+        estar sob seu controle direto ou podem ser relacionadas tecnicamente ao usuário.
+      </p>
+
+      <p>
+        Quando a informação estiver sob controle direto da Realeiros Play e a exclusão
+        for aplicável, adotaremos as medidas cabíveis para removê-la ou anonimizar seu
+        vínculo com o titular.
+      </p>
+
+      <p>
+        Informações mantidas diretamente por serviços de terceiros, lojas de aplicativos
+        ou plataformas poderão estar sujeitas aos procedimentos e prazos definidos por
+        esses fornecedores.
+      </p>
+
+      <h2>Informações que podem precisar ser mantidas</h2>
+
+      <p>
+        Em determinadas situações, algumas informações poderão ser mantidas quando isso
+        for necessário para cumprimento de obrigação legal, prevenção a fraude, segurança,
+        defesa de direitos ou outras hipóteses permitidas pela legislação aplicável.
+      </p>
+
       <h2>Segurança da solicitação</h2>
-      <p>Não envie senha, número completo de cartão, documento desnecessário ou qualquer credencial de acesso. Se for preciso validar uma solicitação, será usado o mínimo de informação possível.</p>
-      <p>Consulte também a <a href="/privacidade">Política de Privacidade</a>.</p>
+
+      <p>
+        Não envie senhas, números completos de cartão, credenciais de acesso ou documentos
+        que não sejam necessários para a solicitação.
+      </p>
+
+      <p>
+        Se precisarmos confirmar a legitimidade de uma solicitação ou localizar informações
+        específicas, solicitaremos apenas o mínimo necessário para essa finalidade.
+      </p>
+
+      <h2>Outros direitos relacionados a dados pessoais</h2>
+
+      <p>
+        Além da exclusão, a legislação aplicável pode garantir outros direitos relacionados
+        a dados pessoais, incluindo confirmação da existência de tratamento, acesso,
+        correção e informações sobre compartilhamento.
+      </p>
+
+      <p>
+        Consulte a <a href="/privacidade">Política de Privacidade</a> para informações
+        completas sobre tratamento de dados e direitos dos titulares.
+      </p>
+
+      <h2>Contato</h2>
+
+      <p>
+        <strong>Realeiros Play</strong><br />
+        E-mail:
+        <a href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}>
+          {site.email}
+        </a>
+      </p>
+
     </div>
   </section>
 </BaseLayout>
