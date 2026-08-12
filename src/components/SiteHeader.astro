@@ -1,46 +1,78 @@
 ---
-import { site } from '../data/site';
+import { site } from "../data/site";
 
 const pathname = Astro.url.pathname;
 const links = [
-  { href: '/olha-a-batida', label: 'Olha a Batida' },
-  { href: '/sobre', label: 'Sobre' },
-  { href: '/novidades', label: 'Novidades' },
-  { href: '/contato', label: 'Contato' },
+  { href: "/olha-a-batida", label: "Olha a Batida" },
+  { href: "/sobre", label: "Sobre" },
+  { href: "/novidades", label: "Novidades" },
+  { href: "/contato", label: "Contato" },
 ];
 ---
+
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="Realeiros Play — página inicial">
-      <span class="brand-mark" aria-hidden="true">RP</span>
+      <img
+        class="brand-mark"
+        src="/images/brand/logo_circulo.png"
+        alt=""
+        aria-hidden="true"
+      />
       <span class="brand-text">
-        <strong>REALEIROS</strong>
+        <small>REALEIROS</small>
         <small>PLAY</small>
       </span>
     </a>
 
     <nav class="desktop-nav" aria-label="Navegação principal">
-      {links.map((link) => (
-        <a class:list={[pathname.startsWith(link.href) && 'is-active']} href={link.href}>
-          {link.label}
-        </a>
-      ))}
+      {
+        links.map((link) => (
+          <a
+            class:list={[pathname.startsWith(link.href) && "is-active"]}
+            href={link.href}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
 
-    <a class="button button-small button-primary desktop-cta" href={site.playStore} target="_blank" rel="noreferrer">
+    <a
+      class="button button-small button-primary desktop-cta"
+      href={site.playStore}
+      target="_blank"
+      rel="noreferrer"
+    >
       Jogar agora
     </a>
 
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+    <button
+      class="menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-button
+    >
       <span></span><span></span><span></span>
       <span class="sr-only">Abrir menu</span>
     </button>
   </div>
 
-  <nav id="mobile-menu" class="mobile-nav" aria-label="Navegação móvel" data-mobile-nav>
+  <nav
+    id="mobile-menu"
+    class="mobile-nav"
+    aria-label="Navegação móvel"
+    data-mobile-nav
+  >
     <div class="container mobile-nav-inner">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
-      <a class="button button-primary" href={site.playStore} target="_blank" rel="noreferrer">Jogar Olha a Batida</a>
+      <a
+        class="button button-primary"
+        href={site.playStore}
+        target="_blank"
+        rel="noreferrer">Jogar Olha a Batida</a
+      >
     </div>
   </nav>
 </header>

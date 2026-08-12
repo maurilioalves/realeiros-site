@@ -1,13 +1,21 @@
 ---
-import { site } from '../data/site';
+import { site } from "../data/site";
 const year = new Date().getFullYear();
 ---
+
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
       <div class="brand brand-footer">
-        <span class="brand-mark" aria-hidden="true">RP</span>
-        <span class="brand-text"><strong>REALEIROS</strong><small>PLAY</small></span>
+        <img
+          class="brand-mark"
+          src="/images/brand/logo_circulo.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="brand-text"
+          ><small>REALEIROS</small><small>PLAY</small></span
+        >
       </div>
       <p class="footer-pitch">{site.slogan}</p>
       <p class="footer-muted">Estúdio indie brasileiro de jogos mobile.</p>

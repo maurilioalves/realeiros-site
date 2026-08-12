@@ -86,17 +86,10 @@ button, input, textarea { font: inherit; }
 .header-inner { min-height: 76px; display: flex; align-items: center; gap: 30px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .brand-mark {
-  width: 42px;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  background: var(--yellow);
-  color: var(--navy-950);
-  border-radius: 11px 11px 15px 8px;
-  font-family: var(--heading);
-  letter-spacing: .04em;
-  transform: rotate(-2deg);
-  box-shadow: 4px 5px 0 var(--blue);
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .brand-text { display: flex; align-items: baseline; gap: 5px; line-height: 1; }
 .brand-text strong { font-family: var(--heading); letter-spacing: .05em; font-size: 1.35rem; }
@@ -224,7 +217,22 @@ button, input, textarea { font: inherit; }
 
 .social-band { overflow: hidden; background: var(--yellow); color: var(--navy-950); padding: 23px 0; transform: rotate(-.5deg) scale(1.01); margin: 35px 0; }
 .social-band-track { display: flex; gap: 50px; white-space: nowrap; font-family: var(--heading); font-size: 1.8rem; text-transform: uppercase; letter-spacing: .04em; }
-.social-band-track span::after { content: '★'; margin-left: 50px; color: var(--blue); }
+.social-band-track span::after {
+  content: '';
+  display: inline-block;
+
+  width: 1em;
+  height: 1em;
+
+  margin-left: 50px;
+
+  background-image: url('/images/brand/logo_pixel.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  vertical-align: -0.12em;
+}
 
 .cta-panel { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 30px; padding: 42px; border: 1px solid rgba(255,255,255,.14); border-radius: 25px 16px 30px 14px; background: linear-gradient(125deg, rgba(47,98,255,.22), rgba(41,183,101,.08)); position: relative; overflow: hidden; }
 .cta-panel::after { content: 'BR'; position: absolute; right: -15px; bottom: -55px; font-family: var(--heading); font-size: 10rem; color: rgba(255,255,255,.04); line-height: 1; }
