@@ -126,7 +126,24 @@ button, input, textarea { font: inherit; }
 .button-secondary:hover { background: rgba(255,255,255,.11); }
 .button-small { min-height: 42px; padding-inline: 17px; font-size: .9rem; }
 .button-dark { background: #0b1730; color: white; box-shadow: 5px 6px 0 var(--yellow); }
+.button-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.cta-panel-actions {
+  width: 100%;
+}
 
+.cta-panel-actions .button-secondary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
 .hero { min-height: 720px; display: flex; align-items: center; position: relative; overflow: hidden; padding: 88px 0 80px; }
 .hero::after {
   content: 'REALEIROS PLAY  REALEIROS PLAY  REALEIROS PLAY';
