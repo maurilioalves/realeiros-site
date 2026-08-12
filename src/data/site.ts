@@ -7,6 +7,9 @@ export const site = {
     'Estúdio indie brasileiro de jogos mobile. Criamos experiências de futebol com identidade, cultura e olhar de torcedor.',
   email: 'realeirosplay@gmail.com',
   instagram: 'https://www.instagram.com/realeirosplay',
+  youtube: 'https://www.youtube.com/@realeirosplay',
+  tiktok: 'https://www.tiktok.com/@realeirosplay',
+  x: 'https://x.com/realeirosplay',
   playStore:
     'https://play.google.com/store/apps/details?id=com.realeirosplay.olhaabatida.googleplay',
   appStore: 'https://apps.apple.com/app/id6450018515',

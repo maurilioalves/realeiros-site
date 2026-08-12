@@ -1,6 +1,8 @@
 ---
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import '@fontsource/anton';
+import '@fontsource-variable/inter/wght.css';
 import '../styles/global.css';
 import { site } from '../data/site';
 
@@ -31,7 +33,7 @@ const socialImage = new URL(image, site.domain);
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico"  />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />

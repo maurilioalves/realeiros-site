@@ -1,13 +1,21 @@
 ---
-import { site } from '../data/site';
+import { site } from "../data/site";
 const year = new Date().getFullYear();
 ---
+
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
       <div class="brand brand-footer">
-        <span class="brand-mark" aria-hidden="true">RP</span>
-        <span class="brand-text"><strong>REALEIROS</strong><small>PLAY</small></span>
+        <img
+          class="brand-mark"
+          src="/images/brand/logo_circulo.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="brand-text"
+          ><small>REALEIROS</small><small>PLAY</small></span
+        >
       </div>
       <p class="footer-pitch">{site.slogan}</p>
       <p class="footer-muted">Estúdio indie brasileiro de jogos mobile.</p>
@@ -30,9 +38,14 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h2>Acompanhe</h2>
+      <h2>Redes Sociais</h2>
       <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
-      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href={site.tiktok} target="_blank" rel="noreferrer">TikTok</a>
+      <a href={site.x} target="_blank" rel="noreferrer">X</a>
+      <a href={site.youtube} target="_blank" rel="noreferrer">YouTube</a>
+    </div>
+    <div>
+      <h2>Apps</h2>
       <a href={site.playStore} target="_blank" rel="noreferrer">Google Play</a>
       <a href={site.appStore} target="_blank" rel="noreferrer">App Store</a>
     </div>
