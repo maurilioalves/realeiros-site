@@ -12,8 +12,7 @@ export const site = {
   x: 'https://x.com/realeirosplay',
   playStore:
     'https://play.google.com/store/apps/details?id=com.realeirosplay.olhaabatida.googleplay',
-  appStore: 'https://apps.apple.com/app/id6450018515',
-  pressKit: 'https://drive.google.com/', // TODO: substituir pelo link oficial do press kit atual
+  appStore: 'https://apps.apple.com/app/id6450018515'
 };
 
 export const publicMetrics = [

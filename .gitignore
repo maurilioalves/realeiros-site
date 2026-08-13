@@ -1,5 +1,26 @@
 node_modules/
 dist/
 .astro/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.npmrc
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Editors / local environment
+.vscode/
+.idea/
+
+# OS / logs
 .DS_Store
+Thumbs.db
 *.log
