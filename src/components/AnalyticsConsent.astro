@@ -1,5 +1,5 @@
 ---
-const measurementId = 'G-4W6YBWHQR5';
+const googleTagId = 'GT-NFJ5PRF7';
 ---
 
 <div class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-description">
@@ -20,7 +20,7 @@ const measurementId = 'G-4W6YBWHQR5';
   </div>
 </div>
 
-<script is:inline define:vars={{ measurementId }}>
+<script is:inline define:vars={{ googleTagId }}>
   (() => {
     const storageKey = 'realeiros_analytics_consent';
     const banner = document.querySelector('[data-analytics-consent]');
@@ -55,12 +55,12 @@ const measurementId = 'G-4W6YBWHQR5';
       };
 
       window.gtag('js', new Date());
-      window.gtag('config', measurementId);
+      window.gtag('config', googleTagId);
 
       const script = document.createElement('script');
       script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-      script.dataset.realeirosGa4 = measurementId;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleTagId)}`;
+      script.dataset.realeirosGa4 = googleTagId;
       document.head.appendChild(script);
     };
 
