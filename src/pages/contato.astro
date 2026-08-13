@@ -1,22 +1,85 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import { site } from '../data/site';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
 ---
-<BaseLayout title="Contato" description="Fale com a Realeiros Play sobre suporte, imprensa, criadores, parcerias, privacidade e assuntos gerais.">
-  <PageHero eyebrow="Contato" title="Fale com a Realeiros." text="Sem telefone pessoal exposto e sem labirinto de formulário. Escolha o assunto e mande a mensagem para o canal certo." />
+
+<BaseLayout
+  title="Contato"
+  description="Fale com a Realeiros Play sobre suporte, imprensa, criadores, parcerias, privacidade e assuntos gerais."
+>
+  <PageHero
+    eyebrow="Contato"
+    title="Fale com a Realeiros."
+    text="Sem telefone pessoal exposto e sem labirinto de formulário. Escolha o assunto e mande a mensagem para o canal certo."
+  />
   <section class="section">
     <div class="container contact-grid">
-      <article class="contact-card"><span>Jogadores</span><h2>Suporte do Olha a Batida</h2><p>Bug, problema de acesso, compra, anúncio ou dúvida sobre o jogo.</p><a href={`mailto:${site.email}?subject=Suporte%20-%20Olha%20a%20Batida`}>{site.email}</a></article>
-      <article class="contact-card"><span>Imprensa e criadores</span><h2>Conteúdo, cobertura e materiais</h2><p>Pedidos de informações, entrevistas, assets ou uso do press kit.</p><a href={`mailto:${site.email}?subject=Imprensa%20e%20Criadores%20-%20Realeiros%20Play`}>Enviar e-mail</a></article>
-      <article class="contact-card"><span>Negócios</span><h2>Parcerias</h2><p>Contato comercial, publishing, licenciamento e oportunidades alinhadas aos produtos da Realeiros.</p><a href={`mailto:${site.email}?subject=Parceria%20-%20Realeiros%20Play`}>Enviar proposta</a></article>
-      <article class="contact-card"><span>Privacidade</span><h2>Dados e questões legais</h2><p>Solicitações relacionadas a privacidade, dados, termos e exclusão.</p><a href={`mailto:${site.email}?subject=Privacidade%20-%20Realeiros%20Play`}>Falar sobre privacidade</a></article>
+      <article class="contact-card">
+        <span>Jogadores</span><h2>Suporte do Olha a Batida</h2><p>
+          Bug, problema de acesso, compra, anúncio ou dúvida sobre o jogo.
+        </p><a
+          href={`mailto:${site.email}?subject=Suporte%20-%20Olha%20a%20Batida`}
+          >{site.email}</a>
+      </article>
+      <article class="contact-card">
+        <span>Imprensa e criadores</span><h2>
+          Conteúdo, cobertura e materiais
+        </h2><p>
+          Pedidos de informações, entrevistas, assets ou uso do press kit.
+        </p><a
+          href={`mailto:${site.email}?subject=Imprensa%20e%20Criadores%20-%20Realeiros%20Play`}
+          >Enviar e-mail</a>
+      </article>
+      <article class="contact-card">
+        <span>Negócios</span><h2>Parcerias</h2><p>
+          Contato comercial, publishing, licenciamento e oportunidades alinhadas
+          aos produtos da Realeiros.
+        </p><a
+          href={`mailto:${site.email}?subject=Parceria%20-%20Realeiros%20Play`}
+          >Enviar proposta</a>
+      </article>
+      <article class="contact-card">
+        <span>Privacidade</span><h2>Dados e questões legais</h2><p>
+          Solicitações relacionadas a privacidade, dados, termos e exclusão.
+        </p><a
+          href={`mailto:${site.email}?subject=Privacidade%20-%20Realeiros%20Play`}
+          >Falar sobre privacidade</a>
+      </article>
     </div>
   </section>
   <section class="section section-paper">
-    <div class="container cta-panel" style="background:#fff;color:#0b1730;border-color:#d8dde5">
-      <div><p class="eyebrow">Acompanhe os bastidores</p><h2 style="color:#0b1730">@realeirosplay</h2><p style="color:#4f5b70">Desenvolvimento, futebol, lançamentos e o que acontece entre uma atualização e outra.</p></div>
-      <div class="cta-panel-actions"><a class="button button-dark" href={site.instagram} target="_blank" rel="noreferrer">Abrir Instagram</a></div>
+    <div
+      class="container cta-panel"
+      style="background:#fff;color:#0b1730;border-color:#d8dde5"
+    >
+      <div>
+        <p class="eyebrow">Acompanhe os bastidores</p>
+
+        <h2 class="contact-instagram-handle">@realeirosplay</h2>
+
+        <p style="color:#4f5b70">
+          Desenvolvimento, futebol, lançamentos e o que acontece entre uma
+          atualização e outra.
+        </p>
+      </div>
+
+      <div class="cta-panel-actions">
+        <a
+          class="button button-dark"
+          href={site.instagram}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            class="button-icon"
+            src="/images/social_media/Instagram_logo.png"
+            alt=""
+            aria-hidden="true"
+          />
+          Abrir Instagram
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
