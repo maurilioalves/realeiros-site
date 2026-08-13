@@ -215,5 +215,24 @@ Regra prática:
 - alteração de texto: editar `.astro`/`site.ts`;
 - screenshot nova: substituir arquivo em `public/images`;
 - update relevante: adicionar card em `novidades.astro`;
-- deploy: `git push` em `main`.
+- deploy: merge de Pull Request aprovado em `main`; pushes diretos na branch de produção são protegidos por ruleset.
 
+## Segurança
+
+Vulnerabilidades de segurança não devem ser reportadas publicamente em Issues.
+
+Utilize preferencialmente o recurso **Private vulnerability reporting** deste repositório ou entre em contato pelo e-mail:
+
+`realeirosplay@gmail.com`
+
+Não publique tokens, credenciais, dados pessoais ou detalhes de uma vulnerabilidade ainda não corrigida em Issues, Discussions ou Pull Requests públicos.
+
+## Direitos autorais e uso
+
+Copyright © 2026 Realeiros Play. Todos os direitos reservados.
+
+Este repositório é público para fins de hospedagem, transparência técnica e manutenção do site institucional.
+
+A disponibilização pública do código não concede, por si só, licença para reutilização da marca Realeiros Play, identidade visual, textos, imagens, assets ou demais conteúdos proprietários.
+
+Nenhuma licença de software de código aberto é concedida por este repositório, salvo quando expressamente indicada para um componente específico.
