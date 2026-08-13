@@ -3,40 +3,119 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 ---
-<BaseLayout title="Sobre a Realeiros" description="Conheça a Realeiros Play: microestúdio indie brasileiro, founder-led, focado em jogos mobile próprios e na cultura do futebol.">
-  <PageHero eyebrow="Sobre a Realeiros" title="Um estúdio pequeno. Uma identidade que não será." text="A Realeiros Play é um estúdio indie brasileiro de jogos mobile, construído em torno de produtos próprios e de uma ideia simples: futebol digital pode ter a alma de quem vive o futebol daqui." />
+
+<BaseLayout
+  title="Sobre a Realeiros"
+  description="Conheça a Realeiros Play, estúdio indie brasileiro de jogos mobile responsável pelo Olha a Batida."
+>
+  <PageHero
+    eyebrow="Sobre a Realeiros"
+    title="Futebol brasileiro. Do nosso jeito."
+    text="A Realeiros Play é um estúdio independente brasileiro que cria jogos próprios inspirados na cultura, na emoção e no jeito de viver futebol."
+  />
 
   <section class="section">
     <div class="container about-grid">
       <div class="big-quote">“Futebol brasileiro. Do nosso jeito.”</div>
+
       <div class="about-copy">
-        <p>A Realeiros nasce da mistura de desenvolvimento de jogos, cultura de torcedor e vontade de criar experiências que não pareçam apenas uma cópia menor dos grandes simuladores.</p>
-        <p>Hoje, a operação é essencialmente solo e founder-led. Isso não é escondido atrás de linguagem de “grande equipe”: é parte do modelo. O estúdio mantém custos baixos, controla o próprio código e prioriza uma grande iniciativa por vez.</p>
-        <p>O principal ativo é o <strong>Olha a Batida</strong>, jogo mobile publicado em Android e iOS que já acumulou centenas de milhares de downloads históricos no Android e segue em evolução.</p>
-        <p>A direção de longo prazo é transformar a Realeiros em um microestúdio independente sustentável, capaz de financiar sua operação, reinvestir em produto e construir propriedade intelectual própria.</p>
+        <p>
+          A Realeiros Play nasceu da mistura entre desenvolvimento de jogos,
+          cultura de torcedor e vontade de criar experiências digitais com
+          identidade própria.
+        </p>
+
+        <p>
+          O estúdio desenvolve produtos próprios e busca transformar elementos
+          do futebol brasileiro em jogos acessíveis, reconhecíveis e feitos
+          para quem vive o esporte além dos noventa minutos.
+        </p>
+
+        <p>
+          Nosso principal título é o <strong>Olha a Batida</strong>, jogo mobile
+          publicado para Android e iOS que transforma pênaltis, competições,
+          temporadas e personalização em uma experiência própria de futebol.
+        </p>
+
+        <p>
+          A Realeiros continua evoluindo seus jogos, sua marca e seu universo
+          de produtos mantendo o futebol brasileiro como ponto de partida.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section section-muted">
     <div class="container">
-      <SectionHeading eyebrow="Nossa direção" title="O que não negociamos." />
+      <SectionHeading
+        eyebrow="Nossa direção"
+        title="O que guia a Realeiros."
+      />
+
       <div class="values-grid">
-        <article class="value"><h3>Produto próprio</h3><p>O valor da Realeiros vem de jogos, marca, tecnologia e IP próprios — não de prestação de serviços como modelo principal.</p></article>
-        <article class="value"><h3>Baixo burn rate</h3><p>Operação enxuta preserva liberdade de decisão e evita criar custos antes de existir receita capaz de sustentá-los.</p></article>
-        <article class="value"><h3>Brasil como raiz</h3><p>A expansão pode ser internacional, mas a identidade parte da cultura do torcedor brasileiro, não de uma comunicação global neutra.</p></article>
-        <article class="value"><h3>Jogabilidade acessível</h3><p>Entrar deve ser fácil. Profundidade vem do contexto, da progressão e do significado das competições.</p></article>
-        <article class="value"><h3>Evolução por dados</h3><p>Features importantes precisam mover retenção, monetização, aquisição orgânica ou capacidade de escalar conteúdo.</p></article>
-        <article class="value"><h3>Autenticidade</h3><p>Sem voz de jornal esportivo, sem humor forçado e sem fingir uma estrutura que não existe.</p></article>
+        <article class="value">
+          <h3>Produto próprio</h3>
+          <p>
+            Criamos jogos, marcas e experiências com identidade própria.
+          </p>
+        </article>
+
+        <article class="value">
+          <h3>Brasil como raiz</h3>
+          <p>
+            Nossa linguagem nasce da cultura e da experiência do torcedor brasileiro.
+          </p>
+        </article>
+
+        <article class="value">
+          <h3>Identidade</h3>
+          <p>
+            Cada produto deve ter personalidade e ser reconhecido pelo que faz diferente.
+          </p>
+        </article>
+
+        <article class="value">
+          <h3>Jogabilidade acessível</h3>
+          <p>
+            Entrar deve ser fácil. A profundidade aparece conforme o jogador continua jogando.
+          </p>
+        </article>
+
+        <article class="value">
+          <h3>Evolução contínua</h3>
+          <p>
+            Jogos vivos melhoram com novas ideias, conteúdo e aprendizado ao longo do tempo.
+          </p>
+        </article>
+
+        <article class="value">
+          <h3>Autenticidade</h3>
+          <p>
+            Preferimos uma identidade própria a tentar parecer algo que não somos.
+          </p>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section section-paper">
     <div class="container prose prose-paper">
-      <SectionHeading eyebrow="Manifesto em uma frase" title="O jogo do futebol Brasileiro" />
-      <p>Para a Realeiros, futebol não é apenas esporte. É conversa, memória, provocação, nervosismo, festa, arte e rotina. O trabalho do estúdio é transformar esse repertório em experiências digitais com linguagem própria.</p>
-      <p>O objetivo não é competir com grandes simuladores em realismo, licenças ou partidas 11x11. É construir uma experiência simples de jogar e surpreendentemente profunda. Começando pelos momentos decisivos do Olha a Batida.</p>
+      <SectionHeading
+        eyebrow="Manifesto em uma frase"
+        title="O jogo do futebol brasileiro"
+      />
+
+      <p>
+        Para a Realeiros, futebol não é apenas esporte. É conversa, memória,
+        provocação, nervosismo, festa, arte e rotina. Nosso trabalho é transformar
+        esse repertório em experiências digitais com linguagem própria.
+      </p>
+
+      <p>
+        O objetivo não é reproduzir tudo o que os grandes simuladores fazem.
+        É criar experiências de futebol com uma proposta própria, começando pelos
+        momentos decisivos do Olha a Batida.
+      </p>
     </div>
   </section>
 </BaseLayout>
