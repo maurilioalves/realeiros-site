@@ -1,0 +1,176 @@
+---
+const measurementId = 'G-4W6YBWHQR5';
+---
+
+<div class="analytics-consent" data-analytics-consent hidden role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-description">
+  <div class="analytics-consent-copy">
+    <strong id="analytics-consent-title">Analytics e privacidade</strong>
+    <p id="analytics-consent-description">
+      Usamos Google Analytics para entender como o site é utilizado e melhorar a experiência.
+      O analytics só é carregado se você aceitar. <a href="/privacidade">Saiba mais</a>.
+    </p>
+  </div>
+  <div class="analytics-consent-actions">
+    <button class="button button-secondary button-small" type="button" data-analytics-reject>
+      Recusar
+    </button>
+    <button class="button button-primary button-small" type="button" data-analytics-accept>
+      Aceitar analytics
+    </button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ measurementId }}>
+  (() => {
+    const storageKey = 'realeiros_analytics_consent';
+    const banner = document.querySelector('[data-analytics-consent]');
+    const acceptButton = document.querySelector('[data-analytics-accept]');
+    const rejectButton = document.querySelector('[data-analytics-reject]');
+
+    if (!banner || !acceptButton || !rejectButton) return;
+
+    const readConsent = () => {
+      try {
+        return localStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    };
+
+    const saveConsent = (value) => {
+      try {
+        localStorage.setItem(storageKey, value);
+      } catch {
+        // If storage is unavailable, consent applies only to the current page load.
+      }
+    };
+
+    const loadAnalytics = () => {
+      if (window.__realeirosGa4Loaded) return;
+      window.__realeirosGa4Loaded = true;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('config', measurementId);
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+      script.dataset.realeirosGa4 = measurementId;
+      document.head.appendChild(script);
+    };
+
+    const hideBanner = () => {
+      banner.hidden = true;
+    };
+
+    const consent = readConsent();
+
+    if (consent === 'granted') {
+      loadAnalytics();
+    } else if (consent !== 'denied') {
+      banner.hidden = false;
+    }
+
+    acceptButton.addEventListener('click', () => {
+      saveConsent('granted');
+      hideBanner();
+      loadAnalytics();
+    });
+
+    rejectButton.addEventListener('click', () => {
+      saveConsent('denied');
+      hideBanner();
+    });
+
+    document.querySelectorAll('[data-analytics-reset]').forEach((control) => {
+      control.addEventListener('click', () => {
+        try {
+          localStorage.removeItem(storageKey);
+        } catch {
+          // Nothing else to clear when storage is unavailable.
+        }
+        window.location.reload();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .analytics-consent {
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    width: min(calc(100% - 32px), 920px);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    background: #081226;
+    color: #f5f0e6;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .analytics-consent[hidden] {
+    display: none;
+  }
+
+  .analytics-consent-copy {
+    max-width: 610px;
+  }
+
+  .analytics-consent strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1rem;
+  }
+
+  .analytics-consent p {
+    margin: 0;
+    color: #b8c3d5;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .analytics-consent p a {
+    color: #f5e61b;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .analytics-consent-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+
+  @media (max-width: 700px) {
+    .analytics-consent {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 16px;
+      bottom: 12px;
+    }
+
+    .analytics-consent-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .analytics-consent-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
