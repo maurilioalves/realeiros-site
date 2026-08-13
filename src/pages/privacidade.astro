@@ -3,44 +3,380 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { site } from '../data/site';
 ---
-<BaseLayout title="Política de Privacidade" description="Política de Privacidade do Olha a Batida e da Realeiros Play.">
-  <PageHero eyebrow="Legal" title="Política de Privacidade" text="Informações sobre coleta, uso e tratamento de dados no Olha a Batida." />
+
+<BaseLayout
+  title="Política de Privacidade"
+  description="Política de Privacidade do Olha a Batida e da Realeiros Play."
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Política de Privacidade"
+    text="Como dados e informações são tratados no Olha a Batida e nos serviços da Realeiros Play."
+  />
+
   <section class="section">
     <div class="container prose">
-      <!-- TODO LEGAL: conteúdo migrado da política atual. Auditar SDKs/serviços e lojas antes do cutover. -->
-      <div class="legal-meta"><span>Documento-base migrado do site atual</span><span>•</span><span>Vigência informada no texto original: 27/06/2023</span></div>
+      <div class="legal-meta">
+        <span>Última atualização: 12/08/2026</span>
+        <span>•</span>
+        <span>Versão 2.0</span>
+      </div>
 
-      <p>A Realeiros Play desenvolveu o aplicativo Olha a Batida como um aplicativo com suporte para anúncios. Este serviço é fornecido gratuitamente pela Realeiros Play e deve ser utilizado no estado em que se encontra.</p>
-      <p>Esta página tem como objetivo informar os visitantes sobre nossas políticas de coleta, uso e divulgação de informações pessoais, caso optem por utilizar nossos serviços.</p>
-      <p>Ao utilizar nossos serviços, você concorda com a coleta e uso de informações de acordo com esta política. As informações pessoais que coletamos são utilizadas para fornecer e melhorar o serviço. Não compartilharemos suas informações com terceiros, exceto conforme descrito nesta Política de Privacidade.</p>
+      <p>
+        Esta Política de Privacidade descreve como a Realeiros Play trata informações
+        relacionadas ao uso do jogo <strong>Olha a Batida</strong>, do site
+        realeirosplay.com e dos canais de suporte associados.
+      </p>
 
-      <h2>Coleta e uso de informações</h2>
-      <p>Para proporcionar uma melhor experiência, podemos solicitar determinadas informações durante o uso do serviço. O aplicativo também utiliza serviços de terceiros que podem coletar informações para fins de funcionamento, medição, publicidade, diagnóstico ou identificação técnica.</p>
-      <!-- p class="notice"><strong>Revisão necessária antes da publicação definitiva:</strong> a lista de provedores e os fluxos de dados precisam ser reconciliados com os SDKs efetivamente presentes na versão atual do aplicativo e com as declarações vigentes na Google Play e App Store.</p> -->
+      <p>
+        A Realeiros Play é responsável pelas decisões relacionadas ao tratamento de
+        dados descritas nesta política. Para assuntos relacionados à privacidade,
+        solicitações ou exercício de direitos, o contato pode ser feito pelo e-mail
+        <a href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}>
+          {site.email}
+        </a>.
+      </p>
 
-      <h2>Dados de registro</h2>
-      <p>Quando ocorre um erro no aplicativo, produtos de terceiros podem registrar informações técnicas do dispositivo e do uso do serviço, como versão do sistema operacional, configuração do aplicativo, data e hora, diagnóstico e outras estatísticas necessárias à análise do problema.</p>
+      <h2>1. Informações tratadas pelo Olha a Batida</h2>
 
-      <h2>Cookies e tecnologias semelhantes</h2>
-      <p>O aplicativo não opera como um site tradicional que depende diretamente de cookies próprios. Serviços e bibliotecas de terceiros podem, contudo, utilizar identificadores ou tecnologias equivalentes conforme suas próprias políticas e finalidades.</p>
+      <p>
+        O Olha a Batida não exige a criação de uma conta da Realeiros Play para jogar.
+        Durante o funcionamento normal do jogo, não solicitamos diretamente informações
+        como nome completo, endereço, telefone ou documento de identidade.
+      </p>
 
-      <h2>Provedores de serviço</h2>
-      <p>A Realeiros pode utilizar fornecedores de tecnologia para viabilizar recursos do aplicativo, publicidade, analytics, diagnóstico e suporte à operação. Cada fornecedor deve ser tratado de acordo com sua política aplicável e com a configuração efetivamente usada no produto.</p>
+      <p>
+        Entretanto, o aplicativo utiliza serviços de analytics, publicidade, diagnóstico
+        e distribuição que podem processar informações técnicas e de utilização do
+        aplicativo.
+      </p>
 
-      <h2>Segurança</h2>
-      <p>Buscamos utilizar medidas razoáveis para proteger informações tratadas durante a prestação do serviço. Nenhum método de transmissão ou armazenamento eletrônico, entretanto, oferece garantia absoluta de segurança.</p>
+      <p>Essas informações podem incluir, conforme o serviço e a plataforma:</p>
 
-      <h2>Links externos</h2>
-      <p>O serviço pode conter links para sites ou serviços de terceiros. A Realeiros não controla o conteúdo nem as práticas de privacidade de páginas externas; recomendamos a leitura das políticas correspondentes.</p>
+      <ul>
+        <li>versão do aplicativo e da engine utilizada;</li>
+        <li>sistema operacional, modelo e características técnicas do dispositivo;</li>
+        <li>idioma e plataforma;</li>
+        <li>identificadores técnicos ou de instalação do aplicativo;</li>
+        <li>endereço IP e localização aproximada derivada tecnicamente, quando aplicável;</li>
+        <li>sessões, abertura do aplicativo e duração de uso;</li>
+        <li>interações com telas, recursos e modos de jogo;</li>
+        <li>eventos de gameplay, como partidas, resultados, modos utilizados e progressão;</li>
+        <li>interações com anúncios;</li>
+        <li>informações de diagnóstico, falhas, erros e desempenho;</li>
+        <li>informações relacionadas a compras realizadas pela loja da plataforma.</li>
+      </ul>
 
-      <h2>Privacidade de crianças</h2>
-      <p>A política atual do aplicativo deverá ser revisada em conjunto com a classificação etária, público-alvo declarado nas lojas e SDKs utilizados. Caso você seja responsável por uma criança e tenha uma solicitação relacionada a dados, entre em contato conosco.</p>
+      <h2>2. Analytics e métricas de uso</h2>
 
-      <h2>Alterações</h2>
-      <p>Esta política poderá ser atualizada quando houver mudanças no aplicativo, nos serviços de terceiros, em requisitos de plataforma ou em obrigações legais.</p>
+      <p>
+        Utilizamos o <strong>Google Firebase Analytics</strong> para entender como o jogo
+        é utilizado, medir sessões, retenção, funcionamento de recursos e desempenho das
+        diferentes áreas do aplicativo.
+      </p>
 
-      <h2>Contato</h2>
-      <p>Dúvidas ou solicitações sobre privacidade podem ser encaminhadas para <a href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}>{site.email}</a>.</p>
+      <p>
+        O jogo também envia eventos próprios de gameplay e navegação, incluindo, por
+        exemplo, modo selecionado, início e término de partidas, resultados, utilização
+        de recursos, missões e recompensas.
+      </p>
+
+      <p>
+        Esses eventos são utilizados de forma agregada para análise de produto,
+        correção de problemas e melhoria da experiência do jogador.
+      </p>
+
+      <p>
+        Não utilizamos esses eventos personalizados para enviar ao Firebase informações
+        como nome, e-mail ou telefone do jogador.
+      </p>
+
+      <h2>3. Publicidade</h2>
+
+      <p>
+        O Olha a Batida é financiado parcialmente por publicidade e utiliza
+        <strong>Unity LevelPlay / ironSource Ads</strong> para mediação de anúncios.
+        Atualmente, o <strong>Unity Ads</strong> também pode ser utilizado como rede
+        publicitária mediada.
+      </p>
+
+      <p>
+        Esses serviços podem processar informações técnicas, identificadores do
+        dispositivo ou da instalação, endereço IP, localização aproximada, informações
+        sobre a exibição de anúncios e interações realizadas durante a experiência
+        publicitária.
+      </p>
+
+      <p>
+        Essas informações podem ser utilizadas para entrega e medição de anúncios,
+        limitação de frequência, prevenção a fraude, segurança, cumprimento de obrigações
+        legais e, quando permitido pela legislação, pela plataforma e pelas configurações
+        aplicáveis, personalização de publicidade.
+      </p>
+
+      <p>
+        O jogador pode também encontrar controles relacionados a publicidade e
+        identificadores diretamente nas configurações de privacidade do Android ou iOS.
+      </p>
+
+      <h2>4. Diagnóstico e estabilidade</h2>
+
+      <p>
+        Utilizamos recursos da Unity relacionados a diagnóstico e estabilidade para
+        identificar falhas, exceções e problemas de funcionamento do aplicativo.
+      </p>
+
+      <p>
+        Esses serviços podem processar informações como identificadores técnicos da
+        instalação, informações do dispositivo, versão do aplicativo, informações da
+        sessão, dados de configuração, relatórios de falha e registros técnicos
+        associados ao erro.
+      </p>
+
+      <p>
+        Essas informações são utilizadas para investigar problemas técnicos, aumentar
+        a estabilidade e melhorar o funcionamento do jogo.
+      </p>
+
+      <h2>5. Compras no aplicativo</h2>
+
+      <p>
+        Quando uma compra está disponível no Olha a Batida, a transação é processada
+        pela loja oficial da plataforma, como Google Play ou App Store.
+      </p>
+
+      <p>
+        A Realeiros Play não recebe diretamente os dados completos do cartão ou do meio
+        de pagamento utilizado pelo jogador. O aplicativo pode receber da plataforma
+        informações técnicas necessárias para confirmar a compra, como produto adquirido,
+        status da transação e comprovante ou recibo digital.
+      </p>
+
+      <h2>6. Dados armazenados localmente</h2>
+
+      <p>
+        Parte significativa dos dados relacionados ao progresso do jogo, preferências,
+        configurações e partidas salvas é armazenada localmente no dispositivo do jogador.
+      </p>
+
+      <p>
+        Esses dados locais não constituem, por si só, dados enviados aos servidores da
+        Realeiros Play. Eles podem ser apagados por mecanismos da própria plataforma,
+        como limpeza dos dados do aplicativo ou desinstalação.
+      </p>
+
+      <p>
+        Informações resumidas sobre utilização e gameplay podem, entretanto, ser enviadas
+        separadamente aos serviços de analytics descritos nesta política.
+      </p>
+
+      <h2>7. Informações enviadas pelo próprio usuário</h2>
+
+      <p>
+        Caso você entre em contato conosco por e-mail ou outro canal de suporte,
+        poderemos receber as informações que você optar por fornecer, como endereço de
+        e-mail, conteúdo da mensagem, capturas de tela, dados técnicos ou outras
+        informações necessárias para responder à solicitação.
+      </p>
+
+      <p>
+        Essas informações serão utilizadas para atendimento, suporte, investigação de
+        problemas ou tratamento da solicitação apresentada.
+      </p>
+
+      <h2>8. Serviços de terceiros</h2>
+
+      <p>O aplicativo pode utilizar serviços fornecidos por terceiros, incluindo:</p>
+
+      <ul>
+        <li>Google Firebase Analytics;</li>
+        <li>Unity LevelPlay / ironSource Ads;</li>
+        <li>Unity Ads;</li>
+        <li>Unity Diagnostics e serviços relacionados à engine;</li>
+        <li>Google Play;</li>
+        <li>Apple App Store.</li>
+      </ul>
+
+      <p>
+        Esses fornecedores podem tratar informações de acordo com suas próprias
+        políticas de privacidade e com as configurações utilizadas pela Realeiros Play.
+      </p>
+
+      <p>
+        Consulte também:
+        <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">
+          Privacidade do Firebase
+        </a>,
+        <a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+          Política de Privacidade da Unity
+        </a>,
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+          Política de Privacidade do Google
+        </a>
+        e
+        <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">
+          Política de Privacidade da Apple
+        </a>.
+      </p>
+
+      <h2>9. Site da Realeiros Play</h2>
+
+      <p>
+        O site institucional realeirosplay.com não possui sistema próprio de criação de
+        conta ou login e, em sua implementação atual, não utiliza diretamente ferramentas
+        próprias de publicidade ou analytics no código do site.
+      </p>
+
+      <p>
+        O site contém links para serviços externos, incluindo lojas de aplicativos e
+        redes sociais. Ao acessar esses serviços, passam a ser aplicáveis também as
+        políticas de privacidade das respectivas plataformas.
+      </p>
+
+      <p>
+        O provedor responsável pela hospedagem e entrega do site poderá processar
+        informações técnicas de rede necessárias para disponibilizar as páginas, como
+        endereço IP, data e hora da requisição e informações técnicas do navegador.
+      </p>
+
+      <h2>10. Crianças e adolescentes</h2>
+
+      <p>
+        O Olha a Batida não é desenvolvido ou direcionado especificamente a crianças
+        menores de 13 anos.
+      </p>
+
+      <p>
+        As classificações de público e as configurações dos serviços publicitários são
+        mantidas de forma compatível com essa característica. Leis locais podem estabelecer
+        proteções adicionais para crianças e adolescentes.
+      </p>
+
+      <p>
+        Caso um responsável legal acredite que informações de uma criança tenham sido
+        tratadas de maneira inadequada, poderá entrar em contato conosco para solicitar
+        análise e, quando aplicável, exclusão.
+      </p>
+
+      <h2>11. Compartilhamento de informações</h2>
+
+      <p>
+        Informações podem ser transmitidas aos fornecedores tecnológicos necessários
+        para operar os serviços descritos nesta política, incluindo analytics,
+        publicidade, diagnóstico, distribuição e processamento de compras.
+      </p>
+
+      <p>
+        Também poderemos divulgar informações quando necessário para cumprimento de
+        obrigação legal, ordem de autoridade competente, proteção contra fraude,
+        segurança ou defesa de direitos.
+      </p>
+
+      <p>
+        A Realeiros Play não vende diretamente listas contendo dados pessoais dos
+        jogadores.
+      </p>
+
+      <h2>12. Transferências internacionais</h2>
+
+      <p>
+        Alguns dos fornecedores utilizados são empresas internacionais ou operam
+        infraestrutura localizada em diferentes países. Dessa forma, informações
+        processadas pelos serviços descritos nesta política podem ser armazenadas ou
+        tratadas fora do Brasil, conforme as regras aplicáveis e as políticas dos
+        respectivos fornecedores.
+      </p>
+
+      <h2>13. Retenção e exclusão</h2>
+
+      <p>
+        Mantemos diretamente apenas as informações necessárias pelo período compatível
+        com a finalidade para a qual foram obtidas, obrigações legais, segurança e
+        resolução de solicitações.
+      </p>
+
+      <p>
+        Dados tratados por serviços de terceiros podem estar sujeitos aos prazos de
+        retenção definidos por esses fornecedores e às configurações disponíveis nos
+        respectivos serviços.
+      </p>
+
+      <p>
+        Solicitações relacionadas à exclusão de dados podem ser realizadas pelas
+        instruções disponíveis na página
+        <a href="/exclusao-de-dados">Exclusão de dados</a>
+        ou pelo e-mail de contato informado nesta política.
+      </p>
+
+      <h2>14. Direitos dos titulares</h2>
+
+      <p>
+        De acordo com a legislação aplicável, incluindo a Lei Geral de Proteção de Dados
+        Pessoais — LGPD, o titular poderá exercer direitos relacionados aos seus dados
+        pessoais.
+      </p>
+
+      <p>Esses direitos podem incluir, conforme aplicável:</p>
+
+      <ul>
+        <li>confirmação da existência de tratamento;</li>
+        <li>acesso aos dados;</li>
+        <li>correção de informações incompletas, inexatas ou desatualizadas;</li>
+        <li>anonimização, bloqueio ou eliminação de dados tratados em desconformidade;</li>
+        <li>informação sobre compartilhamento de dados;</li>
+        <li>portabilidade, quando aplicável;</li>
+        <li>eliminação de dados tratados com base no consentimento, quando cabível;</li>
+        <li>revogação do consentimento, quando o tratamento depender dele;</li>
+        <li>oposição ao tratamento nas hipóteses previstas em lei.</li>
+      </ul>
+
+      <p>
+        Para exercer esses direitos, entre em contato pelo e-mail
+        <a href={`mailto:${site.email}?subject=Solicitacao%20LGPD%20-%20Olha%20a%20Batida`}>
+          {site.email}
+        </a>.
+        Poderemos solicitar informações mínimas necessárias para confirmar a legitimidade
+        da solicitação e localizar os dados correspondentes.
+      </p>
+
+      <h2>15. Segurança</h2>
+
+      <p>
+        Buscamos adotar medidas técnicas e organizacionais razoáveis para proteger as
+        informações tratadas durante a prestação dos serviços.
+      </p>
+
+      <p>
+        Nenhum método de transmissão ou armazenamento eletrônico é totalmente livre de
+        riscos, portanto não é possível garantir segurança absoluta.
+      </p>
+
+      <h2>16. Alterações desta política</h2>
+
+      <p>
+        Esta Política de Privacidade poderá ser atualizada quando houver alterações no
+        aplicativo, nos serviços utilizados, nas práticas de tratamento de dados, nas
+        plataformas de distribuição ou nos requisitos legais aplicáveis.
+      </p>
+
+      <p>
+        A versão atualizada será disponibilizada nesta página com a respectiva data de
+        atualização.
+      </p>
+
+      <h2>17. Contato</h2>
+
+      <p>
+        Para dúvidas, solicitações relacionadas à privacidade ou exercício de direitos:
+      </p>
+
+      <p>
+        <strong>Realeiros Play</strong><br />
+        E-mail:
+        <a href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}>
+          {site.email}
+        </a>
+      </p>
     </div>
   </section>
 </BaseLayout>
