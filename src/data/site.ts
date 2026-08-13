@@ -12,8 +12,7 @@ export const site = {
   x: 'https://x.com/realeirosplay',
   playStore:
     'https://play.google.com/store/apps/details?id=com.realeirosplay.olhaabatida.googleplay',
-  appStore: 'https://apps.apple.com/app/id6450018515',
-  pressKit: 'https://drive.google.com/', // TODO: substituir pelo link oficial do press kit atual
+  appStore: 'https://apps.apple.com/app/id6450018515'
 };
 
 export const publicMetrics = [
@@ -25,19 +24,19 @@ export const publicMetrics = [
 
 export const roadmap = [
   {
-    title: 'Temporadas em evolução',
-    text: 'Infraestrutura sendo preparada para ampliar ligas, competições e continuidade.',
+    title: 'Temporadas mais profundas',
+    text: 'Mais continuidade, contexto e significado para cada campanha disputada.',
   },
   {
-    title: 'Modo carreira',
-    text: 'Mais contexto entre temporadas, decisões e uma trajetória que continua.',
+    title: 'Mais conteúdo de futebol',
+    text: 'Clubes, competições e experiências continuam crescendo de forma gradual.',
   },
   {
-    title: 'Clubes europeus',
-    text: 'Expansão modular de conteúdo, mantendo o futebol brasileiro como raiz da marca.',
+    title: 'Mais motivos para voltar',
+    text: 'Progressão, desafios e sistemas recorrentes evoluem junto com o jogo.',
   },
   {
-    title: 'Novas competições',
-    text: 'Conteúdo novo entra de forma gradual, conforme produto e comunidade evoluem.',
+    title: 'Experiência em evolução',
+    text: 'Gameplay, interface, desempenho e qualidade continuam recebendo melhorias.',
   },
 ];
