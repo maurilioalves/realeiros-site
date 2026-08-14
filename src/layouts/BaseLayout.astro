@@ -6,6 +6,7 @@ import '@fontsource/anton';
 import '@fontsource-variable/inter/wght.css';
 import '../styles/global.css';
 import { site } from '../data/site';
+import AnalyticsLinkTracking from '../components/AnalyticsLinkTracking.astro';
 
 interface Props {
   title?: string;
@@ -59,6 +60,7 @@ const socialImage = new URL(image, site.domain);
     </main>
     <SiteFooter />
     <AnalyticsConsent />
+    <AnalyticsLinkTracking />
     <script is:inline>
       const button = document.querySelector('[data-menu-button]');
       const nav = document.querySelector('[data-mobile-nav]');
