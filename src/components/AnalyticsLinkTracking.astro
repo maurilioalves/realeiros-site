@@ -1,0 +1,164 @@
+<script is:inline>
+    (() => {
+        const normalize = (value) =>
+            String(value || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+
+        const getPlacement = (link) => {
+            if (link.closest(".site-header")) {
+                return link.closest(".mobile-nav")
+                    ? "header_mobile"
+                    : "header_desktop";
+            }
+
+            if (link.closest(".site-footer")) return "footer";
+            if (link.closest(".game-hero")) return "game_hero";
+            if (link.closest(".hero")) return "home_hero";
+            if (link.closest(".game-feature")) return "home_game_feature";
+            if (link.closest(".contact-card")) return "contact_card";
+            if (link.closest(".support-card")) return "support_card";
+            if (link.closest(".cta-panel")) return "cta_panel";
+            if (link.closest(".faq")) return "faq";
+
+            return "content";
+        };
+
+        const getContactType = (link, url) => {
+            const subject = normalize(url.searchParams.get("subject"));
+            const label = normalize(link.textContent);
+            const context = `${subject} ${label}`;
+
+            if (context.includes("imprensa") || context.includes("criador")) {
+                return "press_creator";
+            }
+
+            if (
+                context.includes("parceria") ||
+                context.includes("publishing") ||
+                context.includes("licenciamento") ||
+                context.includes("proposta")
+            ) {
+                return "partnership";
+            }
+
+            if (
+                context.includes("privacidade") ||
+                context.includes("lgpd") ||
+                context.includes("dados") ||
+                context.includes("exclusao")
+            ) {
+                return "privacy";
+            }
+
+            if (context.includes("bug")) return "bug";
+
+            if (context.includes("compra") || context.includes("anuncio")) {
+                return "purchase_ads";
+            }
+
+            if (
+                context.includes("suporte") ||
+                context.includes("ajuda") ||
+                (window.location.pathname === "/olha-a-batida" &&
+                    link.closest(".faq"))
+            ) {
+                return "support";
+            }
+
+            return "general";
+        };
+
+        const sendEvent = (eventName, params) => {
+            if (
+                window.__realeirosGa4Loaded !== true ||
+                typeof window.gtag !== "function"
+            ) {
+                return;
+            }
+
+            window.gtag("event", eventName, params);
+        };
+
+        document.addEventListener("click", (event) => {
+            if (!(event.target instanceof Element)) return;
+
+            const link = event.target.closest("a[href]");
+            if (!link) return;
+
+            let url;
+
+            try {
+                url = new URL(link.href, window.location.href);
+            } catch {
+                return;
+            }
+
+            const baseParams = {
+                page_path: window.location.pathname,
+                placement: getPlacement(link),
+            };
+
+            if (url.protocol === "mailto:") {
+                sendEvent("contact_click", {
+                    ...baseParams,
+                    contact_type: getContactType(link, url),
+                });
+                return;
+            }
+
+            const hostname = url.hostname.toLowerCase();
+
+            if (hostname === "play.google.com") {
+                sendEvent("store_click", {
+                    ...baseParams,
+                    store: "google_play",
+                });
+                return;
+            }
+
+            if (hostname === "apps.apple.com") {
+                sendEvent("store_click", {
+                    ...baseParams,
+                    store: "app_store",
+                });
+                return;
+            }
+
+            let socialNetwork = null;
+
+            if (
+                hostname === "instagram.com" ||
+                hostname.endsWith(".instagram.com")
+            ) {
+                socialNetwork = "instagram";
+            } else if (
+                hostname === "tiktok.com" ||
+                hostname.endsWith(".tiktok.com")
+            ) {
+                socialNetwork = "tiktok";
+            } else if (
+                hostname === "x.com" ||
+                hostname.endsWith(".x.com") ||
+                hostname === "twitter.com" ||
+                hostname.endsWith(".twitter.com")
+            ) {
+                socialNetwork = "x";
+            } else if (
+                hostname === "youtube.com" ||
+                hostname.endsWith(".youtube.com") ||
+                hostname === "youtu.be"
+            ) {
+                socialNetwork = "youtube";
+            }
+
+            if (socialNetwork) {
+                sendEvent("social_click", {
+                    ...baseParams,
+                    social_network: socialNetwork,
+                });
+            }
+        });
+    })();
+</script>
