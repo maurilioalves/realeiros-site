@@ -38,6 +38,7 @@ const screenshots = [
   ["05-personalizacao.jpg", "Personalização", "Tela de personalização do Olha a Batida"],
   ["06-campeao.jpg", "Campeão", "Tela de campeão do Olha a Batida"],
   ["07-trofeus.jpg", "Sala de troféus", "Sala de troféus do Olha a Batida"],
+  ["08-estadios.jpg", "Estádios", "Estádio e atmosfera de partida no Olha a Batida"],
 ];
 
 const realeirosAssets = [
@@ -221,7 +222,7 @@ const gameAssets = [
       <SectionHeading
         eyebrow="Screenshots oficiais"
         title="Dentro do Olha a Batida."
-        text="Clique em qualquer imagem para baixar o arquivo original em alta resolução."
+        text="Clique na imagem ou em Baixar JPG para obter o arquivo original em alta resolução."
       />
       <div class="press-screenshot-grid">
         {screenshots.map(([file, label, alt]) => {
@@ -231,7 +232,10 @@ const gameAssets = [
               <a href={href} download aria-label={`Baixar screenshot: ${label}`}>
                 <img src={href} alt={alt} loading="lazy" />
               </a>
-              <figcaption><span>{label}</span><strong>Baixar JPG</strong></figcaption>
+              <figcaption>
+                <span>{label}</span>
+                <a class="press-screenshot-download" href={href} download>Baixar JPG</a>
+              </figcaption>
             </figure>
           );
         })}
