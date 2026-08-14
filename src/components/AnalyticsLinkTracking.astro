@@ -21,6 +21,8 @@
             if (link.closest(".support-card")) return "support_card";
             if (link.closest(".cta-panel")) return "cta_panel";
             if (link.closest(".faq")) return "faq";
+            if (link.closest(".press-gallery")) return "press_gallery";
+            if (link.closest(".press-assets")) return "press_assets";
 
             return "content";
         };
@@ -70,6 +72,15 @@
             return "general";
         };
 
+        const getPressAssetGroup = (pathname) => {
+            if (pathname.endsWith(".zip")) return "press_kit_bundle";
+            if (pathname.includes("/screenshots/")) return "screenshot";
+            if (pathname.includes("/realeiros/")) return "realeiros_brand";
+            if (pathname.includes("/olha-a-batida/")) return "oab_brand";
+            if (pathname.includes("/stores/")) return "store_badge";
+            return "other";
+        };
+
         const sendEvent = (eventName, params) => {
             if (
                 window.__realeirosGa4Loaded !== true ||
@@ -99,6 +110,19 @@
                 page_path: window.location.pathname,
                 placement: getPlacement(link),
             };
+
+            if (
+                link.hasAttribute("download") &&
+                url.origin === window.location.origin &&
+                url.pathname.startsWith("/press-kit/")
+            ) {
+                sendEvent("press_asset_download", {
+                    ...baseParams,
+                    asset_name: url.pathname.split("/").pop() || "asset",
+                    asset_group: getPressAssetGroup(url.pathname),
+                });
+                return;
+            }
 
             if (url.protocol === "mailto:") {
                 sendEvent("contact_click", {
