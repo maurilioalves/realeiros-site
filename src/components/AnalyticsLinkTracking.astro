@@ -73,6 +73,7 @@
         };
 
         const getPressAssetGroup = (pathname) => {
+            if (pathname.endsWith(".zip")) return "press_kit_bundle";
             if (pathname.includes("/screenshots/")) return "screenshot";
             if (pathname.includes("/realeiros/")) return "realeiros_brand";
             if (pathname.includes("/olha-a-batida/")) return "oab_brand";

@@ -391,6 +391,28 @@
   margin-top: 18px;
   color: #94a3b8;
 }
+.press-bundle-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 42px;
+  padding: 24px 26px;
+  border: 1px solid #d5dae2;
+  border-radius: 18px 12px 22px 10px;
+  background: #f4f6f9;
+}
+
+.press-bundle-card strong {
+  display: block;
+  color: #111b2f;
+  font-size: 1.15rem;
+}
+
+.press-bundle-card p {
+  margin: 5px 0 0;
+  color: #5f6a7e;
+}
 
 @media (max-width: 900px) {
   .press-studio-grid,
@@ -424,6 +446,7 @@
   .press-copy-grid,
   .press-feature-grid,
   .press-screenshot-grid,
+  
   .press-assets-grid {
     grid-template-columns: 1fr;
   }
@@ -455,5 +478,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+  .press-bundle-card {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
