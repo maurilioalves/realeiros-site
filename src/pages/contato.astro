@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site";
+import "../styles/contact.css";
 ---
 
 <BaseLayout
@@ -11,44 +13,109 @@ import { site } from "../data/site";
   <PageHero
     eyebrow="Contato"
     title="Fale com a Realeiros."
-    text="Sem telefone pessoal exposto e sem labirinto de formulário. Escolha o assunto e mande a mensagem para o canal certo."
+    text="Escolha o assunto e envie sua mensagem sem sair do site. O formulário direciona o contato para o contexto certo."
   />
+
   <section class="section">
     <div class="container contact-grid">
       <article class="contact-card">
-        <span>Jogadores</span><h2>Suporte do Olha a Batida</h2><p>
+        <span>Jogadores</span>
+        <h2>Suporte do Olha a Batida</h2>
+        <p>
           Bug, problema de acesso, compra, anúncio ou dúvida sobre o jogo.
-        </p><a
-          href={`mailto:${site.email}?subject=Suporte%20-%20Olha%20a%20Batida`}
-          >{site.email}</a>
+        </p>
+        <div class="contact-card-actions">
+          <a
+            href="/contato?tipo=support#formulario"
+            data-contact-type="support"
+          >Abrir suporte</a>
+          <a href="/suporte">Ver central de suporte</a>
+        </div>
       </article>
+
       <article class="contact-card">
-        <span>Imprensa e criadores</span><h2>
-          Conteúdo, cobertura e materiais
-        </h2><p>
+        <span>Imprensa e criadores</span>
+        <h2>Conteúdo, cobertura e materiais</h2>
+        <p>
           Informações, logos, screenshots, dados públicos e materiais oficiais
           estão disponíveis no Press Kit.
-        </p><a href="/press-kit">Acessar Press Kit</a><br /><a
-          href={`mailto:${site.email}?subject=Imprensa%20e%20Criadores%20-%20Realeiros%20Play`}
-          >Enviar e-mail</a>
+        </p>
+        <div class="contact-card-actions">
+          <a href="/press-kit">Acessar Press Kit</a>
+          <a
+            href="/contato?tipo=press_creator#formulario"
+            data-contact-type="press_creator"
+          >Falar com a Realeiros</a>
+        </div>
       </article>
+
       <article class="contact-card">
-        <span>Negócios</span><h2>Parcerias</h2><p>
+        <span>Negócios</span>
+        <h2>Parcerias</h2>
+        <p>
           Contato comercial, publishing, licenciamento e oportunidades alinhadas
           aos produtos da Realeiros.
-        </p><a
-          href={`mailto:${site.email}?subject=Parceria%20-%20Realeiros%20Play`}
+        </p>
+        <div class="contact-card-actions">
+          <a
+            href="/contato?tipo=partnership#formulario"
+            data-contact-type="partnership"
           >Enviar proposta</a>
+        </div>
       </article>
+
       <article class="contact-card">
-        <span>Privacidade</span><h2>Dados e questões legais</h2><p>
+        <span>Privacidade</span>
+        <h2>Dados e questões legais</h2>
+        <p>
           Solicitações relacionadas a privacidade, dados, termos e exclusão.
-        </p><a
-          href={`mailto:${site.email}?subject=Privacidade%20-%20Realeiros%20Play`}
+        </p>
+        <div class="contact-card-actions">
+          <a
+            href="/contato?tipo=privacy#formulario"
+            data-contact-type="privacy"
           >Falar sobre privacidade</a>
+          <a href="/privacidade">Ver política</a>
+        </div>
       </article>
     </div>
   </section>
+
+  <section id="formulario" class="section section-paper contact-form-section">
+    <div class="container contact-form-layout">
+      <div class="contact-form-intro">
+        <p class="eyebrow">Mensagem direta</p>
+        <h2>Conte o que você precisa.</h2>
+        <p>
+          Selecione o assunto, deixe seus dados para resposta e descreva a
+          solicitação. A mensagem é enviada diretamente para o canal da Realeiros.
+        </p>
+
+        <div class="contact-form-points">
+          <div class="contact-form-point">
+            <strong>Resposta por e-mail</strong>
+            <span>Usaremos o endereço informado no formulário para dar continuidade ao contato.</span>
+          </div>
+          <div class="contact-form-point">
+            <strong>Sem dados desnecessários</strong>
+            <span>Não envie senhas, dados completos de cartão ou informações que não sejam necessárias para a solicitação.</span>
+          </div>
+          <div class="contact-form-point">
+            <strong>Imprensa e criadores</strong>
+            <span>Antes de pedir assets, confira o Press Kit: logos, artes e screenshots já estão disponíveis para download.</span>
+          </div>
+        </div>
+
+        <p class="contact-form-fallback">
+          Se o formulário estiver indisponível, o canal alternativo é
+          <strong>{site.email}</strong>.
+        </p>
+      </div>
+
+      <ContactForm accessKey="2ed9e4fa-0579-40d2-b44d-2f5f67790fad" />
+    </div>
+  </section>
+
   <section class="section section-paper">
     <div
       class="container cta-panel"

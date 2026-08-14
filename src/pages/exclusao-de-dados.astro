@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import { site } from '../data/site';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
 ---
 
 <BaseLayout
@@ -16,7 +16,6 @@ import { site } from '../data/site';
 
   <section class="section">
     <div class="container prose">
-
       <h2>O Olha a Batida possui conta de usuário?</h2>
 
       <p>
@@ -62,11 +61,10 @@ import { site } from '../data/site';
       <h2>Como solicitar</h2>
 
       <p>
-        Envie um e-mail para{' '}
-        <a href={`mailto:${site.email}?subject=Solicitacao%20de%20Exclusao%20de%20Dados`}>
-          {site.email}
-        </a>{' '}
-        com o assunto <strong>“Solicitação de exclusão de dados”</strong>.
+        Acesse o{" "}
+        <a href="/contato?tipo=privacy#formulario">formulário de contato</a>,
+        mantenha a categoria <strong>“Privacidade e dados”</strong> selecionada e
+        informe na mensagem que se trata de uma solicitação de exclusão de dados.
       </p>
 
       <p>Informe apenas os dados necessários para que possamos analisar a solicitação:</p>
@@ -129,7 +127,7 @@ import { site } from '../data/site';
       </p>
 
       <p>
-        Consulte a {' '}<a href="/privacidade">Política de Privacidade</a> {' '}para informações
+        Consulte a <a href="/privacidade">Política de Privacidade</a> para informações
         completas sobre tratamento de dados e direitos dos titulares.
       </p>
 
@@ -137,12 +135,9 @@ import { site } from '../data/site';
 
       <p>
         <strong>Realeiros Play</strong><br />
-        E-mail:{' '}
-        <a href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}>
-          {site.email}
-        </a>
+        Canal principal: <a href="/contato?tipo=privacy#formulario">formulário de contato</a><br />
+        Canal alternativo: {site.email}
       </p>
-
     </div>
   </section>
 </BaseLayout>
