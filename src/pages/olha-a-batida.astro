@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import StoreButtons from "../components/StoreButtons.astro";
-import { site } from "../data/site";
 ---
 
 <BaseLayout
@@ -197,9 +196,8 @@ import { site } from "../data/site";
         </details>
         <details>
           <summary>Preciso de ajuda com o jogo?</summary><p>
-            Acesse a página de <a href="/suporte">suporte</a> ou escreva para <a
-              href={`mailto:${site.email}`}>{site.email}</a
-            >.
+            Acesse a página de <a href="/suporte">suporte</a> ou abra o
+            <a href="/contato?tipo=support#formulario">formulário de contato</a>.
           </p>
         </details>
       </div>
