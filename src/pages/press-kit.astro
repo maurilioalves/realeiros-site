@@ -1,0 +1,459 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import StoreButtons from "../components/StoreButtons.astro";
+import { site } from "../data/site";
+import "../styles/press-kit.css";
+
+const factSheet = [
+  ["Título", "Olha a Batida"],
+  ["Desenvolvedor", "Realeiros Play"],
+  ["Criador", "Maurílio Alif Miquel Ferreira Alves"],
+  ["País", "Brasil"],
+  ["Lançamento original", "22 de junho de 2021"],
+  ["Categoria", "Jogo mobile de futebol"],
+  ["Core gameplay", "Cobranças e defesas de pênaltis"],
+  ["Engine", "Unity"],
+  ["Plataformas", "Android e iOS"],
+  ["Idiomas", "Português (Brasil), espanhol e inglês"],
+  ["Modelo", "Gratuito para download, com monetização por anúncios"],
+  ["Status", "Publicado e em evolução contínua"],
+];
+
+const features = [
+  [
+    "Pênaltis que decidem",
+    "Cobranças e defesas formam o núcleo do gameplay e colocam o jogador diretamente nos momentos de maior pressão.",
+  ],
+  [
+    "Competições",
+    "Campeonatos, copas nacionais e torneios continentais dão contexto às partidas com clubes e seleções.",
+  ],
+  [
+    "Temporadas",
+    "Campanhas avançam rodada a rodada e transformam partidas isoladas em trajetórias maiores.",
+  ],
+  [
+    "Clubes, seleções e estádios",
+    "Conteúdo inspirado no futebol brasileiro, sul-americano e mundial amplia o universo do jogo.",
+  ],
+  [
+    "Personalização",
+    "Jogadores e elementos do elenco podem ser personalizados dentro da identidade visual do jogo.",
+  ],
+  [
+    "Progressão",
+    "Recompensas, missões e sistemas recorrentes ampliam a experiência além das partidas individuais.",
+  ],
+];
+
+const screenshots = [
+  [
+    "01-gameplay-penalti.jpg",
+    "Gameplay de pênalti",
+    "Cobrança de pênalti no Olha a Batida",
+  ],
+  [
+    "02-temporadas.jpg",
+    "Temporadas",
+    "Tela do modo Temporadas do Olha a Batida",
+  ],
+  [
+    "03-clubes.jpg",
+    "Clubes e competições",
+    "Competição de clubes no Olha a Batida",
+  ],
+  ["04-selecoes.jpg", "Seleções", "Seleções disponíveis no Olha a Batida"],
+  [
+    "05-personalizacao.jpg",
+    "Personalização",
+    "Tela de personalização do Olha a Batida",
+  ],
+  ["06-campeao.jpg", "Campeão", "Tela de campeão do Olha a Batida"],
+  ["07-trofeus.jpg", "Sala de troféus", "Sala de troféus do Olha a Batida"],
+  [
+    "08-estadios.jpg",
+    "Estádios",
+    "Estádio e atmosfera de partida no Olha a Batida",
+  ],
+];
+
+const realeirosAssets = [
+  [
+    "realeiros-institucional.png",
+    "Logo institucional",
+    "PNG",
+    "/press-kit/realeiros/realeiros-institucional.png",
+  ],
+  [
+    "realeiros-symbol.png",
+    "Símbolo da Realeiros",
+    "PNG",
+    "/press-kit/realeiros/realeiros-symbol.png",
+  ],
+  [
+    "realeiros-vetor.svg",
+    "Símbolo vetorial",
+    "SVG",
+    "/press-kit/realeiros/realeiros-vetor.svg",
+  ],
+];
+
+const gameAssets = [
+  [
+    "olha-a-batida-logo.png",
+    "Logo Olha a Batida",
+    "PNG",
+    "/press-kit/olha-a-batida/olha-a-batida-logo.png",
+  ],
+  [
+    "olha-a-batida-icon.png",
+    "Ícone do jogo",
+    "PNG",
+    "/press-kit/olha-a-batida/olha-a-batida-icon.png",
+  ],
+  [
+    "olha-a-batida-key-art.png",
+    "Key art",
+    "PNG",
+    "/press-kit/olha-a-batida/olha-a-batida-key-art.png",
+  ],
+  [
+    "olha-a-batida-feature-graphic.png",
+    "Feature graphic",
+    "PNG",
+    "/press-kit/olha-a-batida/olha-a-batida-feature-graphic.png",
+  ],
+];
+---
+
+<BaseLayout
+  title="Press Kit"
+  description="Press Kit oficial da Realeiros Play e do Olha a Batida: informações, números, logos, screenshots e materiais para imprensa e criadores."
+>
+  <PageHero
+    eyebrow="Press Kit"
+    title="Materiais oficiais da Realeiros Play."
+    text="Informações, números, textos e assets para imprensa, criadores e cobertura editorial da Realeiros Play e do Olha a Batida."
+  />
+
+  <section class="section">
+    <div class="container press-studio-grid">
+      <div class="press-studio-logo">
+        <img
+          src="/press-kit/realeiros/realeiros-institucional.png"
+          alt="Identidade oficial da Realeiros Play"
+          width="1080"
+          height="1080"
+        />
+      </div>
+
+      <div class="press-studio-copy">
+        <p class="eyebrow">Sobre a Realeiros Play</p>
+        <h2>Futebol brasileiro. Do nosso jeito.</h2>
+        <p>
+          A Realeiros Play é um estúdio independente brasileiro de jogos mobile,
+          em atividade desde 2021, dedicado ao desenvolvimento de experiências
+          próprias inspiradas na cultura, na emoção e no jeito brasileiro de
+          viver futebol.
+        </p>
+        <p>
+          O projeto nasceu da combinação entre desenvolvimento de jogos, cultura
+          de torcedor e a vontade de criar produtos digitais com identidade
+          própria. Seu principal título é <strong>Olha a Batida</strong>,
+          publicado para Android e iOS.
+        </p>
+        <dl class="press-studio-meta">
+          <div>
+            <dt>Criador e desenvolvedor</dt><dd>
+              Maurílio Alif Miquel Ferreira Alves
+            </dd>
+          </div>
+          <div><dt>Origem</dt><dd>Brasil</dd></div>
+          <div><dt>Em atividade desde</dt><dd>2021</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper">
+    <div class="container">
+      <div class="press-game-heading">
+        <div>
+          <p class="eyebrow">Principal título</p>
+          <img
+            class="press-game-logo"
+            src="/press-kit/olha-a-batida/olha-a-batida-logo.png"
+            alt="Olha a Batida"
+          />
+          <p class="press-game-lead">
+            Jogo mobile brasileiro que transforma os momentos decisivos do
+            futebol em uma experiência de pênaltis cercada por competições,
+            temporadas e progressão.
+          </p>
+        </div>
+        <img
+          class="press-game-icon"
+          src="/press-kit/olha-a-batida/olha-a-batida-icon.png"
+          alt="Ícone do Olha a Batida"
+        />
+      </div>
+
+      <div class="press-metrics" aria-label="Números públicos do Olha a Batida">
+        <div>
+          <strong>460 mil+</strong><span>downloads históricos no Android</span>
+        </div>
+        <div><strong>3 mil+</strong><span>avaliações na Google Play</span></div>
+        <div>
+          <strong>Android + iOS</strong><span
+            >publicado nas duas plataformas</span>
+        </div>
+        <div>
+          <strong>PT-BR · ES · EN</strong><span>três idiomas suportados</span>
+        </div>
+      </div>
+
+      <div class="press-facts-layout">
+        <div>
+          <SectionHeading eyebrow="Fact Sheet" title="Olha a Batida" />
+          <dl class="press-fact-sheet">
+            {
+              factSheet.map(([label, value]) => (
+                <div>
+                  <>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+
+        <div class="press-store-panel">
+          <img
+            src="/press-kit/olha-a-batida/olha-a-batida-key-art.png"
+            alt="Arte oficial do Olha a Batida"
+          />
+          <h3>Disponível no celular</h3>
+          <p>Links oficiais para a versão atualmente publicada do jogo.</p>
+          <StoreButtons />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Texto para publicação"
+        title="Descrições prontas para referência."
+        text="Use a versão que melhor se encaixa no formato da cobertura."
+      />
+
+      <div class="press-copy-grid">
+        <article class="press-copy-card">
+          <span>Uma frase</span>
+          <p>
+            Olha a Batida é um jogo mobile brasileiro que transforma os momentos
+            decisivos do futebol em uma experiência de pênaltis cercada por
+            competições, temporadas e progressão.
+          </p>
+        </article>
+        <article class="press-copy-card">
+          <span>Descrição curta</span>
+          <p>
+            Olha a Batida é um jogo mobile de futebol desenvolvido pela
+            Realeiros Play em Unity para Android e iOS. Com cobranças e defesas
+            de pênaltis como núcleo da experiência, o jogo adiciona contexto por
+            meio de campeonatos, copas, temporadas, clubes, seleções, estádios,
+            personalização e sistemas de progressão.
+          </p>
+        </article>
+        <article class="press-copy-card press-copy-card-wide">
+          <span>Descrição completa</span>
+          <p>
+            Olha a Batida é o principal jogo da Realeiros Play, projeto
+            independente brasileiro de desenvolvimento de jogos mobile em
+            atividade desde 2021. Lançado originalmente em 22 de junho de 2021,
+            o jogo apresenta uma proposta diferente da simulação tradicional de
+            futebol 11 contra 11: concentrar a ação nos momentos decisivos,
+            utilizando cobranças e defesas de pênaltis como núcleo da
+            experiência.
+          </p>
+          <p>
+            Ao redor desse gameplay, campeonatos, copas, temporadas, clubes,
+            seleções, estádios, personalização e sistemas de progressão
+            transformam cada partida em parte de uma campanha maior.
+            Desenvolvido em Unity, Olha a Batida está disponível para Android e
+            iOS em português, espanhol e inglês e continua recebendo melhorias,
+            conteúdo e evolução de seus sistemas.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Principais características"
+        title="O pênalti é a ação. O contexto dá significado."
+      />
+      <div class="press-feature-grid">
+        {
+          features.map(([title, text]) => (
+            <article>
+              <>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container press-gallery">
+      <SectionHeading
+        eyebrow="Screenshots oficiais"
+        title="Dentro do Olha a Batida."
+        text="Clique na imagem ou em Baixar JPG para obter o arquivo original em alta resolução."
+      />
+      <div class="press-screenshot-grid">
+        {
+          screenshots.map(([file, label, alt]) => {
+            const href = `/press-kit/olha-a-batida/screenshots/${file}`;
+            return (
+              <figure class="press-screenshot-card">
+                <a
+                  href={href}
+                  download
+                  aria-label={`Baixar screenshot: ${label}`}
+                >
+                  <img src={href} alt={alt} loading="lazy" />
+                </a>
+                <figcaption>
+                  <span>{label}</span>
+                  <a class="press-screenshot-download" href={href} download>
+                    Baixar JPG
+                  </a>
+                </figcaption>
+              </figure>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper press-assets">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Assets oficiais"
+        title="Logos, ícones e artes."
+        text="Arquivos oficiais para cobertura editorial e conteúdo sobre a Realeiros Play e o Olha a Batida."
+      />
+
+      <div class="press-bundle-card">
+        <div>
+          <strong>Press Kit completo</strong>
+          <p>
+            Baixe logos, ícones, artes, screenshots e badges das lojas em um
+            único arquivo.
+          </p>
+        </div>
+
+        <a
+          class="button button-dark"
+          href="/press-kit/realeiros-play-press-kit.zip"
+          download
+        >
+          Baixar kit completo (.ZIP)
+        </a>
+      </div>
+
+      <h3 class="press-assets-title">Realeiros Play</h3>
+      <div class="press-assets-grid">
+        {
+          realeirosAssets.map(([file, label, format, href]) => (
+            <article class="press-asset-card">
+              <div class="press-asset-preview">
+                <img src={href} alt={label} loading="lazy" />
+              </div>
+              <div class="press-asset-info">
+                <div>
+                  <>
+                    <strong>{label}</strong>
+                    <span>{file}</span>
+                  </>
+                </div>
+                <a class="button button-dark button-small" href={href} download>
+                  Baixar {format}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h3 class="press-assets-title press-assets-title-spaced">
+        Olha a Batida
+      </h3>
+      <div class="press-assets-grid">
+        {
+          gameAssets.map(([file, label, format, href]) => (
+            <article class="press-asset-card">
+              <div class="press-asset-preview">
+                <img src={href} alt={label} loading="lazy" />
+              </div>
+              <div class="press-asset-info">
+                <div>
+                  <>
+                    <strong>{label}</strong>
+                    <span>{file}</span>
+                  </>
+                </div>
+                <a class="button button-dark button-small" href={href} download>
+                  Baixar {format}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container press-usage-grid">
+      <div>
+        <p class="eyebrow">Uso dos materiais</p>
+        <h2>Feitos para cobertura e conteúdo.</h2>
+        <p>
+          Os materiais desta página podem ser utilizados para matérias, vídeos,
+          posts e cobertura editorial sobre a Realeiros Play e o Olha a Batida.
+          Preserve a proporção e a identidade dos logos. Para campanhas
+          comerciais, patrocínios, licenciamento ou outros usos de marca, fale
+          com a Realeiros antes da publicação.
+        </p>
+      </div>
+      <div class="press-contact-card">
+        <span>Imprensa e criadores</span>
+        <h3>Precisa de algo além do kit?</h3>
+        <p>
+          Entrevistas, informações adicionais, materiais ou pedidos específicos.
+        </p>
+        <a
+          class="button button-primary"
+          href={`mailto:${site.email}?subject=Imprensa%20e%20Criadores%20-%20Realeiros%20Play`}
+          >Falar com a Realeiros</a
+        >
+        <small>{site.email}</small>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
