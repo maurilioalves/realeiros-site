@@ -268,7 +268,7 @@ const gameAssets = [
       <div class="press-assets-grid">
         {gameAssets.map(([file, label, format, href]) => (
           <article class="press-asset-card">
-            <div class="press-asset-preview press-asset-preview-game"><img src={href} alt={label} loading="lazy" /></div>
+            <div class="press-asset-preview"><img src={href} alt={label} loading="lazy" /></div>
             <div class="press-asset-info">
               <div><strong>{label}</strong><span>{file}</span></div>
               <a class="button button-dark button-small" href={href} download>Baixar {format}</a>
