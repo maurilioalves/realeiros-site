@@ -249,7 +249,7 @@
   background: #0b162c;
 }
 
-.press-screenshot-card a {
+.press-screenshot-card > a {
   display: block;
   overflow: hidden;
   border-radius: 12px 8px 15px 7px;
@@ -260,22 +260,30 @@
   transition: transform .2s ease;
 }
 
-.press-screenshot-card a:hover img {
+.press-screenshot-card > a:hover img {
   transform: scale(1.015);
 }
 
 .press-screenshot-card figcaption {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   padding: 12px 7px 3px;
   color: #aebbd0;
   font-size: .87rem;
 }
 
-.press-screenshot-card figcaption strong {
+.press-screenshot-download {
   color: var(--yellow);
+  font-weight: 850;
   white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.press-screenshot-download:hover {
+  color: var(--yellow-soft);
 }
 
 .press-assets-title {
@@ -322,7 +330,7 @@
 }
 
 .press-asset-preview-game {
-  background-color: #0b1730;
+  background: #f4f6f9;
 }
 
 .press-asset-info {
@@ -435,6 +443,7 @@
 
   .press-screenshot-card figcaption {
     flex-direction: column;
-    gap: 2px;
+    align-items: flex-start;
+    gap: 4px;
   }
 }
