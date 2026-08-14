@@ -17,9 +17,9 @@ import { site } from "../data/site";
   <section class="section">
     <div class="container prose">
       <div class="legal-meta">
-        <span>Última atualização: 13/08/2026</span>
+        <span>Última atualização: 14/08/2026</span>
         <span>•</span>
-        <span>Versão 2.1</span>
+        <span>Versão 2.2</span>
       </div>
 
       <p>
@@ -31,13 +31,9 @@ import { site } from "../data/site";
       <p>
         A Realeiros Play é responsável pelas decisões relacionadas ao tratamento
         de dados descritas nesta política. Para assuntos relacionados à
-        privacidade, solicitações ou exercício de direitos, o contato pode ser
-        feito pelo e-mail{" "}
-        <a
-          href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}
-        >
-          {site.email}
-        </a>.
+        privacidade, solicitações ou exercício de direitos, utilize o{" "}
+        <a href="/contato?tipo=privacy#formulario">formulário de contato</a>.
+        Como canal alternativo, o e-mail é <strong>{site.email}</strong>.
       </p>
 
       <h2>1. Informações tratadas pelo Olha a Batida</h2>
@@ -195,15 +191,33 @@ import { site } from "../data/site";
       <h2>7. Informações enviadas pelo próprio usuário</h2>
 
       <p>
-        Caso você entre em contato conosco por e-mail ou outro canal de suporte,
-        poderemos receber as informações que você optar por fornecer, como
-        endereço de e-mail, conteúdo da mensagem, capturas de tela, dados
-        técnicos ou outras informações necessárias para responder à solicitação.
+        Caso você entre em contato conosco pelo formulário do site, por e-mail
+        ou por outro canal de suporte, poderemos receber as informações que você
+        optar por fornecer. No formulário do site, isso pode incluir nome,
+        endereço de e-mail, empresa, veículo ou canal quando informado,
+        categoria escolhida e conteúdo da mensagem.
+      </p>
+
+      <p>
+        Em solicitações de suporte também poderão ser fornecidas voluntariamente
+        informações técnicas, como modelo do aparelho, sistema operacional,
+        versão do jogo, identificadores de pedido ou outros dados necessários
+        para investigar o problema. Não solicitamos senhas nem dados completos
+        de cartão pelo formulário.
       </p>
 
       <p>
         Essas informações serão utilizadas para atendimento, suporte,
-        investigação de problemas ou tratamento da solicitação apresentada.
+        investigação de problemas, resposta a contatos de imprensa ou negócios,
+        tratamento de solicitações de privacidade e demais finalidades
+        diretamente relacionadas à mensagem enviada.
+      </p>
+
+      <p>
+        O formulário do site utiliza o <strong>Web3Forms</strong> como serviço de
+        processamento e encaminhamento das submissões para o canal de e-mail da
+        Realeiros Play. Os dados informados no formulário são transmitidos a esse
+        fornecedor para que a mensagem possa ser entregue e tratada.
       </p>
 
       <h2>8. Serviços de terceiros</h2>
@@ -216,6 +230,7 @@ import { site } from "../data/site";
       <ul>
         <li>Google Firebase Analytics (aplicativo);</li>
         <li>Google Analytics 4 (site);</li>
+        <li>Web3Forms (formulário de contato do site);</li>
         <li>Unity LevelPlay / ironSource Ads;</li>
         <li>Unity Ads;</li>
         <li>Unity Diagnostics e serviços relacionados à engine;</li>
@@ -283,8 +298,15 @@ import { site } from "../data/site";
         O Google Analytics não é carregado antes da manifestação de
         consentimento. Caso o visitante recuse, a ferramenta de analytics
         permanece desativada. Não enviamos intencionalmente ao Google Analytics
-        informações como nome, endereço de e-mail ou telefone por meio dos
-        eventos do site.
+        informações como nome, endereço de e-mail, empresa ou conteúdo da
+        mensagem enviada pelo formulário.
+      </p>
+
+      <p>
+        Quando o analytics estiver autorizado, o site poderá registrar eventos
+        relacionados ao funil de contato, como início do preenchimento, envio
+        concluído ou erro de envio e a categoria de contato selecionada. Esses
+        eventos não incluem o nome, e-mail, empresa ou texto da mensagem.
       </p>
 
       <p>
@@ -352,8 +374,8 @@ import { site } from "../data/site";
       <p>
         Informações podem ser transmitidas aos fornecedores tecnológicos
         necessários para operar os serviços descritos nesta política, incluindo
-        analytics, publicidade, diagnóstico, distribuição e processamento de
-        compras.
+        analytics, publicidade, diagnóstico, distribuição, processamento de
+        compras e encaminhamento de mensagens do formulário de contato.
       </p>
 
       <p>
@@ -364,7 +386,7 @@ import { site } from "../data/site";
 
       <p>
         A Realeiros Play não vende diretamente listas contendo dados pessoais
-        dos jogadores.
+        dos jogadores ou visitantes do site.
       </p>
 
       <h2>12. Transferências internacionais</h2>
@@ -386,16 +408,16 @@ import { site } from "../data/site";
       </p>
 
       <p>
-        Dados tratados por serviços de terceiros podem estar sujeitos aos prazos
-        de retenção definidos por esses fornecedores e às configurações
-        disponíveis nos respectivos serviços.
+        Dados tratados por serviços de terceiros, incluindo o processador do
+        formulário de contato, podem estar sujeitos aos prazos de retenção,
+        registros técnicos e configurações definidos por esses fornecedores.
       </p>
 
       <p>
         Solicitações relacionadas à exclusão de dados podem ser realizadas pelas
         instruções disponíveis na página{" "}
         <a href="/exclusao-de-dados">Exclusão de dados</a>{" "}
-        ou pelo e-mail de contato informado nesta política.
+        ou pelo <a href="/contato?tipo=privacy#formulario">formulário de contato</a>.
       </p>
 
       <h2>14. Direitos dos titulares</h2>
@@ -429,13 +451,10 @@ import { site } from "../data/site";
       </ul>
 
       <p>
-        Para exercer esses direitos, entre em contato pelo e-mail{" "}
-        <a
-          href={`mailto:${site.email}?subject=Solicitacao%20LGPD%20-%20Olha%20a%20Batida`}
-        >
-          {site.email}
-        </a>.{" "}
-        Poderemos solicitar informações mínimas necessárias para confirmar a legitimidade
+        Para exercer esses direitos, utilize o{" "}
+        <a href="/contato?tipo=privacy#formulario">formulário de contato</a> ou,
+        alternativamente, o e-mail <strong>{site.email}</strong>. Poderemos
+        solicitar informações mínimas necessárias para confirmar a legitimidade
         da solicitação e localizar os dados correspondentes.
       </p>
 
@@ -469,17 +488,13 @@ import { site } from "../data/site";
 
       <p>
         Para dúvidas, solicitações relacionadas à privacidade ou exercício de
-        direitos:
+        direitos, utilize o{" "}
+        <a href="/contato?tipo=privacy#formulario">formulário de contato</a>.
       </p>
 
       <p>
         <strong>Realeiros Play</strong><br />
-        E-mail:{" "}
-        <a
-          href={`mailto:${site.email}?subject=Privacidade%20-%20Olha%20a%20Batida`}
-        >
-          {site.email}
-        </a>
+        Canal alternativo: {site.email}
       </p>
     </div>
   </section>
