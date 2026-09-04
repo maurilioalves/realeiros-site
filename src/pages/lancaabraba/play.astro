@@ -19,12 +19,25 @@ const gameUrl = '/lancaabraba/play/game/';
   <body class="lab-play-shell">
     <iframe
       class="lab-game-frame"
+      data-lab-game-frame
       src={gameUrl}
       title="Lança a Braba — Public Alpha"
       allow="autoplay; fullscreen"
       loading="eager"
     ></iframe>
     <AnalyticsConsent />
+
+    <script is:inline>
+      (() => {
+        const frame = document.querySelector('[data-lab-game-frame]');
+        if (!(frame instanceof HTMLIFrameElement)) return;
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('telemetry') === '1') {
+          frame.src = '/lancaabraba/play/game/?telemetry=1';
+        }
+      })();
+    </script>
   </body>
 </html>
 
