@@ -22,6 +22,21 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Checkout LAB public alpha bundle
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: maurilioalves/LancaABraba_Prototipo
+          ref: site-dist
+          token: ${{ secrets.LAB_PROTOTYPE_TOKEN }}
+          path: _lab_dist
+          persist-credentials: false
+
+      - name: Stage LAB bundle inside the site
+        run: |
+          mkdir -p public/lancaabraba/play/game
+          rsync -a --delete --exclude='.git' _lab_dist/ public/lancaabraba/play/game/
+          rm -rf _lab_dist
+
       - name: Install, build and upload Astro site
         uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6
 
