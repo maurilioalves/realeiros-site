@@ -1,5 +1,6 @@
 ---
 import AnalyticsConsent from '../../components/AnalyticsConsent.astro';
+import { labAlphaBundleRevision } from '../../data/lab-alpha-bundle';
 import '../../styles/global.css';
 
 const gameUrl = '/lancaabraba/play/game/';
@@ -16,7 +17,7 @@ const gameUrl = '/lancaabraba/play/game/';
     <link rel="icon" href="/favicon.ico" />
     <title>Lança a Braba — Public Alpha | Realeiros Play</title>
   </head>
-  <body class="lab-play-shell">
+  <body class="lab-play-shell" data-lab-bundle={labAlphaBundleRevision}>
     <iframe
       class="lab-game-frame"
       data-lab-game-frame
