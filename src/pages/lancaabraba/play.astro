@@ -2,6 +2,7 @@
 import AnalyticsConsent from '../../components/AnalyticsConsent.astro';
 import LabAlphaFeedback from '../../components/LabAlphaFeedback.astro';
 import LabAlphaLocalization from '../../components/LabAlphaLocalization.astro';
+import LabConsentLocalization from '../../components/LabConsentLocalization.astro';
 import { labAlphaBundleRevision } from '../../data/lab-alpha-bundle';
 import '../../styles/global.css';
 
@@ -33,6 +34,7 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     <LabAlphaFeedback accessKey={feedbackAccessKey} />
     <LabAlphaLocalization />
     <AnalyticsConsent />
+    <LabConsentLocalization />
 
     <script is:inline>
       (() => {
