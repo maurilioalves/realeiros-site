@@ -107,15 +107,73 @@
           'Não foi possível enviar agora. Tente novamente em alguns instantes.': 'We could not send your feedback right now. Please try again in a moment.',
         },
       },
+      'es-ES': {
+        description: 'Prototipo público de Lança a Braba, de Realeiros Play.',
+        iframeTitle: 'Lança a Braba — Public Alpha',
+        trigger: 'Enviar feedback',
+        close: 'Cerrar feedback',
+        kicker: 'PUBLIC ALPHA',
+        title: 'Ayúdanos a mejorar Lança a Braba',
+        intro: 'Tarda cerca de 1 minuto. Tu feedback entra directamente en la evaluación de esta alpha.',
+        funLegend: '¿Cuánto te divertiste?',
+        funHint: '1 = nada divertido · 5 = muy divertido',
+        funAria: 'Valoración de diversión de 1 a 5 estrellas',
+        clarityLegend: '¿Fue fácil entender cómo jugar?',
+        clarityHint: '1 = muy confuso · 5 = muy claro',
+        clarityAria: 'Valoración de claridad de 1 a 5 estrellas',
+        star: 'estrella',
+        stars: 'estrellas',
+        difficultyLegend: '¿Cómo sentiste la dificultad?',
+        difficulty: ['Fácil', 'Equilibrada', 'Difícil'],
+        replayLegend: '¿Volverías a jugar?',
+        replay: ['Sí', 'Tal vez', 'No'],
+        quality: 'Para que el envío cuente como feedback de la alpha, escribe al menos una frase corta en uno de los campos siguientes.',
+        liked: '¿Qué fue lo que más te gustó?',
+        likedPlaceholder: 'Puede ser una mecánica, sensación, apartado visual, sonido o cualquier otro punto.',
+        friction: '¿Qué fue lo que más te molestó o confundió?',
+        frictionPlaceholder: 'Cuéntanos dónde te atascaste, dudaste o sentiste frustración.',
+        optional: '(opcional)',
+        bugLegend: '¿Encontraste algún bug?',
+        bugYes: 'Sí',
+        bugNo: 'No',
+        bugDetails: 'Describe el bug',
+        bugPlaceholder: '¿Qué ocurrió y, si lo sabes, cómo podemos reproducirlo?',
+        name: 'Nombre',
+        email: 'E-mail',
+        privacyPrefix: 'El nombre y el e-mail son opcionales. Si los proporcionas, solo se usarán para un posible contacto sobre este feedback. Consulta la ',
+        privacyLink: 'Política de Privacidad',
+        submit: 'Enviar feedback',
+        sending: 'Enviando...',
+        statusMap: {
+          'Jogue pelo menos uma jogada antes de enviar feedback.': 'Juega al menos una jugada antes de enviar feedback.',
+          'Seu feedback anterior já foi recebido. Aguarde um pouco antes de enviar outro.': 'Ya recibimos tu feedback anterior. Espera un poco antes de enviar otro.',
+          'Limite de feedbacks deste dispositivo atingido por hoje.': 'Este dispositivo ha alcanzado el límite de feedback de hoy.',
+          'Não foi possível confirmar gameplay antes do envio. Jogue ao menos uma jogada e tente novamente.': 'No pudimos confirmar gameplay antes del envío. Juega al menos una jugada e inténtalo de nuevo.',
+          'Aguarde 30 minutos antes de enviar outro feedback.': 'Espera 30 minutos antes de enviar otro feedback.',
+          'Limite de 3 feedbacks em 24 horas atingido neste dispositivo.': 'Este dispositivo ha alcanzado el límite de 3 envíos de feedback en 24 horas.',
+          'Escreva pelo menos uma frase curta e compreensível em um dos campos de comentário.': 'Escribe al menos una frase corta y comprensible en uno de los campos de comentario.',
+          'Confirme o hCaptcha antes de enviar.': 'Completa el hCaptcha antes de enviar.',
+          'Este mesmo feedback já foi enviado anteriormente.': 'Este mismo feedback ya se envió anteriormente.',
+          'Enviando seu feedback...': 'Enviando tu feedback...',
+          'Feedback enviado. Obrigado por participar da Public Alpha!': 'Feedback enviado. ¡Gracias por participar en la Public Alpha!',
+          'Não foi possível enviar agora. Tente novamente em alguns instantes.': 'No se pudo enviar ahora. Inténtalo de nuevo dentro de unos instantes.',
+        },
+      },
     };
 
     const detectLocale = () => {
       try {
         const stored = localStorage.getItem(LOCALE_KEY);
-        if (stored === 'pt-BR' || stored === 'en-US') return stored;
+        if (stored === 'pt-BR' || stored === 'en-US' || stored === 'es-ES') return stored;
       } catch {}
       const languages = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
-      return languages.some((language) => String(language).toLowerCase().startsWith('pt')) ? 'pt-BR' : 'en-US';
+      for (const language of languages) {
+        const normalized = String(language).toLowerCase();
+        if (normalized.startsWith('pt')) return 'pt-BR';
+        if (normalized.startsWith('es')) return 'es-ES';
+        if (normalized.startsWith('en')) return 'en-US';
+      }
+      return 'en-US';
     };
 
     let locale = detectLocale();
@@ -267,7 +325,7 @@
     };
 
     const changeLocale = (nextLocale) => {
-      if (nextLocale !== 'pt-BR' && nextLocale !== 'en-US') return;
+      if (nextLocale !== 'pt-BR' && nextLocale !== 'en-US' && nextLocale !== 'es-ES') return;
       locale = nextLocale;
       applyStaticCopy();
     };
