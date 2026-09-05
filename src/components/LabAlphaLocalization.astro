@@ -287,7 +287,11 @@
       }
 
       const submitLabel = document.querySelector('[data-feedback-submit-label]');
-      if (submitLabel instanceof HTMLElement && submitLabel.textContent !== dictionary.sending) {
+      if (
+        submitLabel instanceof HTMLElement &&
+        submitLabel.textContent !== dictionary.sending &&
+        submitLabel.textContent !== dictionary.submit
+      ) {
         submitLabel.textContent = dictionary.submit;
       }
 
@@ -308,10 +312,12 @@
       if (!(element instanceof HTMLElement)) return;
       const raw = element.textContent?.trim() || '';
       if (!raw) return;
-      const translated = dictionary.statusMap[raw];
+
+      let translated = dictionary.statusMap[raw];
+      if (!translated && raw === 'Enviando...') translated = dictionary.sending;
+      if (!translated && raw === 'Enviar feedback') translated = dictionary.submit;
+
       if (translated && translated !== raw) element.textContent = translated;
-      if (raw === 'Enviando...') element.textContent = dictionary.sending;
-      if (raw === 'Enviar feedback') element.textContent = dictionary.submit;
     };
 
     const observeRuntimeCopy = () => {
