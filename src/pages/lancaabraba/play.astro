@@ -1,6 +1,7 @@
 ---
 import AnalyticsConsent from '../../components/AnalyticsConsent.astro';
 import LabAlphaFeedback from '../../components/LabAlphaFeedback.astro';
+import LabAlphaLocalization from '../../components/LabAlphaLocalization.astro';
 import { labAlphaBundleRevision } from '../../data/lab-alpha-bundle';
 import '../../styles/global.css';
 
@@ -8,12 +9,12 @@ const gameUrl = '/lancaabraba/play/game/';
 const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#050b16" />
-    <meta name="description" content="Protótipo público do Lança a Braba, da Realeiros Play." />
+    <meta name="description" content="Public prototype of Lança a Braba by Realeiros Play." />
     <meta name="robots" content="noindex,nofollow" />
     <link rel="canonical" href="https://realeirosplay.com/lancaabraba/play/" />
     <link rel="icon" href="/favicon.ico" />
@@ -30,6 +31,7 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     ></iframe>
 
     <LabAlphaFeedback accessKey={feedbackAccessKey} />
+    <LabAlphaLocalization />
     <AnalyticsConsent />
 
     <script is:inline>
