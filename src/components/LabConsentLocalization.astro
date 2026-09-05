@@ -1,0 +1,60 @@
+<script is:inline>
+  (() => {
+    const LOCALE_KEY = 'LANCA_A_BRABA_LOCALE';
+    const copy = {
+      'pt-BR': {
+        title: 'Analytics e privacidade',
+        body: 'Usamos Google Analytics para entender como o site é utilizado e melhorar a experiência. O analytics só é carregado se você aceitar. ',
+        link: 'Saiba mais',
+        reject: 'Recusar',
+        accept: 'Aceitar analytics',
+      },
+      'en-US': {
+        title: 'Analytics & privacy',
+        body: 'We use Google Analytics to understand how the site is used and improve the experience. Analytics only loads if you accept. ',
+        link: 'Learn more',
+        reject: 'Decline',
+        accept: 'Accept analytics',
+      },
+    };
+
+    const detectLocale = () => {
+      try {
+        const stored = localStorage.getItem(LOCALE_KEY);
+        if (stored === 'pt-BR' || stored === 'en-US') return stored;
+      } catch {}
+      const languages = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
+      return languages.some((language) => String(language).toLowerCase().startsWith('pt')) ? 'pt-BR' : 'en-US';
+    };
+
+    const apply = (requested) => {
+      const locale = requested === 'pt-BR' || requested === 'en-US' ? requested : detectLocale();
+      const dictionary = copy[locale];
+      const title = document.querySelector('#analytics-consent-title');
+      const description = document.querySelector('#analytics-consent-description');
+      const reject = document.querySelector('[data-analytics-reject]');
+      const accept = document.querySelector('[data-analytics-accept]');
+
+      if (title instanceof HTMLElement) title.textContent = dictionary.title;
+      if (description instanceof HTMLElement) {
+        const link = description.querySelector('a');
+        description.textContent = dictionary.body;
+        if (link instanceof HTMLAnchorElement) {
+          link.textContent = dictionary.link;
+          description.append(link, '.');
+        }
+      }
+      if (reject instanceof HTMLButtonElement) reject.textContent = dictionary.reject;
+      if (accept instanceof HTMLButtonElement) accept.textContent = dictionary.accept;
+    };
+
+    apply();
+    window.addEventListener('storage', (event) => {
+      if (event.key === LOCALE_KEY) apply(event.newValue);
+    });
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data?.type === 'lab_locale_change') apply(event.data.locale);
+    });
+  })();
+</script>
