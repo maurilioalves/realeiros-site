@@ -35,10 +35,24 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     <script is:inline>
       (() => {
         const frame = document.querySelector('[data-lab-game-frame]');
-        if (!(frame instanceof HTMLIFrameElement)) return;
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('telemetry') === '1') {
-          frame.src = '/lancaabraba/play/game/?telemetry=1';
+        if (frame instanceof HTMLIFrameElement) {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('telemetry') === '1') {
+            frame.src = '/lancaabraba/play/game/?telemetry=1';
+          }
+        }
+
+        // hCaptcha injects its challenge iframe at document level. A native
+        // dialog opened with showModal() enters the browser top layer, which
+        // always wins over normal z-index and leaves the captcha challenge
+        // visually behind the feedback form. Keep the semantic <dialog>, but
+        // open this one as non-modal so hCaptcha can stack above it normally.
+        const feedbackDialog = document.querySelector('[data-lab-feedback-dialog]');
+        if (feedbackDialog instanceof HTMLDialogElement) {
+          feedbackDialog.setAttribute('aria-modal', 'true');
+          feedbackDialog.showModal = () => {
+            if (!feedbackDialog.open) feedbackDialog.show();
+          };
         }
       })();
     </script>
@@ -70,6 +84,22 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     height: 100dvh;
     border: 0;
     background: #050b16;
+  }
+
+  /*
+   * The LAB feedback dialog intentionally stays out of the browser top layer.
+   * hCaptcha uses a document-level challenge overlay with a very high z-index;
+   * keeping this dialog in the normal stacking context lets that challenge sit
+   * above the form instead of being trapped underneath a modal <dialog>.
+   */
+  .lab-feedback-dialog[open] {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483620 !important;
+    box-shadow:
+      0 0 0 100vmax rgba(2, 6, 14, .78),
+      0 30px 90px rgba(0, 0, 0, .72),
+      0 0 40px rgba(245, 230, 27, .12) !important;
   }
 
   .analytics-consent {
