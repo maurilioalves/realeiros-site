@@ -1,0 +1,289 @@
+<script is:inline>
+  (() => {
+    const LOCALE_KEY = 'LANCA_A_BRABA_LOCALE';
+
+    const copy = {
+      'pt-BR': {
+        description: 'Protótipo público do Lança a Braba, da Realeiros Play.',
+        iframeTitle: 'Lança a Braba — Public Alpha',
+        trigger: 'Enviar feedback',
+        close: 'Fechar feedback',
+        kicker: 'PUBLIC ALPHA',
+        title: 'Ajude a melhorar o Lança a Braba',
+        intro: 'Leva cerca de 1 minuto. Seu feedback entra diretamente na avaliação desta alpha.',
+        funLegend: 'Quanto você se divertiu?',
+        funHint: '1 = nada divertido · 5 = muito divertido',
+        funAria: 'Nota de diversão de 1 a 5 estrelas',
+        clarityLegend: 'Foi fácil entender como jogar?',
+        clarityHint: '1 = muito confuso · 5 = muito claro',
+        clarityAria: 'Nota de clareza de 1 a 5 estrelas',
+        star: 'estrela',
+        stars: 'estrelas',
+        difficultyLegend: 'Como você achou a dificuldade?',
+        difficulty: ['Fácil', 'Equilibrada', 'Difícil'],
+        replayLegend: 'Você jogaria novamente?',
+        replay: ['Sim', 'Talvez', 'Não'],
+        quality: 'Para o envio contar como feedback da alpha, escreva pelo menos uma frase curta em um dos campos abaixo.',
+        liked: 'O que você mais gostou?',
+        likedPlaceholder: 'Pode ser uma mecânica, sensação, visual, som ou qualquer outro ponto.',
+        friction: 'O que mais te incomodou ou confundiu?',
+        frictionPlaceholder: 'Conte onde você travou, ficou em dúvida ou sentiu alguma frustração.',
+        optional: '(opcional)',
+        bugLegend: 'Encontrou algum bug?',
+        bugYes: 'Sim',
+        bugNo: 'Não',
+        bugDetails: 'Descreva o bug',
+        bugPlaceholder: 'O que aconteceu e, se souber, como reproduzir?',
+        name: 'Nome',
+        email: 'E-mail',
+        privacyPrefix: 'Nome e e-mail são opcionais. Se informados, serão usados apenas para eventual contato sobre este feedback. Consulte a ',
+        privacyLink: 'Política de Privacidade',
+        submit: 'Enviar feedback',
+        sending: 'Enviando...',
+        statusMap: {
+          'Jogue pelo menos uma jogada antes de enviar feedback.': 'Jogue pelo menos uma jogada antes de enviar feedback.',
+          'Seu feedback anterior já foi recebido. Aguarde um pouco antes de enviar outro.': 'Seu feedback anterior já foi recebido. Aguarde um pouco antes de enviar outro.',
+          'Limite de feedbacks deste dispositivo atingido por hoje.': 'Limite de feedbacks deste dispositivo atingido por hoje.',
+          'Não foi possível confirmar gameplay antes do envio. Jogue ao menos uma jogada e tente novamente.': 'Não foi possível confirmar gameplay antes do envio. Jogue ao menos uma jogada e tente novamente.',
+          'Aguarde 30 minutos antes de enviar outro feedback.': 'Aguarde 30 minutos antes de enviar outro feedback.',
+          'Limite de 3 feedbacks em 24 horas atingido neste dispositivo.': 'Limite de 3 feedbacks em 24 horas atingido neste dispositivo.',
+          'Escreva pelo menos uma frase curta e compreensível em um dos campos de comentário.': 'Escreva pelo menos uma frase curta e compreensível em um dos campos de comentário.',
+          'Confirme o hCaptcha antes de enviar.': 'Confirme o hCaptcha antes de enviar.',
+          'Este mesmo feedback já foi enviado anteriormente.': 'Este mesmo feedback já foi enviado anteriormente.',
+          'Enviando seu feedback...': 'Enviando seu feedback...',
+          'Feedback enviado. Obrigado por participar da Public Alpha!': 'Feedback enviado. Obrigado por participar da Public Alpha!',
+          'Não foi possível enviar agora. Tente novamente em alguns instantes.': 'Não foi possível enviar agora. Tente novamente em alguns instantes.',
+        },
+      },
+      'en-US': {
+        description: 'Public prototype of Lança a Braba by Realeiros Play.',
+        iframeTitle: 'Lança a Braba — Public Alpha',
+        trigger: 'Send feedback',
+        close: 'Close feedback',
+        kicker: 'PUBLIC ALPHA',
+        title: 'Help us improve Lança a Braba',
+        intro: 'Takes about 1 minute. Your feedback goes directly into this alpha evaluation.',
+        funLegend: 'How much fun did you have?',
+        funHint: '1 = not fun · 5 = very fun',
+        funAria: 'Fun rating from 1 to 5 stars',
+        clarityLegend: 'Was it easy to understand how to play?',
+        clarityHint: '1 = very confusing · 5 = very clear',
+        clarityAria: 'Clarity rating from 1 to 5 stars',
+        star: 'star',
+        stars: 'stars',
+        difficultyLegend: 'How did the difficulty feel?',
+        difficulty: ['Easy', 'Balanced', 'Hard'],
+        replayLegend: 'Would you play again?',
+        replay: ['Yes', 'Maybe', 'No'],
+        quality: 'For this to count as alpha feedback, write at least one short sentence in one of the fields below.',
+        liked: 'What did you like the most?',
+        likedPlaceholder: 'It can be a mechanic, the feel, visuals, sound, or anything else.',
+        friction: 'What bothered or confused you the most?',
+        frictionPlaceholder: 'Tell us where you got stuck, felt unsure, or experienced frustration.',
+        optional: '(optional)',
+        bugLegend: 'Did you find a bug?',
+        bugYes: 'Yes',
+        bugNo: 'No',
+        bugDetails: 'Describe the bug',
+        bugPlaceholder: 'What happened and, if you know, how can we reproduce it?',
+        name: 'Name',
+        email: 'Email',
+        privacyPrefix: 'Name and email are optional. If provided, they will only be used to contact you about this feedback. See our ',
+        privacyLink: 'Privacy Policy',
+        submit: 'Send feedback',
+        sending: 'Sending...',
+        statusMap: {
+          'Jogue pelo menos uma jogada antes de enviar feedback.': 'Play at least one snap before sending feedback.',
+          'Seu feedback anterior já foi recebido. Aguarde um pouco antes de enviar outro.': 'Your previous feedback was received. Please wait a while before sending another.',
+          'Limite de feedbacks deste dispositivo atingido por hoje.': 'This device has reached today’s feedback limit.',
+          'Não foi possível confirmar gameplay antes do envio. Jogue ao menos uma jogada e tente novamente.': 'We could not confirm gameplay before submission. Play at least one snap and try again.',
+          'Aguarde 30 minutos antes de enviar outro feedback.': 'Wait 30 minutes before sending another feedback submission.',
+          'Limite de 3 feedbacks em 24 horas atingido neste dispositivo.': 'This device has reached the limit of 3 feedback submissions in 24 hours.',
+          'Escreva pelo menos uma frase curta e compreensível em um dos campos de comentário.': 'Write at least one short, meaningful sentence in one of the comment fields.',
+          'Confirme o hCaptcha antes de enviar.': 'Complete the hCaptcha before submitting.',
+          'Este mesmo feedback já foi enviado anteriormente.': 'This exact feedback was already submitted.',
+          'Enviando seu feedback...': 'Sending your feedback...',
+          'Feedback enviado. Obrigado por participar da Public Alpha!': 'Feedback sent. Thanks for taking part in the Public Alpha!',
+          'Não foi possível enviar agora. Tente novamente em alguns instantes.': 'We could not send your feedback right now. Please try again in a moment.',
+        },
+      },
+    };
+
+    const detectLocale = () => {
+      try {
+        const stored = localStorage.getItem(LOCALE_KEY);
+        if (stored === 'pt-BR' || stored === 'en-US') return stored;
+      } catch {}
+      const languages = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
+      return languages.some((language) => String(language).toLowerCase().startsWith('pt')) ? 'pt-BR' : 'en-US';
+    };
+
+    let locale = detectLocale();
+    let dictionary = copy[locale];
+
+    const setText = (selector, value) => {
+      const node = document.querySelector(selector);
+      if (node instanceof HTMLElement) node.textContent = value;
+    };
+
+    const setLabelText = (inputName, value) => {
+      const input = document.querySelector(`[name="${inputName}"]`);
+      const label = input?.closest('label');
+      const span = label?.querySelector(':scope > span');
+      if (!(span instanceof HTMLElement)) return;
+      const small = span.querySelector('small');
+      span.firstChild && (span.firstChild.textContent = `${value} `);
+      if (small instanceof HTMLElement) small.textContent = dictionary.optional;
+    };
+
+    const applyStaticCopy = () => {
+      dictionary = copy[locale];
+      document.documentElement.lang = locale;
+      const description = document.querySelector('meta[name="description"]');
+      if (description instanceof HTMLMetaElement) description.content = dictionary.description;
+      const frame = document.querySelector('[data-lab-game-frame]');
+      if (frame instanceof HTMLIFrameElement) frame.title = dictionary.iframeTitle;
+
+      const triggerText = document.querySelector('[data-lab-feedback-open] span:last-child');
+      if (triggerText instanceof HTMLElement) triggerText.textContent = dictionary.trigger;
+      const close = document.querySelector('[data-lab-feedback-close]');
+      if (close instanceof HTMLButtonElement) close.setAttribute('aria-label', dictionary.close);
+
+      setText('.lab-feedback-kicker', dictionary.kicker);
+      setText('#lab-feedback-title', dictionary.title);
+      setText('.lab-feedback-header p:not(.lab-feedback-kicker)', dictionary.intro);
+
+      const fun = document.querySelector('input[name="fun_rating"]')?.closest('fieldset');
+      const clarity = document.querySelector('input[name="clarity_rating"]')?.closest('fieldset');
+      const difficulty = document.querySelector('input[name="difficulty"]')?.closest('fieldset');
+      const replay = document.querySelector('input[name="replay_intent"]')?.closest('fieldset');
+      const bug = document.querySelector('input[name="bug_reported"]')?.closest('fieldset');
+
+      if (fun) {
+        const legend = fun.querySelector('legend');
+        const hint = fun.querySelector('.lab-feedback-hint');
+        const group = fun.querySelector('[role="radiogroup"]');
+        if (legend) legend.textContent = dictionary.funLegend;
+        if (hint) hint.textContent = dictionary.funHint;
+        group?.setAttribute('aria-label', dictionary.funAria);
+      }
+      if (clarity) {
+        const legend = clarity.querySelector('legend');
+        const hint = clarity.querySelector('.lab-feedback-hint');
+        const group = clarity.querySelector('[role="radiogroup"]');
+        if (legend) legend.textContent = dictionary.clarityLegend;
+        if (hint) hint.textContent = dictionary.clarityHint;
+        group?.setAttribute('aria-label', dictionary.clarityAria);
+      }
+
+      document.querySelectorAll('.lab-star[data-star-value]').forEach((star) => {
+        const value = Number(star.getAttribute('data-star-value') || 0);
+        star.setAttribute('aria-label', `${value} ${value === 1 ? dictionary.star : dictionary.stars}`);
+      });
+
+      if (difficulty) {
+        const legend = difficulty.querySelector('legend');
+        if (legend) legend.textContent = dictionary.difficultyLegend;
+        difficulty.querySelectorAll('.lab-choice-row span').forEach((span, index) => {
+          if (dictionary.difficulty[index]) span.textContent = dictionary.difficulty[index];
+        });
+      }
+      if (replay) {
+        const legend = replay.querySelector('legend');
+        if (legend) legend.textContent = dictionary.replayLegend;
+        replay.querySelectorAll('.lab-choice-row span').forEach((span, index) => {
+          if (dictionary.replay[index]) span.textContent = dictionary.replay[index];
+        });
+      }
+
+      setText('.lab-feedback-quality-note', dictionary.quality);
+      setLabelText('liked_most', dictionary.liked);
+      setLabelText('friction', dictionary.friction);
+      const liked = document.querySelector('textarea[name="liked_most"]');
+      const friction = document.querySelector('textarea[name="friction"]');
+      if (liked instanceof HTMLTextAreaElement) liked.placeholder = dictionary.likedPlaceholder;
+      if (friction instanceof HTMLTextAreaElement) friction.placeholder = dictionary.frictionPlaceholder;
+
+      if (bug) {
+        const legend = bug.querySelector('legend');
+        if (legend) legend.textContent = dictionary.bugLegend;
+        const spans = bug.querySelectorAll('.lab-choice-row span');
+        if (spans[0]) spans[0].textContent = dictionary.bugYes;
+        if (spans[1]) spans[1].textContent = dictionary.bugNo;
+      }
+      setLabelText('bug_details', dictionary.bugDetails);
+      const bugDetails = document.querySelector('textarea[name="bug_details"]');
+      if (bugDetails instanceof HTMLTextAreaElement) bugDetails.placeholder = dictionary.bugPlaceholder;
+
+      setLabelText('name', dictionary.name);
+      setLabelText('email', dictionary.email);
+
+      const privacy = document.querySelector('.lab-feedback-privacy');
+      if (privacy instanceof HTMLElement) {
+        const link = privacy.querySelector('a');
+        privacy.textContent = dictionary.privacyPrefix;
+        if (link instanceof HTMLAnchorElement) {
+          link.textContent = dictionary.privacyLink;
+          privacy.append(link, '.');
+        }
+      }
+
+      const submitLabel = document.querySelector('[data-feedback-submit-label]');
+      if (submitLabel instanceof HTMLElement && submitLabel.textContent !== dictionary.sending) {
+        submitLabel.textContent = dictionary.submit;
+      }
+
+      const form = document.querySelector('[data-lab-feedback-form]');
+      if (form instanceof HTMLFormElement) {
+        let localeInput = form.querySelector('input[name="locale"]');
+        if (!(localeInput instanceof HTMLInputElement)) {
+          localeInput = document.createElement('input');
+          localeInput.type = 'hidden';
+          localeInput.name = 'locale';
+          form.append(localeInput);
+        }
+        localeInput.value = locale;
+      }
+    };
+
+    const translateRuntimeMessage = (element) => {
+      if (!(element instanceof HTMLElement)) return;
+      const raw = element.textContent?.trim() || '';
+      if (!raw) return;
+      const translated = dictionary.statusMap[raw];
+      if (translated && translated !== raw) element.textContent = translated;
+      if (raw === 'Enviando...') element.textContent = dictionary.sending;
+      if (raw === 'Enviar feedback') element.textContent = dictionary.submit;
+    };
+
+    const observeRuntimeCopy = () => {
+      const status = document.querySelector('[data-feedback-status]');
+      const gate = document.querySelector('[data-feedback-gate-note]');
+      const submit = document.querySelector('[data-feedback-submit-label]');
+      [status, gate, submit].forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        new MutationObserver(() => translateRuntimeMessage(node)).observe(node, { childList: true, characterData: true, subtree: true });
+      });
+    };
+
+    const changeLocale = (nextLocale) => {
+      if (nextLocale !== 'pt-BR' && nextLocale !== 'en-US') return;
+      locale = nextLocale;
+      applyStaticCopy();
+    };
+
+    applyStaticCopy();
+    observeRuntimeCopy();
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === LOCALE_KEY) changeLocale(event.newValue);
+    });
+
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data?.type === 'lab_locale_change') changeLocale(event.data.locale);
+    });
+
+    window.__labApplyLocale = changeLocale;
+  })();
+</script>
