@@ -16,19 +16,32 @@
         reject: 'Decline',
         accept: 'Accept analytics',
       },
+      'es-ES': {
+        title: 'Analytics y privacidad',
+        body: 'Usamos Google Analytics para entender cómo se utiliza el sitio y mejorar la experiencia. Analytics solo se carga si aceptas. ',
+        link: 'Más información',
+        reject: 'Rechazar',
+        accept: 'Aceptar analytics',
+      },
     };
 
     const detectLocale = () => {
       try {
         const stored = localStorage.getItem(LOCALE_KEY);
-        if (stored === 'pt-BR' || stored === 'en-US') return stored;
+        if (stored === 'pt-BR' || stored === 'en-US' || stored === 'es-ES') return stored;
       } catch {}
       const languages = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
-      return languages.some((language) => String(language).toLowerCase().startsWith('pt')) ? 'pt-BR' : 'en-US';
+      for (const language of languages) {
+        const normalized = String(language).toLowerCase();
+        if (normalized.startsWith('pt')) return 'pt-BR';
+        if (normalized.startsWith('es')) return 'es-ES';
+        if (normalized.startsWith('en')) return 'en-US';
+      }
+      return 'en-US';
     };
 
     const apply = (requested) => {
-      const locale = requested === 'pt-BR' || requested === 'en-US' ? requested : detectLocale();
+      const locale = requested === 'pt-BR' || requested === 'en-US' || requested === 'es-ES' ? requested : detectLocale();
       const dictionary = copy[locale];
       const title = document.querySelector('#analytics-consent-title');
       const description = document.querySelector('#analytics-consent-description');
