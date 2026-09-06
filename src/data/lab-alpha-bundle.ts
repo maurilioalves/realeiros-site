@@ -1,2 +1,2 @@
 // Deployment marker for the LAB public alpha bundle consumed from LancaABraba_Prototipo/site-dist.
-export const labAlphaBundleRevision = 'retention-r6-tutorial-terminal-9616fc49';
+export const labAlphaBundleRevision = 'retention-r7-economy-b89d639d';
