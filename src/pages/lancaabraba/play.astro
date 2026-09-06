@@ -58,6 +58,42 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
             if (!feedbackDialog.open) feedbackDialog.show();
           };
         }
+
+        const feedbackButton = document.querySelector('[data-lab-feedback-open]');
+        const feedbackGateNote = document.querySelector('[data-feedback-gate-note]');
+
+        const setFeedbackSurface = (surface) => {
+          const allowFeedback = surface !== 'gameplay';
+
+          if (feedbackButton instanceof HTMLButtonElement) {
+            feedbackButton.hidden = !allowFeedback;
+            feedbackButton.disabled = !allowFeedback;
+            feedbackButton.setAttribute('aria-hidden', allowFeedback ? 'false' : 'true');
+          }
+
+          if (!allowFeedback) {
+            if (feedbackGateNote instanceof HTMLElement) feedbackGateNote.hidden = true;
+            if (feedbackDialog instanceof HTMLDialogElement && feedbackDialog.open) {
+              feedbackDialog.close();
+            }
+          }
+        };
+
+        // The game iframe reports only the coarse UI surface (`menu` or
+        // `gameplay`). This keeps the feedback shell independent from React
+        // routing while guaranteeing that the floating CTA never competes with
+        // SNAP, routes or throw gestures during an active drive.
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin) return;
+          if (!(frame instanceof HTMLIFrameElement) || event.source !== frame.contentWindow) return;
+
+          const data = event.data;
+          if (!data || typeof data !== 'object') return;
+          if (data.source !== 'lanca-a-braba' || data.type !== 'lab_game_surface') return;
+          if (data.surface !== 'menu' && data.surface !== 'gameplay') return;
+
+          setFeedbackSurface(data.surface);
+        });
       })();
     </script>
   </body>
