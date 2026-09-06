@@ -21,7 +21,7 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     <link rel="icon" href="/favicon.ico" />
     <title>Lança a Braba — Public Alpha | Realeiros Play</title>
   </head>
-  <body class="lab-play-shell" data-lab-bundle={labAlphaBundleRevision}>
+  <body class="lab-play-shell" data-lab-bundle={labAlphaBundleRevision} data-lab-surface="menu">
     <iframe
       class="lab-game-frame"
       data-lab-game-frame
@@ -64,6 +64,7 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
 
         const setFeedbackSurface = (surface) => {
           const allowFeedback = surface !== 'gameplay';
+          document.body.dataset.labSurface = surface;
 
           if (feedbackButton instanceof HTMLButtonElement) {
             feedbackButton.hidden = !allowFeedback;
@@ -124,6 +125,19 @@ const feedbackAccessKey = 'cf7d8e77-011b-43f4-9be4-efc4a7d3c9ff';
     height: 100dvh;
     border: 0;
     background: #050b16;
+  }
+
+  /*
+   * `hidden` must win over the feedback component's responsive display rules.
+   * The body surface selector is a second independent guard so the CTA can
+   * never remain in the mobile gameplay stacking context underneath/above SNAP.
+   */
+  .lab-feedback-trigger[hidden],
+  body.lab-play-shell[data-lab-surface='gameplay'] .lab-feedback-trigger,
+  body.lab-play-shell[data-lab-surface='gameplay'] .lab-feedback-gate-note {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
   /*
