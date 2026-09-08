@@ -6,6 +6,7 @@
         title: 'Analytics e privacidade',
         body: 'Usamos Google Analytics para entender como o site é utilizado e melhorar a experiência. O analytics só é carregado se você aceitar. ',
         link: 'Saiba mais',
+        privacyHref: '/privacidade',
         reject: 'Recusar',
         accept: 'Aceitar analytics',
       },
@@ -13,6 +14,7 @@
         title: 'Analytics & privacy',
         body: 'We use Google Analytics to understand how the site is used and improve the experience. Analytics only loads if you accept. ',
         link: 'Learn more',
+        privacyHref: '/en/privacidade',
         reject: 'Decline',
         accept: 'Accept analytics',
       },
@@ -20,6 +22,7 @@
         title: 'Analytics y privacidad',
         body: 'Usamos Google Analytics para entender cómo se utiliza el sitio y mejorar la experiencia. Analytics solo se carga si aceptas. ',
         link: 'Más información',
+        privacyHref: '/es/privacidade',
         reject: 'Rechazar',
         accept: 'Aceptar analytics',
       },
@@ -54,6 +57,7 @@
         description.textContent = dictionary.body;
         if (link instanceof HTMLAnchorElement) {
           link.textContent = dictionary.link;
+          link.href = dictionary.privacyHref;
           description.append(link, '.');
         }
       }

@@ -1,21 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import type { RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const copy = {
+  'pt-BR': {
+    title: 'Novidades', description: 'Atualizações importantes, bastidores de desenvolvimento e comunicados da Realeiros Play e do Olha a Batida.', heroTitle: 'O jogo está vivo. Aqui ficam os capítulos importantes.', heroText: 'Nada de blog diário para encher calendário. Esta área existe para updates relevantes, lançamentos, grandes notas de versão e bastidores que valem registro.',
+    items: [['2026-08','Agosto de 2026','Novo site da Realeiros Play','A casa digital da Realeiros está sendo reconstruída com identidade própria, melhor desempenho e páginas dedicadas ao Olha a Batida.','Institucional'],['2026-06-27','27 de junho de 2026','Copa 2026, recompensas diárias e missões','Atualização do Olha a Batida com conteúdo da Copa, sistema de recompensa diária, missões e melhorias de estabilidade.','Olha a Batida']],
+  },
+  en: {
+    title: 'News', description: 'Important updates, development behind the scenes and announcements from Realeiros Play and Olha a Batida.', heroTitle: 'The game is alive. The important chapters live here.', heroText: 'No daily blog just to fill a calendar. This space records meaningful updates, launches, major release notes and development stories worth keeping.',
+    items: [['2026-08','August 2026','New Realeiros Play website','Realeiros’ digital home is being rebuilt with its own identity, better performance and dedicated pages for Olha a Batida.','Institutional'],['2026-06-27','June 27, 2026','World Cup 2026, daily rewards and missions','Olha a Batida update with World Cup content, a daily reward system, missions and stability improvements.','Olha a Batida']],
+  },
+  es: {
+    title: 'Novedades', description: 'Actualizaciones importantes, desarrollo entre bastidores y comunicados de Realeiros Play y Olha a Batida.', heroTitle: 'El juego está vivo. Aquí quedan los capítulos importantes.', heroText: 'Nada de un blog diario para llenar el calendario. Este espacio existe para actualizaciones relevantes, lanzamientos, grandes notas de versión y bastidores que merecen quedar registrados.',
+    items: [['2026-08','Agosto de 2026','Nuevo sitio de Realeiros Play','La casa digital de Realeiros se está reconstruyendo con identidad propia, mejor rendimiento y páginas dedicadas a Olha a Batida.','Institucional'],['2026-06-27','27 de junio de 2026','Mundial 2026, recompensas diarias y misiones','Actualización de Olha a Batida con contenido del Mundial, sistema de recompensa diaria, misiones y mejoras de estabilidad.','Olha a Batida']],
+  },
+}[locale];
 ---
-<BaseLayout title="Novidades" description="Atualizações importantes, bastidores de desenvolvimento e comunicados da Realeiros Play e do Olha a Batida.">
-  <PageHero eyebrow="Novidades" title="O jogo está vivo. Aqui ficam os capítulos importantes." text="Nada de blog diário para encher calendário. Esta área existe para updates relevantes, lançamentos, grandes notas de versão e bastidores que valem registro." />
-  <section class="section">
-    <div class="container news-list">
-      <article class="news-card">
-        <time datetime="2026-08">Agosto de 2026</time>
-        <div><h2>Novo site da Realeiros Play</h2><p>A casa digital da Realeiros está sendo reconstruída com identidade própria, melhor desempenho e páginas dedicadas ao Olha a Batida.</p></div>
-        <span class="news-status">Institucional</span>
-      </article>
-      <article class="news-card">
-        <time datetime="2026-06-27">27 de junho de 2026</time>
-        <div><h2>Copa 2026, recompensas diárias e missões</h2><p>Atualização do Olha a Batida com conteúdo da Copa, sistema de recompensa diária, missões e melhorias de estabilidade.</p></div>
-        <span class="news-status">Olha a Batida</span>
-      </article>
-    </div>
-  </section>
+<BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
+  <PageHero eyebrow={copy.title} title={copy.heroTitle} text={copy.heroText} />
+  <section class="section"><div class="container news-list">{copy.items.map(([datetime,date,title,text,status]) => <article class="news-card"><time datetime={datetime}>{date}</time><div><h2>{title}</h2><p>{text}</p></div><span class="news-status">{status}</span></article>)}</div></section>
 </BaseLayout>

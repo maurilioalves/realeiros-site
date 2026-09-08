@@ -1,73 +1,51 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { localizePath, type RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const copy = {
+  'pt-BR': {
+    title: 'Termos de Uso', description: 'Termos de uso dos serviços digitais da Realeiros Play e do Olha a Batida.', hero: 'Regras gerais para utilização dos serviços digitais da Realeiros Play.',
+    sections: [
+      ['1. Serviço','A Realeiros Play disponibiliza jogos, páginas institucionais, suporte e conteúdos digitais relacionados aos seus produtos. Recursos, disponibilidade e requisitos técnicos podem mudar ao longo do tempo.'],
+      ['2. Uso do Olha a Batida','O usuário deve utilizar o jogo de acordo com as regras das lojas, das plataformas e dos serviços de terceiros necessários ao funcionamento do aplicativo. É vedado usar o serviço para fraude, abuso, exploração indevida, tentativa de interferência técnica ou violação de direitos de terceiros.'],
+      ['3. Conteúdo e propriedade intelectual','Software, identidade visual, textos, artes, interfaces e demais ativos próprios da Realeiros são protegidos conforme a legislação aplicável. Marcas, nomes e conteúdos de terceiros permanecem sujeitos aos direitos de seus respectivos titulares.'],
+      ['4. Anúncios e compras','O jogo pode exibir anúncios e oferecer compras dentro do aplicativo. Cobrança, estorno e processamento de pagamento seguem também as regras da Google Play, App Store e demais intermediários aplicáveis.'],
+      ['5. Atualizações e disponibilidade','A Realeiros pode corrigir, alterar, adicionar ou remover recursos para manter, melhorar ou adequar o produto. Nenhum recurso anunciado como roadmap público constitui promessa de data de lançamento.'],
+    ], supportTitle: '6. Responsabilidade e suporte', supportA: 'Problemas técnicos podem ser reportados pela página de', supportLink: 'suporte', supportB: '. A Realeiros buscará investigar as ocorrências com base nas informações disponíveis, sem garantia de disponibilidade ininterrupta do serviço.', privacyTitle: '7. Privacidade', privacyA: 'O tratamento de dados relacionado ao produto é descrito na', privacyLink: 'Política de Privacidade', contactTitle: '8. Contato', contactA: 'Questões relacionadas a estes termos podem ser enviadas pelo', contactLink: 'formulário de contato',
+  },
+  en: {
+    title: 'Terms of Use', description: 'Terms of Use for Realeiros Play and Olha a Batida digital services.', hero: 'General rules for using Realeiros Play digital services.',
+    sections: [
+      ['1. Service','Realeiros Play provides games, institutional pages, support and digital content related to its products. Features, availability and technical requirements may change over time.'],
+      ['2. Use of Olha a Batida','Users must use the game in accordance with the rules of the stores, platforms and third-party services required for the application to operate. The service may not be used for fraud, abuse, improper exploitation, attempts at technical interference or infringement of third-party rights.'],
+      ['3. Content and intellectual property','Software, visual identity, text, artwork, interfaces and other original Realeiros assets are protected under applicable law. Third-party trademarks, names and content remain subject to the rights of their respective owners.'],
+      ['4. Ads and purchases','The game may display ads and offer in-app purchases. Charges, refunds and payment processing are also governed by Google Play, App Store and other applicable intermediary rules.'],
+      ['5. Updates and availability','Realeiros may fix, change, add or remove features to maintain, improve or adapt the product. No feature shown on a public roadmap constitutes a promise of a release date.'],
+    ], supportTitle: '6. Liability and support', supportA: 'Technical issues can be reported through the', supportLink: 'support page', supportB: '. Realeiros will seek to investigate occurrences based on available information, without guaranteeing uninterrupted service availability.', privacyTitle: '7. Privacy', privacyA: 'Data processing related to the product is described in the', privacyLink: 'Privacy Policy', contactTitle: '8. Contact', contactA: 'Questions related to these terms can be sent through the', contactLink: 'contact form',
+  },
+  es: {
+    title: 'Términos de Uso', description: 'Términos de uso de los servicios digitales de Realeiros Play y Olha a Batida.', hero: 'Reglas generales para utilizar los servicios digitales de Realeiros Play.',
+    sections: [
+      ['1. Servicio','Realeiros Play ofrece juegos, páginas institucionales, soporte y contenidos digitales relacionados con sus productos. Las funciones, disponibilidad y requisitos técnicos pueden cambiar con el tiempo.'],
+      ['2. Uso de Olha a Batida','El usuario debe utilizar el juego de acuerdo con las reglas de las tiendas, plataformas y servicios de terceros necesarios para el funcionamiento de la aplicación. Queda prohibido utilizar el servicio para fraude, abuso, explotación indebida, intentos de interferencia técnica o vulneración de derechos de terceros.'],
+      ['3. Contenido y propiedad intelectual','El software, la identidad visual, los textos, artes, interfaces y demás activos propios de Realeiros están protegidos conforme a la legislación aplicable. Las marcas, nombres y contenidos de terceros siguen sujetos a los derechos de sus respectivos titulares.'],
+      ['4. Anuncios y compras','El juego puede mostrar anuncios y ofrecer compras dentro de la aplicación. Los cobros, reembolsos y el procesamiento de pagos también siguen las reglas de Google Play, App Store y demás intermediarios aplicables.'],
+      ['5. Actualizaciones y disponibilidad','Realeiros puede corregir, modificar, añadir o eliminar funciones para mantener, mejorar o adaptar el producto. Ninguna función anunciada en un roadmap público constituye una promesa de fecha de lanzamiento.'],
+    ], supportTitle: '6. Responsabilidad y soporte', supportA: 'Los problemas técnicos pueden comunicarse a través de la página de', supportLink: 'soporte', supportB: '. Realeiros intentará investigar los casos basándose en la información disponible, sin garantizar la disponibilidad ininterrumpida del servicio.', privacyTitle: '7. Privacidad', privacyA: 'El tratamiento de datos relacionado con el producto se describe en la', privacyLink: 'Política de Privacidad', contactTitle: '8. Contacto', contactA: 'Las cuestiones relacionadas con estos términos pueden enviarse mediante el', contactLink: 'formulario de contacto',
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Termos de Uso"
-  description="Termos de uso dos serviços digitais da Realeiros Play e do Olha a Batida."
->
-  <PageHero
-    eyebrow="Legal"
-    title="Termos de Uso"
-    text="Regras gerais para utilização dos serviços digitais da Realeiros Play."
-  />
-  <section class="section">
-    <div class="container prose">
-      <h2>1. Serviço</h2>
-      <p>
-        A Realeiros Play disponibiliza jogos, páginas institucionais, suporte e
-        conteúdos digitais relacionados aos seus produtos. Recursos,
-        disponibilidade e requisitos técnicos podem mudar ao longo do tempo.
-      </p>
-
-      <h2>2. Uso do Olha a Batida</h2>
-      <p>
-        O usuário deve utilizar o jogo de acordo com as regras das lojas, das
-        plataformas e dos serviços de terceiros necessários ao funcionamento do
-        aplicativo. É vedado usar o serviço para fraude, abuso, exploração
-        indevida, tentativa de interferência técnica ou violação de direitos de
-        terceiros.
-      </p>
-
-      <h2>3. Conteúdo e propriedade intelectual</h2>
-      <p>
-        Software, identidade visual, textos, artes, interfaces e demais ativos
-        próprios da Realeiros são protegidos conforme a legislação aplicável.
-        Marcas, nomes e conteúdos de terceiros permanecem sujeitos aos direitos
-        de seus respectivos titulares.
-      </p>
-
-      <h2>4. Anúncios e compras</h2>
-      <p>
-        O jogo pode exibir anúncios e oferecer compras dentro do aplicativo.
-        Cobrança, estorno e processamento de pagamento seguem também as regras
-        da Google Play, App Store e demais intermediários aplicáveis.
-      </p>
-
-      <h2>5. Atualizações e disponibilidade</h2>
-      <p>
-        A Realeiros pode corrigir, alterar, adicionar ou remover recursos para
-        manter, melhorar ou adequar o produto. Nenhum recurso anunciado como
-        roadmap público constitui promessa de data de lançamento.
-      </p>
-
-      <h2>6. Responsabilidade e suporte</h2>
-      <p>
-        Problemas técnicos podem ser reportados pela página de <a href="/suporte">suporte</a>.
-        A Realeiros buscará investigar as ocorrências com base nas informações
-        disponíveis, sem garantia de disponibilidade ininterrupta do serviço.
-      </p>
-
-      <h2>7. Privacidade</h2>
-      <p>
-        O tratamento de dados relacionado ao produto é descrito na <a href="/privacidade">Política de Privacidade</a>.
-      </p>
-
-      <h2>8. Contato</h2>
-      <p>
-        Questões relacionadas a estes termos podem ser enviadas pelo <a href="/contato?tipo=general#formulario">formulário de contato</a>.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
+  <PageHero eyebrow="Legal" title={copy.title} text={copy.hero} />
+  <section class="section"><div class="container prose">
+    {copy.sections.map(([title,text]) => <><h2>{title}</h2><p>{text}</p></>)}
+    <h2>{copy.supportTitle}</h2><p>{copy.supportA} <a href={href('/suporte')}>{copy.supportLink}</a>{copy.supportB}</p>
+    <h2>{copy.privacyTitle}</h2><p>{copy.privacyA} <a href={href('/privacidade')}>{copy.privacyLink}</a>.</p>
+    <h2>{copy.contactTitle}</h2><p>{copy.contactA} <a href={`${href('/contato')}?tipo=general#formulario`}>{copy.contactLink}</a>.</p>
+  </div></section>
 </BaseLayout>

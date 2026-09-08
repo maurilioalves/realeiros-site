@@ -13,8 +13,12 @@ export const commonCopy: Record<
       playNow: string;
       playOab: string;
       language: string;
+      primary: string;
+      mobile: string;
+      openMenu: string;
     };
     footer: {
+      slogan: string;
       studio: string;
       explore: string;
       player: string;
@@ -42,8 +46,12 @@ export const commonCopy: Record<
       playNow: 'JOGAR AGORA',
       playOab: 'Jogar Olha a Batida',
       language: 'Idioma',
+      primary: 'Navegação principal',
+      mobile: 'Navegação móvel',
+      openMenu: 'Abrir menu',
     },
     footer: {
+      slogan: 'Jeito brasileiro de viver futebol.',
       studio: 'Estúdio indie brasileiro de jogos mobile.',
       explore: 'Explore',
       player: 'Jogador',
@@ -70,8 +78,12 @@ export const commonCopy: Record<
       playNow: 'PLAY NOW',
       playOab: 'Play Olha a Batida',
       language: 'Language',
+      primary: 'Primary navigation',
+      mobile: 'Mobile navigation',
+      openMenu: 'Open menu',
     },
     footer: {
+      slogan: 'A Brazilian way to live football.',
       studio: 'Brazilian indie mobile game studio.',
       explore: 'Explore',
       player: 'Player',
@@ -98,8 +110,12 @@ export const commonCopy: Record<
       playNow: 'JUGAR AHORA',
       playOab: 'Jugar Olha a Batida',
       language: 'Idioma',
+      primary: 'Navegación principal',
+      mobile: 'Navegación móvil',
+      openMenu: 'Abrir menú',
     },
     footer: {
+      slogan: 'Una forma brasileña de vivir el fútbol.',
       studio: 'Estudio indie brasileño de juegos para móviles.',
       explore: 'Explora',
       player: 'Jugador',

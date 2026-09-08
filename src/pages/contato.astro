@@ -1,159 +1,65 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactForm from "../components/ContactForm.astro";
-import PageHero from "../components/PageHero.astro";
-import { site } from "../data/site";
-import "../styles/contact.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+import { localizePath, type RouteLocale } from '../i18n/config';
+import '../styles/contact.css';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const contactHref = (type: string) => `${href('/contato')}?tipo=${type}#formulario`;
+const copy = {
+  'pt-BR': {
+    title: 'Contato', description: 'Fale com a Realeiros Play sobre suporte, imprensa, criadores, parcerias, privacidade e assuntos gerais.', heroTitle: 'Fale com a Realeiros.', heroText: 'Escolha o assunto e envie sua mensagem sem sair do site. O formulário direciona o contato para o contexto certo.',
+    cards: [
+      ['Jogadores','Suporte do Olha a Batida','Bug, problema de acesso, compra, anúncio ou dúvida sobre o jogo.','Abrir suporte','support','Ver central de suporte','/suporte'],
+      ['Imprensa e criadores','Conteúdo, cobertura e materiais','Informações, logos, screenshots, dados públicos e materiais oficiais estão disponíveis no Press Kit.','Acessar Press Kit','press','Falar com a Realeiros','press_creator'],
+      ['Negócios','Parcerias','Contato comercial, publishing, licenciamento e oportunidades alinhadas aos produtos da Realeiros.','Enviar proposta','partnership','',''],
+      ['Privacidade','Dados e questões legais','Solicitações relacionadas a privacidade, dados, termos e exclusão.','Falar sobre privacidade','privacy','Ver política','/privacidade'],
+    ],
+    formEyebrow: 'Mensagem direta', formTitle: 'Conte o que você precisa.', formText: 'Selecione o assunto, deixe seus dados para resposta e descreva a solicitação. A mensagem é enviada diretamente para o canal da Realeiros.',
+    points: [['Resposta por e-mail','Usaremos o endereço informado no formulário para dar continuidade ao contato.'],['Sem dados desnecessários','Não envie senhas, dados completos de cartão ou informações que não sejam necessárias para a solicitação.'],['Imprensa e criadores','Antes de pedir assets, confira o Press Kit: logos, artes e screenshots já estão disponíveis para download.']],
+    fallback: 'Se o formulário estiver indisponível, o canal alternativo é', socialEyebrow: 'Acompanhe os bastidores', socialText: 'Desenvolvimento, futebol, lançamentos e o que acontece entre uma atualização e outra.', instagram: 'Abrir Instagram',
+  },
+  en: {
+    title: 'Contact', description: 'Contact Realeiros Play about support, press, creators, partnerships, privacy and general matters.', heroTitle: 'Talk to Realeiros.', heroText: 'Choose a subject and send your message without leaving the site. The form routes your contact to the right context.',
+    cards: [
+      ['Players','Olha a Batida support','Bug, access issue, purchase, ad or any question about the game.','Open support','support','View support center','/suporte'],
+      ['Press and creators','Content, coverage and materials','Information, logos, screenshots, public data and official materials are available in the Press Kit.','Open Press Kit','press','Talk to Realeiros','press_creator'],
+      ['Business','Partnerships','Commercial contact, publishing, licensing and opportunities aligned with Realeiros products.','Send proposal','partnership','',''],
+      ['Privacy','Data and legal matters','Requests related to privacy, data, terms and deletion.','Contact us about privacy','privacy','View policy','/privacidade'],
+    ],
+    formEyebrow: 'Direct message', formTitle: 'Tell us what you need.', formText: 'Select the subject, provide contact details for a reply and describe your request. The message is sent directly to the Realeiros channel.',
+    points: [['Reply by email','We will use the address provided in the form to continue the conversation.'],['No unnecessary data','Do not send passwords, full card details or information that is not needed for your request.'],['Press and creators','Before requesting assets, check the Press Kit: logos, artwork and screenshots are already available to download.']],
+    fallback: 'If the form is unavailable, the alternative contact channel is', socialEyebrow: 'Follow the behind the scenes', socialText: 'Development, football, launches and what happens between one update and the next.', instagram: 'Open Instagram',
+  },
+  es: {
+    title: 'Contacto', description: 'Contacta con Realeiros Play sobre soporte, prensa, creadores, colaboraciones, privacidad y asuntos generales.', heroTitle: 'Habla con Realeiros.', heroText: 'Elige el asunto y envía tu mensaje sin salir del sitio. El formulario dirige el contacto al contexto adecuado.',
+    cards: [
+      ['Jugadores','Soporte de Olha a Batida','Bug, problema de acceso, compra, anuncio o cualquier duda sobre el juego.','Abrir soporte','support','Ver centro de soporte','/suporte'],
+      ['Prensa y creadores','Contenido, cobertura y materiales','Información, logos, screenshots, datos públicos y materiales oficiales están disponibles en el Press Kit.','Abrir Press Kit','press','Hablar con Realeiros','press_creator'],
+      ['Negocios','Colaboraciones','Contacto comercial, publishing, licencias y oportunidades alineadas con los productos de Realeiros.','Enviar propuesta','partnership','',''],
+      ['Privacidad','Datos y cuestiones legales','Solicitudes relacionadas con privacidad, datos, términos y eliminación.','Hablar sobre privacidad','privacy','Ver política','/privacidade'],
+    ],
+    formEyebrow: 'Mensaje directo', formTitle: 'Cuéntanos qué necesitas.', formText: 'Selecciona el asunto, deja tus datos para recibir respuesta y describe tu solicitud. El mensaje se envía directamente al canal de Realeiros.',
+    points: [['Respuesta por e-mail','Usaremos la dirección indicada en el formulario para continuar el contacto.'],['Sin datos innecesarios','No envíes contraseñas, datos completos de tarjeta ni información que no sea necesaria para la solicitud.'],['Prensa y creadores','Antes de pedir assets, consulta el Press Kit: logos, artes y screenshots ya están disponibles para descargar.']],
+    fallback: 'Si el formulario no está disponible, el canal alternativo es', socialEyebrow: 'Sigue los bastidores', socialText: 'Desarrollo, fútbol, lanzamientos y lo que ocurre entre una actualización y otra.', instagram: 'Abrir Instagram',
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Contato"
-  description="Fale com a Realeiros Play sobre suporte, imprensa, criadores, parcerias, privacidade e assuntos gerais."
->
-  <PageHero
-    eyebrow="Contato"
-    title="Fale com a Realeiros."
-    text="Escolha o assunto e envie sua mensagem sem sair do site. O formulário direciona o contato para o contexto certo."
-  />
+<BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
+  <PageHero eyebrow={copy.title} title={copy.heroTitle} text={copy.heroText} />
+  <section class="section"><div class="container contact-grid">
+    {copy.cards.map(([kicker,title,text,primary,action,secondary,secondaryTarget]) => <article class="contact-card"><span>{kicker}</span><h2>{title}</h2><p>{text}</p><div class="contact-card-actions">
+      {action === 'press' ? <a href={href('/press-kit')}>{primary}</a> : <a href={contactHref(action)} data-contact-type={action}>{primary}</a>}
+      {secondary && (secondaryTarget.startsWith('/') ? <a href={href(secondaryTarget)}>{secondary}</a> : <a href={contactHref(secondaryTarget)} data-contact-type={secondaryTarget}>{secondary}</a>)}
+    </div></article>)}
+  </div></section>
 
-  <section class="section">
-    <div class="container contact-grid">
-      <article class="contact-card">
-        <span>Jogadores</span>
-        <h2>Suporte do Olha a Batida</h2>
-        <p>Bug, problema de acesso, compra, anúncio ou dúvida sobre o jogo.</p>
-        <div class="contact-card-actions">
-          <a href="/contato?tipo=support#formulario" data-contact-type="support"
-            >Abrir suporte</a
-          >
-          <a href="/suporte">Ver central de suporte</a>
-        </div>
-      </article>
+  <section id="formulario" class="section section-paper contact-form-section"><div class="container contact-form-layout"><div class="contact-form-intro"><p class="eyebrow">{copy.formEyebrow}</p><h2>{copy.formTitle}</h2><p>{copy.formText}</p><div class="contact-form-points">{copy.points.map(([title,text]) => <div class="contact-form-point"><strong>{title}</strong><span>{text}</span></div>)}</div><p class="contact-form-fallback">{copy.fallback} <strong>{site.email}</strong>.</p></div><ContactForm accessKey="2ed9e4fa-0579-40d2-b44d-2f5f67790fad" locale={locale} /></div></section>
 
-      <article class="contact-card">
-        <span>Imprensa e criadores</span>
-        <h2>Conteúdo, cobertura e materiais</h2>
-        <p>
-          Informações, logos, screenshots, dados públicos e materiais oficiais
-          estão disponíveis no Press Kit.
-        </p>
-        <div class="contact-card-actions">
-          <a href="/press-kit">Acessar Press Kit</a>
-          <a
-            href="/contato?tipo=press_creator#formulario"
-            data-contact-type="press_creator">Falar com a Realeiros</a
-          >
-        </div>
-      </article>
-
-      <article class="contact-card">
-        <span>Negócios</span>
-        <h2>Parcerias</h2>
-        <p>
-          Contato comercial, publishing, licenciamento e oportunidades alinhadas
-          aos produtos da Realeiros.
-        </p>
-        <div class="contact-card-actions">
-          <a
-            href="/contato?tipo=partnership#formulario"
-            data-contact-type="partnership">Enviar proposta</a
-          >
-        </div>
-      </article>
-
-      <article class="contact-card">
-        <span>Privacidade</span>
-        <h2>Dados e questões legais</h2>
-        <p>
-          Solicitações relacionadas a privacidade, dados, termos e exclusão.
-        </p>
-        <div class="contact-card-actions">
-          <a href="/contato?tipo=privacy#formulario" data-contact-type="privacy"
-            >Falar sobre privacidade</a
-          >
-          <a href="/privacidade">Ver política</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="formulario" class="section section-paper contact-form-section">
-    <div class="container contact-form-layout">
-      <div class="contact-form-intro">
-        <p class="eyebrow">Mensagem direta</p>
-        <h2>Conte o que você precisa.</h2>
-        <p>
-          Selecione o assunto, deixe seus dados para resposta e descreva a
-          solicitação. A mensagem é enviada diretamente para o canal da
-          Realeiros.
-        </p>
-
-        <div class="contact-form-points">
-          <div class="contact-form-point">
-            <strong>Resposta por e-mail</strong>
-            <span
-              >Usaremos o endereço informado no formulário para dar continuidade
-              ao contato.</span
-            >
-          </div>
-          <div class="contact-form-point">
-            <strong>Sem dados desnecessários</strong>
-            <span
-              >Não envie senhas, dados completos de cartão ou informações que
-              não sejam necessárias para a solicitação.</span
-            >
-          </div>
-          <div class="contact-form-point">
-            <strong>Imprensa e criadores</strong>
-            <span
-              >Antes de pedir assets, confira o Press Kit: logos, artes e
-              screenshots já estão disponíveis para download.</span
-            >
-          </div>
-        </div>
-
-        <p class="contact-form-fallback">
-          Se o formulário estiver indisponível, o canal alternativo é {" "}
-          <strong>{site.email}</strong>.
-        </p>
-      </div>
-
-      <ContactForm accessKey="2ed9e4fa-0579-40d2-b44d-2f5f67790fad" />
-    </div>
-  </section>
-
-  <section class="section section-paper">
-    <div
-      class="container cta-panel"
-      style="background:#fff;color:#0b1730;border-color:#d8dde5"
-    >
-      <div>
-        <p class="eyebrow">Acompanhe os bastidores</p>
-
-        <h2 class="contact-instagram-handle">@realeirosplay</h2>
-
-        <p style="color:#4f5b70">
-          Desenvolvimento, futebol, lançamentos e o que acontece entre uma
-          atualização e outra.
-        </p>
-      </div>
-
-      <div class="cta-panel-actions">
-        <a
-          class="button button-dark"
-          href={site.instagram}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            class="button-icon"
-            src="/images/social_media/Instagram_logo.png"
-            alt=""
-            aria-hidden="true"
-          />
-          Abrir Instagram
-        </a>
-      </div>
-    </div>
-  </section>
+  <section class="section section-paper"><div class="container cta-panel" style="background:#fff;color:#0b1730;border-color:#d8dde5"><div><p class="eyebrow">{copy.socialEyebrow}</p><h2 class="contact-instagram-handle">@realeirosplay</h2><p style="color:#4f5b70">{copy.socialText}</p></div><div class="cta-panel-actions"><a class="button button-dark" href={site.instagram} target="_blank" rel="noreferrer"><img class="button-icon" src="/images/social_media/Instagram_logo.png" alt="" aria-hidden="true" />{copy.instagram}</a></div></div></section>
 </BaseLayout>
