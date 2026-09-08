@@ -7,6 +7,7 @@ export const commonCopy: Record<
     homeLabel: string;
     nav: {
       oab: string;
+      lab: string;
       about: string;
       news: string;
       contact: string;
@@ -40,6 +41,7 @@ export const commonCopy: Record<
     homeLabel: 'Realeiros Play — página inicial',
     nav: {
       oab: 'Olha a Batida',
+      lab: 'Lança a Braba',
       about: 'Sobre',
       news: 'Novidades',
       contact: 'Contato',
@@ -72,6 +74,7 @@ export const commonCopy: Record<
     homeLabel: 'Realeiros Play — home page',
     nav: {
       oab: 'Olha a Batida',
+      lab: 'Lança a Braba',
       about: 'About',
       news: 'News',
       contact: 'Contact',
@@ -104,6 +107,7 @@ export const commonCopy: Record<
     homeLabel: 'Realeiros Play — página de inicio',
     nav: {
       oab: 'Olha a Batida',
+      lab: 'Lança a Braba',
       about: 'Acerca de',
       news: 'Novedades',
       contact: 'Contacto',
