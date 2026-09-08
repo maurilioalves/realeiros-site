@@ -14,6 +14,7 @@ import {
   localeDefinitions,
   resolveRouteLocale,
   routeLocales,
+  stripLocalePrefix,
   type RouteLocale,
 } from '../i18n/config';
 
@@ -21,6 +22,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   noindex?: boolean;
   locale?: RouteLocale;
   localizedAlternates?: boolean;
@@ -30,6 +32,7 @@ const {
   title = site.name,
   description = site.description,
   image = '/images/oab/criativos/1.png',
+  imageAlt,
   noindex = false,
   locale: requestedLocale,
   localizedAlternates = false,
@@ -38,17 +41,107 @@ const {
 const locale = resolveRouteLocale(requestedLocale ?? Astro.currentLocale);
 const localeDefinition = localeDefinitions[locale];
 const copy = commonCopy[locale];
-const canonical = new URL(Astro.url.pathname, site.domain);
+const requestedPath = Astro.url.pathname === '/' ? '/' : `${Astro.url.pathname.replace(/\/+$/, '')}/`;
+const canonical = new URL(requestedPath, site.domain);
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
 const socialImage = new URL(image, site.domain);
+const socialImageAlt = imageAlt ?? fullTitle;
+const basePathRaw = stripLocalePrefix(requestedPath);
+const basePath = basePathRaw === '/' ? '/' : `${basePathRaw.replace(/\/+$/, '')}/`;
 const alternateLocales = localizedAlternates
   ? routeLocales.map((targetLocale) => ({
       locale: targetLocale,
       definition: localeDefinitions[targetLocale],
-      url: new URL(localizePath(Astro.url.pathname, targetLocale), site.domain),
+      url: new URL(localizePath(basePath, targetLocale), site.domain),
     }))
   : [];
-const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale), site.domain);
+const xDefaultUrl = new URL(localizePath(basePath, defaultRouteLocale), site.domain);
+
+const socialImageMetadata = image === '/images/oab/criativos/1.png'
+  ? { type: 'image/png', width: '1920', height: '1080' }
+  : image === '/lancaabraba/play/game/lanca-a-braba-icon.webp'
+    ? { type: 'image/webp', width: '512', height: '512' }
+    : null;
+
+const organizationId = `${site.domain}/#organization`;
+const websiteId = `${site.domain}/#website`;
+const pageId = `${canonical.href}#webpage`;
+const organizationSchema = {
+  '@type': 'Organization',
+  '@id': organizationId,
+  name: site.name,
+  url: `${site.domain}/`,
+  logo: new URL('/images/brand/logo_circulo.png', site.domain).href,
+  email: site.email,
+  sameAs: [site.instagram, site.youtube, site.tiktok, site.x],
+};
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: `${site.domain}/`,
+  name: site.name,
+  publisher: { '@id': organizationId },
+  inLanguage: routeLocales.map((item) => localeDefinitions[item].languageTag),
+};
+const pageSchema = {
+  '@type': 'WebPage',
+  '@id': pageId,
+  url: canonical.href,
+  name: fullTitle,
+  description,
+  inLanguage: localeDefinition.languageTag,
+  isPartOf: { '@id': websiteId },
+  publisher: { '@id': organizationId },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: socialImage.href,
+  },
+};
+
+const productSchema = basePath === '/olha-a-batida/'
+  ? {
+      '@type': ['VideoGame', 'MobileApplication'],
+      '@id': `${canonical.href}#game`,
+      name: 'Olha a Batida',
+      url: canonical.href,
+      description,
+      image: socialImage.href,
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Android, iOS',
+      gamePlatform: ['Android', 'iOS'],
+      isAccessibleForFree: true,
+      publisher: { '@id': organizationId },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    }
+  : basePath === '/lancaabraba/'
+    ? {
+        '@type': ['VideoGame', 'WebApplication'],
+        '@id': `${canonical.href}#game`,
+        name: 'Lança a Braba',
+        url: canonical.href,
+        description,
+        image: socialImage.href,
+        applicationCategory: 'GameApplication',
+        operatingSystem: 'Web browser',
+        gamePlatform: 'Web browser',
+        isAccessibleForFree: true,
+        publisher: { '@id': organizationId },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      }
+    : null;
+
+const structuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema, websiteSchema, pageSchema, ...(productSchema ? [productSchema] : [])],
+}).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang={localeDefinition.languageTag}>
@@ -57,8 +150,10 @@ const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale)
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#081226" />
     <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
     <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="icon" href="/favicon.ico" />
 
     {
@@ -82,12 +177,20 @@ const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale)
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    {socialImageMetadata && <meta property="og:image:type" content={socialImageMetadata.type} />}
+    {socialImageMetadata && <meta property="og:image:width" content={socialImageMetadata.width} />}
+    {socialImageMetadata && <meta property="og:image:height" content={socialImageMetadata.height} />}
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@realeirosplay" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
 
+    <script type="application/ld+json" set:html={structuredData}></script>
     <title>{fullTitle}</title>
   </head>
   <body>
