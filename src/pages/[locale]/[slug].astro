@@ -1,5 +1,6 @@
 ---
 import OabPage from '../olha-a-batida.astro';
+import LabPage from '../lancaabraba/index.astro';
 import AboutPage from '../sobre.astro';
 import NewsPage from '../novidades.astro';
 import ContactPage from '../contato.astro';
@@ -12,7 +13,7 @@ import { resolveRouteLocale } from '../../i18n/config';
 
 export function getStaticPaths() {
   const locales = ['en', 'es'];
-  const slugs = ['olha-a-batida','sobre','novidades','contato','suporte','press-kit','privacidade','termos','exclusao-de-dados'];
+  const slugs = ['olha-a-batida','lancaabraba','sobre','novidades','contato','suporte','press-kit','privacidade','termos','exclusao-de-dados'];
   return locales.flatMap((locale) => slugs.map((slug) => ({ params: { locale, slug } })));
 }
 
@@ -21,6 +22,7 @@ const slug = Astro.params.slug;
 ---
 
 {slug === 'olha-a-batida' && <OabPage locale={locale} />}
+{slug === 'lancaabraba' && <LabPage locale={locale} />}
 {slug === 'sobre' && <AboutPage locale={locale} />}
 {slug === 'novidades' && <NewsPage locale={locale} />}
 {slug === 'contato' && <ContactPage locale={locale} />}

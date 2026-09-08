@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import StoreButtons from '../components/StoreButtons.astro';
+import LabHomeSpotlight from '../components/LabHomeSpotlight.astro';
 import { site } from '../data/site';
 import { localizePath, type RouteLocale } from '../i18n/config';
 
@@ -10,7 +11,7 @@ const { locale = 'pt-BR' } = Astro.props;
 const href = (path: string) => localizePath(path, locale);
 const copy = {
   'pt-BR': {
-    description: 'Jeito brasileiro de viver futebol. A Realeiros Play é um estúdio indie brasileiro responsável pelo Olha a Batida, jogo mobile de pênaltis, competições e temporadas.',
+    description: 'Jeito brasileiro de viver futebol. Conheça os jogos da Realeiros Play: Olha a Batida no Android e iOS e Lança a Braba, arcade de futebol americano jogável no navegador.',
     heroEyebrow: 'Estúdio indie brasileiro • Jogos mobile • Futebol', heroLeadA: 'A Realeiros Play cria jogos para quem vive futebol como cultura. Nosso principal jogo,', heroLeadB: 'transforma pênaltis, competições e temporadas em decisões rápidas, intensas e com identidade brasileira.',
     oabCta: 'Conheça o Olha a Batida', aboutCta: 'Quem é a Realeiros', heroNote: 'Produto próprio, operação independente e evolução contínua.',
     heroAlt: 'Arte oficial do Olha a Batida com personagens e telas do jogo', sticker: ['MELHOR','JOGO DE','PÊNALTIS'], mobile: 'DISPONÍVEL NO CELULAR', metricsAria: 'Números da Realeiros Play e do Olha a Batida',
@@ -21,7 +22,7 @@ const copy = {
     finalEyebrow: 'Da arquibancada para o celular', finalTitle: 'Já conhece o Olha a Batida?', finalText: 'Entre nos pênaltis, dispute competições e acompanhe a evolução do jogo. É gratuito para começar.', instagram: 'Acompanhar no Instagram',
   },
   en: {
-    description: 'A Brazilian way to live football. Realeiros Play is a Brazilian indie studio behind Olha a Batida, a mobile football game built around penalties, competitions and seasons.',
+    description: 'A Brazilian way to live football. Discover Realeiros Play games: Olha a Batida on Android and iOS and Lança a Braba, an arcade American football game playable in the browser.',
     heroEyebrow: 'Brazilian indie studio • Mobile games • Football', heroLeadA: 'Realeiros Play creates games for people who experience football as culture. Our main game,', heroLeadB: 'turns penalties, competitions and seasons into fast, intense decisions with a distinctly Brazilian identity.',
     oabCta: 'Discover Olha a Batida', aboutCta: 'About Realeiros', heroNote: 'Original products, independent operation and continuous evolution.',
     heroAlt: 'Official Olha a Batida artwork featuring characters and game screens', sticker: ['BEST','PENALTY','GAME'], mobile: 'AVAILABLE ON MOBILE', metricsAria: 'Public numbers for Realeiros Play and Olha a Batida',
@@ -32,7 +33,7 @@ const copy = {
     finalEyebrow: 'From the stands to your phone', finalTitle: 'Have you tried Olha a Batida?', finalText: 'Step up for penalties, compete in tournaments and follow the game as it evolves. It is free to start.', instagram: 'Follow on Instagram',
   },
   es: {
-    description: 'Una forma brasileña de vivir el fútbol. Realeiros Play es un estudio indie brasileño responsable de Olha a Batida, un juego móvil de penaltis, competiciones y temporadas.',
+    description: 'Una forma brasileña de vivir el fútbol. Conoce los juegos de Realeiros Play: Olha a Batida en Android e iOS y Lança a Braba, arcade de fútbol americano jugable en el navegador.',
     heroEyebrow: 'Estudio indie brasileño • Juegos móviles • Fútbol', heroLeadA: 'Realeiros Play crea juegos para quienes viven el fútbol como cultura. Nuestro juego principal,', heroLeadB: 'convierte penaltis, competiciones y temporadas en decisiones rápidas e intensas con identidad brasileña.',
     oabCta: 'Conoce Olha a Batida', aboutCta: 'Conoce Realeiros', heroNote: 'Producto propio, operación independiente y evolución continua.',
     heroAlt: 'Arte oficial de Olha a Batida con personajes y pantallas del juego', sticker: ['MEJOR','JUEGO DE','PENALTIS'], mobile: 'DISPONIBLE EN MÓVIL', metricsAria: 'Cifras de Realeiros Play y Olha a Batida',
@@ -58,6 +59,8 @@ const copy = {
   </div><br /><div class="feature-actions"><StoreButtons compact locale={locale} /></div></div></div></section>
 
   <section class="section section-tight"><div class="container metrics" aria-label={copy.metricsAria}>{copy.metrics.map(([value,label]) => <div class="metric"><strong>{value}</strong><span>{label}</span></div>)}</div></section>
+
+  <LabHomeSpotlight locale={locale} />
 
   <section class="section section-muted"><div class="container game-feature"><div class="game-feature-copy">
     <p class="eyebrow">{copy.mainGame}</p><div class="oab-lockup"><img src="/images/oab/icon.png" alt="Olha a Batida" width="240" height="240" /><div><strong>Olha a Batida</strong><span>{copy.decisive}</span></div></div>

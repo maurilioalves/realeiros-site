@@ -1,0 +1,91 @@
+---
+import { localizePath, type RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const copy = {
+  'pt-BR': {
+    eyebrow: 'Novo na Realeiros • Public Alpha',
+    title: 'Lança a Braba',
+    subtitle: 'Futebol americano arcade direto no navegador.',
+    text: 'Leia a defesa, escolha a jogada e solte o braço. Sessões curtas, foco na habilidade do QB, progressão e desafios para quem quer jogar mais uma tentativa.',
+    chips: ['QB no centro da ação', 'Temporada Relâmpago', 'Desafios diários', 'PT-BR • EN-US • ES-ES'],
+    page: 'Conheça o jogo',
+    play: 'Jogar agora',
+    alt: 'Ícone oficial do Lança a Braba',
+    identity: 'Um jogo da Realeiros Play',
+  },
+  en: {
+    eyebrow: 'New from Realeiros • Public Alpha',
+    title: 'Lança a Braba',
+    subtitle: 'Arcade American football, right in your browser.',
+    text: 'Read the defense, choose the play and let it fly. Short sessions, quarterback skill, progression and challenges built around one more attempt.',
+    chips: ['QB at the center', 'Lightning Season', 'Daily challenges', 'PT-BR • EN-US • ES-ES'],
+    page: 'Discover the game',
+    play: 'Play now',
+    alt: 'Official Lança a Braba icon',
+    identity: 'A game by Realeiros Play',
+  },
+  es: {
+    eyebrow: 'Nuevo en Realeiros • Public Alpha',
+    title: 'Lança a Braba',
+    subtitle: 'Fútbol americano arcade directo en tu navegador.',
+    text: 'Lee la defensa, elige la jugada y suelta el brazo. Sesiones cortas, habilidad del quarterback, progresión y desafíos pensados para una partida más.',
+    chips: ['QB en el centro', 'Temporada Relámpago', 'Desafíos diarios', 'PT-BR • EN-US • ES-ES'],
+    page: 'Conoce el juego',
+    play: 'Jugar ahora',
+    alt: 'Icono oficial de Lança a Braba',
+    identity: 'Un juego de Realeiros Play',
+  },
+}[locale];
+---
+
+<section class="section lab-home-section">
+  <div class="container lab-home-card">
+    <div class="lab-home-copy">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <div class="lab-home-title-row">
+        <img src="/lancaabraba/play/game/lanca-a-braba-icon.webp" alt={copy.alt} width="112" height="112" loading="lazy" />
+        <div><h2>{copy.title}</h2><p class="lab-home-subtitle">{copy.subtitle}</p></div>
+      </div>
+      <p>{copy.text}</p>
+      <div class="lab-home-chips" aria-label={copy.title}>{copy.chips.map((chip) => <span>{chip}</span>)}</div>
+      <div class="lab-home-actions">
+        <a class="button button-primary" href={href('/lancaabraba')}>{copy.page}</a>
+        <a class="button button-secondary" href="/lancaabraba/play/">{copy.play}</a>
+      </div>
+      <small>{copy.identity}</small>
+    </div>
+    <div class="lab-home-visual" aria-hidden="true">
+      <div class="field-line field-line-a"></div><div class="field-line field-line-b"></div><div class="field-line field-line-c"></div>
+      <span class="route-dot route-dot-a"></span><span class="route-dot route-dot-b"></span><span class="route-dot route-dot-c"></span>
+      <div class="route-path"></div>
+      <strong>QB</strong>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lab-home-section { background: #081226; color: #fff; }
+  .lab-home-card { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(280px,.75fr); gap: 42px; align-items: center; padding-top: 18px; padding-bottom: 18px; }
+  .lab-home-title-row { display:flex; align-items:center; gap:18px; margin-bottom:18px; }
+  .lab-home-title-row img { width:88px; height:88px; border-radius:22px; box-shadow:0 12px 30px rgba(0,0,0,.28); }
+  .lab-home-title-row h2 { margin:0; font-size:clamp(2rem,4vw,3.4rem); }
+  .lab-home-subtitle { margin:.25rem 0 0; color:#d7e1f3; font-weight:700; }
+  .lab-home-copy > p:not(.eyebrow) { max-width:780px; color:#d7e1f3; }
+  .lab-home-chips { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }
+  .lab-home-chips span { border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:7px 10px; background:rgba(255,255,255,.05); font-size:.82rem; font-weight:700; }
+  .lab-home-actions { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .lab-home-copy small { color:#93a5c5; font-weight:700; }
+  .lab-home-visual { position:relative; min-height:280px; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:28px; background:linear-gradient(145deg,#172b47,#0c1930); box-shadow:inset 0 0 70px rgba(0,0,0,.25); }
+  .lab-home-visual::before { content:''; position:absolute; inset:18px; border:2px solid rgba(255,255,255,.16); border-radius:18px; }
+  .field-line { position:absolute; top:18px; bottom:18px; width:1px; background:rgba(255,255,255,.13); }
+  .field-line-a { left:28%; } .field-line-b { left:50%; } .field-line-c { left:72%; }
+  .lab-home-visual strong { position:absolute; left:18%; bottom:25%; display:grid; place-items:center; width:54px; height:54px; border-radius:50%; background:#f5e61b; color:#081226; font-family:Anton,sans-serif; font-size:1.1rem; }
+  .route-dot { position:absolute; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 0 0 5px rgba(255,255,255,.08); }
+  .route-dot-a { left:48%; top:27%; } .route-dot-b { right:19%; top:46%; } .route-dot-c { left:53%; bottom:19%; }
+  .route-path { position:absolute; left:28%; top:54%; width:52%; height:2px; background:#f5e61b; transform:rotate(-21deg); transform-origin:left center; box-shadow:0 0 18px rgba(245,230,27,.45); }
+  .route-path::after { content:'➤'; position:absolute; right:-4px; top:-11px; color:#f5e61b; font-size:20px; }
+  @media (max-width: 820px) { .lab-home-card { grid-template-columns:1fr; } .lab-home-visual { min-height:220px; } }
+</style>
