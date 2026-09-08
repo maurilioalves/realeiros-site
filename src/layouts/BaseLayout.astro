@@ -63,11 +63,7 @@ const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale)
 
     {
       alternateLocales.map((alternate) => (
-        <link
-          rel="alternate"
-          hreflang={alternate.definition.languageTag}
-          href={alternate.url}
-        />
+        <link rel="alternate" hreflang={alternate.definition.languageTag} href={alternate.url} />
       ))
     }
     {localizedAlternates && <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />}
@@ -97,11 +93,9 @@ const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale)
   <body>
     <a class="skip-link" href="#conteudo">{copy.skipLink}</a>
     <SiteHeader locale={locale} localeSwitcherEnabled={localizedAlternates} />
-    <main id="conteudo">
-      <slot />
-    </main>
+    <main id="conteudo"><slot /></main>
     <SiteFooter locale={locale} />
-    <AnalyticsConsent />
+    <AnalyticsConsent locale={locale} />
     <AnalyticsLinkTracking />
     <script is:inline define:vars={{ labLocale: localeDefinition.labLocale }}>
       try {

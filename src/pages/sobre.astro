@@ -2,120 +2,35 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import type { RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const copy = {
+  'pt-BR': {
+    title: 'Sobre a Realeiros', description: 'Conheça a Realeiros Play, estúdio indie brasileiro de jogos mobile responsável pelo Olha a Batida.', eyebrow: 'Sobre a Realeiros', heroTitle: 'Futebol brasileiro. Do nosso jeito.', heroText: 'A Realeiros Play é um estúdio independente brasileiro que cria jogos próprios inspirados na cultura, na emoção e no jeito de viver futebol.', quote: '“Futebol brasileiro. Do nosso jeito.”',
+    body: ['A Realeiros Play nasceu da mistura entre desenvolvimento de jogos, cultura de torcedor e vontade de criar experiências digitais com identidade própria.','O estúdio desenvolve produtos próprios e busca transformar elementos do futebol brasileiro em jogos acessíveis, reconhecíveis e feitos para quem vive o esporte além dos noventa minutos.','Nosso principal título é o Olha a Batida, jogo mobile publicado para Android e iOS que transforma pênaltis, competições, temporadas e personalização em uma experiência própria de futebol.','A Realeiros continua evoluindo seus jogos, sua marca e seu universo de produtos mantendo o futebol brasileiro como ponto de partida.'],
+    directionEyebrow: 'Nossa direção', directionTitle: 'O que guia a Realeiros.', values: [['Produto próprio','Criamos jogos, marcas e experiências com identidade própria.'],['Brasil como raiz','Nossa linguagem nasce da cultura e da experiência do torcedor brasileiro.'],['Identidade','Cada produto deve ter personalidade e ser reconhecido pelo que faz diferente.'],['Jogabilidade acessível','Entrar deve ser fácil. A profundidade aparece conforme o jogador continua jogando.'],['Evolução contínua','Jogos vivos melhoram com novas ideias, conteúdo e aprendizado ao longo do tempo.'],['Autenticidade','Preferimos uma identidade própria a tentar parecer algo que não somos.']],
+    manifestoEyebrow: 'Manifesto em uma frase', manifestoTitle: 'O jogo do futebol brasileiro', manifesto: ['Para a Realeiros, futebol não é apenas esporte. É conversa, memória, provocação, nervosismo, festa, arte e rotina. Nosso trabalho é transformar esse repertório em experiências digitais com linguagem própria.','O objetivo não é reproduzir tudo o que os grandes simuladores fazem. É criar experiências de futebol com uma proposta própria, começando pelos momentos decisivos do Olha a Batida.'],
+  },
+  en: {
+    title: 'About Realeiros', description: 'Meet Realeiros Play, the Brazilian indie mobile game studio behind Olha a Batida.', eyebrow: 'About Realeiros', heroTitle: 'Brazilian football. Our way.', heroText: 'Realeiros Play is an independent Brazilian studio creating original games inspired by football culture, emotion and the way people live the sport.', quote: '“Brazilian football. Our way.”',
+    body: ['Realeiros Play was born from the mix of game development, supporter culture and the desire to create digital experiences with an identity of their own.','The studio develops original products and turns elements of Brazilian football into accessible, recognizable games made for people who live the sport beyond the ninety minutes.','Our main title is Olha a Batida, a mobile game published on Android and iOS that turns penalties, competitions, seasons and customization into its own football experience.','Realeiros continues to evolve its games, brand and product universe while keeping Brazilian football as its starting point.'],
+    directionEyebrow: 'Our direction', directionTitle: 'What guides Realeiros.', values: [['Original products','We create games, brands and experiences with an identity of their own.'],['Brazil at the roots','Our language comes from Brazilian culture and the experience of supporters.'],['Identity','Every product should have personality and be recognized for what makes it different.'],['Accessible gameplay','Getting started should be easy. Depth appears as the player keeps playing.'],['Continuous evolution','Living games improve through new ideas, content and learning over time.'],['Authenticity','We would rather have an identity of our own than try to look like something we are not.']],
+    manifestoEyebrow: 'A manifesto in one sentence', manifestoTitle: 'A game of Brazilian football', manifesto: ['For Realeiros, football is more than a sport. It is conversation, memory, provocation, nerves, celebration, art and routine. Our work is to turn that repertoire into digital experiences with a language of their own.','The goal is not to reproduce everything the major simulators do. It is to create football experiences with their own proposition, starting with the decisive moments of Olha a Batida.'],
+  },
+  es: {
+    title: 'Acerca de Realeiros', description: 'Conoce Realeiros Play, el estudio indie brasileño de juegos móviles responsable de Olha a Batida.', eyebrow: 'Acerca de Realeiros', heroTitle: 'Fútbol brasileño. A nuestra manera.', heroText: 'Realeiros Play es un estudio independiente brasileño que crea juegos propios inspirados en la cultura, la emoción y la forma de vivir el fútbol.', quote: '“Fútbol brasileño. A nuestra manera.”',
+    body: ['Realeiros Play nació de la mezcla entre desarrollo de juegos, cultura de afición y el deseo de crear experiencias digitales con identidad propia.','El estudio desarrolla productos propios y busca transformar elementos del fútbol brasileño en juegos accesibles, reconocibles y hechos para quienes viven el deporte más allá de los noventa minutos.','Nuestro título principal es Olha a Batida, un juego móvil publicado para Android e iOS que convierte penaltis, competiciones, temporadas y personalización en una experiencia propia de fútbol.','Realeiros continúa evolucionando sus juegos, su marca y su universo de productos manteniendo el fútbol brasileño como punto de partida.'],
+    directionEyebrow: 'Nuestra dirección', directionTitle: 'Lo que guía a Realeiros.', values: [['Producto propio','Creamos juegos, marcas y experiencias con identidad propia.'],['Brasil como raíz','Nuestro lenguaje nace de la cultura y la experiencia del aficionado brasileño.'],['Identidad','Cada producto debe tener personalidad y ser reconocido por aquello que hace diferente.'],['Gameplay accesible','Empezar debe ser fácil. La profundidad aparece a medida que el jugador sigue jugando.'],['Evolución continua','Los juegos vivos mejoran con nuevas ideas, contenido y aprendizaje a lo largo del tiempo.'],['Autenticidad','Preferimos una identidad propia a intentar parecer algo que no somos.']],
+    manifestoEyebrow: 'Manifiesto en una frase', manifestoTitle: 'El juego del fútbol brasileño', manifesto: ['Para Realeiros, el fútbol no es solo deporte. Es conversación, memoria, provocación, nervios, fiesta, arte y rutina. Nuestro trabajo es transformar ese repertorio en experiencias digitales con lenguaje propio.','El objetivo no es reproducir todo lo que hacen los grandes simuladores. Es crear experiencias de fútbol con una propuesta propia, empezando por los momentos decisivos de Olha a Batida.'],
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Sobre a Realeiros"
-  description="Conheça a Realeiros Play, estúdio indie brasileiro de jogos mobile responsável pelo Olha a Batida."
->
-  <PageHero
-    eyebrow="Sobre a Realeiros"
-    title="Futebol brasileiro. Do nosso jeito."
-    text="A Realeiros Play é um estúdio independente brasileiro que cria jogos próprios inspirados na cultura, na emoção e no jeito de viver futebol."
-  />
-
-  <section class="section">
-    <div class="container about-grid">
-      <div class="big-quote">“Futebol brasileiro. Do nosso jeito.”</div>
-
-      <div class="about-copy">
-        <p>
-          A Realeiros Play nasceu da mistura entre desenvolvimento de jogos,
-          cultura de torcedor e vontade de criar experiências digitais com
-          identidade própria.
-        </p>
-
-        <p>
-          O estúdio desenvolve produtos próprios e busca transformar elementos
-          do futebol brasileiro em jogos acessíveis, reconhecíveis e feitos
-          para quem vive o esporte além dos noventa minutos.
-        </p>
-
-        <p>
-          Nosso principal título é o <strong>Olha a Batida</strong>, jogo mobile
-          publicado para Android e iOS que transforma pênaltis, competições,
-          temporadas e personalização em uma experiência própria de futebol.
-        </p>
-
-        <p>
-          A Realeiros continua evoluindo seus jogos, sua marca e seu universo
-          de produtos mantendo o futebol brasileiro como ponto de partida.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-muted">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Nossa direção"
-        title="O que guia a Realeiros."
-      />
-
-      <div class="values-grid">
-        <article class="value">
-          <h3>Produto próprio</h3>
-          <p>
-            Criamos jogos, marcas e experiências com identidade própria.
-          </p>
-        </article>
-
-        <article class="value">
-          <h3>Brasil como raiz</h3>
-          <p>
-            Nossa linguagem nasce da cultura e da experiência do torcedor brasileiro.
-          </p>
-        </article>
-
-        <article class="value">
-          <h3>Identidade</h3>
-          <p>
-            Cada produto deve ter personalidade e ser reconhecido pelo que faz diferente.
-          </p>
-        </article>
-
-        <article class="value">
-          <h3>Jogabilidade acessível</h3>
-          <p>
-            Entrar deve ser fácil. A profundidade aparece conforme o jogador continua jogando.
-          </p>
-        </article>
-
-        <article class="value">
-          <h3>Evolução contínua</h3>
-          <p>
-            Jogos vivos melhoram com novas ideias, conteúdo e aprendizado ao longo do tempo.
-          </p>
-        </article>
-
-        <article class="value">
-          <h3>Autenticidade</h3>
-          <p>
-            Preferimos uma identidade própria a tentar parecer algo que não somos.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-paper">
-    <div class="container prose prose-paper">
-      <SectionHeading
-        eyebrow="Manifesto em uma frase"
-        title="O jogo do futebol brasileiro"
-      />
-
-      <p>
-        Para a Realeiros, futebol não é apenas esporte. É conversa, memória,
-        provocação, nervosismo, festa, arte e rotina. Nosso trabalho é transformar
-        esse repertório em experiências digitais com linguagem própria.
-      </p>
-
-      <p>
-        O objetivo não é reproduzir tudo o que os grandes simuladores fazem.
-        É criar experiências de futebol com uma proposta própria, começando pelos
-        momentos decisivos do Olha a Batida.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
+  <PageHero eyebrow={copy.eyebrow} title={copy.heroTitle} text={copy.heroText} />
+  <section class="section"><div class="container about-grid"><div class="big-quote">{copy.quote}</div><div class="about-copy">{copy.body.map((text,index) => <p>{index === 2 ? <>{text.split('Olha a Batida')[0]}<strong>Olha a Batida</strong>{text.split('Olha a Batida')[1]}</> : text}</p>)}</div></div></section>
+  <section class="section section-muted"><div class="container"><SectionHeading eyebrow={copy.directionEyebrow} title={copy.directionTitle} /><div class="values-grid">{copy.values.map(([title,text]) => <article class="value"><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="section section-paper"><div class="container prose prose-paper"><SectionHeading eyebrow={copy.manifestoEyebrow} title={copy.manifestoTitle} />{copy.manifesto.map((text) => <p>{text}</p>)}</div></section>
 </BaseLayout>

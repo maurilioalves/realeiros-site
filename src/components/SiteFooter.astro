@@ -3,10 +3,7 @@ import { site } from '../data/site';
 import { commonCopy } from '../i18n/common';
 import { localizePath, type RouteLocale } from '../i18n/config';
 
-interface Props {
-  locale?: RouteLocale;
-}
-
+interface Props { locale?: RouteLocale; }
 const { locale = 'pt-BR' } = Astro.props;
 const year = new Date().getFullYear();
 const copy = commonCopy[locale];
@@ -17,17 +14,10 @@ const href = (path: string) => localizePath(path, locale);
   <div class="container footer-grid">
     <div>
       <div class="brand brand-footer">
-        <img
-          class="brand-mark"
-          src="/images/brand/logo_circulo.png"
-          alt=""
-          aria-hidden="true"
-        />
-        <span class="brand-text"
-          ><small>REALEIROS</small><small>PLAY</small></span
-        >
+        <img class="brand-mark" src="/images/brand/logo_circulo.png" alt="" aria-hidden="true" />
+        <span class="brand-text"><small>REALEIROS</small><small>PLAY</small></span>
       </div>
-      <p class="footer-pitch">{site.slogan}</p>
+      <p class="footer-pitch">{copy.footer.slogan}</p>
       <p class="footer-muted">{copy.footer.studio}</p>
     </div>
 

@@ -1,87 +1,38 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
-import "../styles/contact.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { localizePath, type RouteLocale } from '../i18n/config';
+import '../styles/contact.css';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const contactHref = (type: string) => `${href('/contato')}?tipo=${type}#formulario`;
+const copy = {
+  'pt-BR': {
+    title: 'Suporte', description: 'Central de suporte do Olha a Batida e da Realeiros Play.', heroTitle: 'Deu ruim no jogo? Conta pra gente direito que fica mais fácil resolver.', heroText: 'Escolha o tipo de ajuda. Você será levado ao formulário da Realeiros com o assunto correto já selecionado, sem precisar abrir outro aplicativo.',
+    cards: [['Problema técnico','Informe modelo do aparelho, versão do Android/iOS, versão do jogo, tela onde ocorreu, o que aconteceu e como reproduzir o problema.','Reportar bug','bug','primary'],['Compras e anúncios','Não envie dados completos de cartão ou senha. Informe apenas o problema e, se necessário, o identificador de pedido fornecido pela loja.','Pedir ajuda','purchase_ads','secondary'],['Feedback e sugestões','Ideias de competições, modos e melhorias são bem-vindas. Elas entram como sinal para o produto, não como promessa automática de implementação.','Enviar sugestão','feedback','secondary']],
+    privacyTitle: 'Privacidade e dados', privacyText: 'Consulte a política de privacidade e a página de exclusão de dados antes de abrir a solicitação.', privacyButton: 'Ver privacidade', privacyContact: 'Falar sobre dados', other: 'Outro problema', generalTitle: 'Não encontrou sua categoria?', generalText: 'Abra um atendimento geral e explique o que aconteceu. O formulário permanece dentro do site e a resposta chega pelo e-mail informado.', generalButton: 'Abrir suporte geral',
+  },
+  en: {
+    title: 'Support', description: 'Support center for Olha a Batida and Realeiros Play.', heroTitle: 'Something went wrong? Give us the details and it is easier to investigate.', heroText: 'Choose the kind of help you need. You will be taken to the Realeiros form with the right subject already selected, without opening another app.',
+    cards: [['Technical issue','Include your device model, Android/iOS version, game version, where it happened, what happened and how to reproduce the issue.','Report a bug','bug','primary'],['Purchases and ads','Do not send full card details or passwords. Describe the issue and, if necessary, include the order identifier provided by the store.','Get help','purchase_ads','secondary'],['Feedback and suggestions','Ideas for competitions, modes and improvements are welcome. They are treated as product signals, not automatic implementation promises.','Send a suggestion','feedback','secondary']],
+    privacyTitle: 'Privacy and data', privacyText: 'Read the Privacy Policy and Data Deletion page before opening a request.', privacyButton: 'View privacy policy', privacyContact: 'Contact us about data', other: 'Another issue', generalTitle: 'Could not find your category?', generalText: 'Open a general support request and explain what happened. The form stays on the site and the response goes to the email address you provide.', generalButton: 'Open general support',
+  },
+  es: {
+    title: 'Soporte', description: 'Centro de soporte de Olha a Batida y Realeiros Play.', heroTitle: '¿Algo salió mal? Cuéntanos bien qué pasó y será más fácil investigarlo.', heroText: 'Elige el tipo de ayuda. Irás al formulario de Realeiros con el asunto correcto ya seleccionado, sin necesidad de abrir otra aplicación.',
+    cards: [['Problema técnico','Indica el modelo del dispositivo, versión de Android/iOS, versión del juego, dónde ocurrió, qué pasó y cómo reproducir el problema.','Reportar un bug','bug','primary'],['Compras y anuncios','No envíes datos completos de tarjeta ni contraseñas. Describe el problema y, si es necesario, incluye el identificador de pedido proporcionado por la tienda.','Pedir ayuda','purchase_ads','secondary'],['Feedback y sugerencias','Las ideas de competiciones, modos y mejoras son bienvenidas. Se utilizan como señales para el producto, no como promesas automáticas de implementación.','Enviar sugerencia','feedback','secondary']],
+    privacyTitle: 'Privacidad y datos', privacyText: 'Consulta la Política de Privacidad y la página de Eliminación de datos antes de abrir una solicitud.', privacyButton: 'Ver privacidad', privacyContact: 'Hablar sobre datos', other: 'Otro problema', generalTitle: '¿No encuentras tu categoría?', generalText: 'Abre una solicitud de soporte general y explica lo ocurrido. El formulario permanece dentro del sitio y la respuesta llegará al e-mail indicado.', generalButton: 'Abrir soporte general',
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Suporte"
-  description="Central de suporte do Olha a Batida e da Realeiros Play."
->
-  <PageHero
-    eyebrow="Suporte"
-    title="Deu ruim no jogo? Conta pra gente direito que fica mais fácil resolver."
-    text="Escolha o tipo de ajuda. Você será levado ao formulário da Realeiros com o assunto correto já selecionado, sem precisar abrir outro aplicativo."
-  />
-
-  <section class="section">
-    <div class="container support-grid">
-      <article class="support-card">
-        <h2>Problema técnico</h2>
-        <p>
-          Informe modelo do aparelho, versão do Android/iOS, versão do jogo,
-          tela onde ocorreu, o que aconteceu e como reproduzir o problema.
-        </p>
-        <a
-          class="button button-primary"
-          href="/contato?tipo=bug#formulario"
-        >Reportar bug</a>
-      </article>
-
-      <article class="support-card">
-        <h2>Compras e anúncios</h2>
-        <p>
-          Não envie dados completos de cartão ou senha. Informe apenas o
-          problema e, se necessário, o identificador de pedido fornecido pela loja.
-        </p>
-        <a
-          class="button button-secondary"
-          href="/contato?tipo=purchase_ads#formulario"
-        >Pedir ajuda</a>
-      </article>
-
-      <article class="support-card">
-        <h2>Privacidade e dados</h2>
-        <p>
-          Consulte a política de privacidade e a página de exclusão de dados
-          antes de abrir a solicitação.
-        </p>
-        <div class="support-card-actions">
-          <a class="button button-secondary" href="/privacidade">Ver privacidade</a>
-          <a
-            class="button button-secondary"
-            href="/contato?tipo=privacy#formulario"
-          >Falar sobre dados</a>
-        </div>
-      </article>
-
-      <article class="support-card">
-        <h2>Feedback e sugestões</h2>
-        <p>
-          Ideias de competições, modos e melhorias são bem-vindas. Elas entram
-          como sinal para o produto, não como promessa automática de implementação.
-        </p>
-        <a
-          class="button button-secondary"
-          href="/contato?tipo=feedback#formulario"
-        >Enviar sugestão</a>
-      </article>
-    </div>
-  </section>
-
-  <section class="section section-paper">
-    <div class="container support-general-cta">
-      <div>
-        <p class="eyebrow">Outro problema</p>
-        <h2>Não encontrou sua categoria?</h2>
-        <p>
-          Abra um atendimento geral e explique o que aconteceu. O formulário
-          permanece dentro do site e a resposta chega pelo e-mail informado.
-        </p>
-      </div>
-      <a class="button button-dark" href="/contato?tipo=support#formulario">
-        Abrir suporte geral
-      </a>
-    </div>
-  </section>
+<BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
+  <PageHero eyebrow={copy.title} title={copy.heroTitle} text={copy.heroText} />
+  <section class="section"><div class="container support-grid">
+    {copy.cards.slice(0,2).map(([title,text,label,type,variant]) => <article class="support-card"><h2>{title}</h2><p>{text}</p><a class={`button button-${variant}`} href={contactHref(type)}>{label}</a></article>)}
+    <article class="support-card"><h2>{copy.privacyTitle}</h2><p>{copy.privacyText}</p><div class="support-card-actions"><a class="button button-secondary" href={href('/privacidade')}>{copy.privacyButton}</a><a class="button button-secondary" href={contactHref('privacy')}>{copy.privacyContact}</a></div></article>
+    {copy.cards.slice(2).map(([title,text,label,type,variant]) => <article class="support-card"><h2>{title}</h2><p>{text}</p><a class={`button button-${variant}`} href={contactHref(type)}>{label}</a></article>)}
+  </div></section>
+  <section class="section section-paper"><div class="container support-general-cta"><div><p class="eyebrow">{copy.other}</p><h2>{copy.generalTitle}</h2><p>{copy.generalText}</p></div><a class="button button-dark" href={contactHref('support')}>{copy.generalButton}</a></div></section>
 </BaseLayout>

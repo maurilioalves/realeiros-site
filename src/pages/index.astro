@@ -1,225 +1,74 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionHeading from "../components/SectionHeading.astro";
-import StoreButtons from "../components/StoreButtons.astro";
-import { publicMetrics, roadmap, site } from "../data/site";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import { site } from '../data/site';
+import { localizePath, type RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const copy = {
+  'pt-BR': {
+    description: 'Jeito brasileiro de viver futebol. A Realeiros Play é um estúdio indie brasileiro responsável pelo Olha a Batida, jogo mobile de pênaltis, competições e temporadas.',
+    heroEyebrow: 'Estúdio indie brasileiro • Jogos mobile • Futebol', heroLeadA: 'A Realeiros Play cria jogos para quem vive futebol como cultura. Nosso principal jogo,', heroLeadB: 'transforma pênaltis, competições e temporadas em decisões rápidas, intensas e com identidade brasileira.',
+    oabCta: 'Conheça o Olha a Batida', aboutCta: 'Quem é a Realeiros', heroNote: 'Produto próprio, operação independente e evolução contínua.',
+    heroAlt: 'Arte oficial do Olha a Batida com personagens e telas do jogo', sticker: ['MELHOR','JOGO DE','PÊNALTIS'], mobile: 'DISPONÍVEL NO CELULAR', metricsAria: 'Números da Realeiros Play e do Olha a Batida',
+    metrics: [['460 mil+','downloads históricos no Android'],['Android + iOS','disponível nas duas plataformas'],['3 mil+','avaliações na Google Play'],['Brasil-first','futebol com identidade local']],
+    mainGame: 'Nosso principal jogo', decisive: 'Futebol nos momentos decisivos', gameText: 'Escolha seu time, entre em campeonatos e decida partidas nos pênaltis. O core é simples de aprender; o contexto vem de temporadas, copas, estádios, personalização e progressão.', features: ['Cobranças e defesas','Temporadas e copas','Clubes e seleções','Estádios e torcida','Personalização','Desafios e recompensas'], gamePage: 'Página do jogo', galleryAria: 'Capturas do Olha a Batida', galleryAlts: ['Gameplay de cobrança de pênalti no Olha a Batida','Tela de competições do Olha a Batida','Estádios disponíveis no Olha a Batida'],
+    guideEyebrow: 'O que guia a Realeiros', guideTitle: 'Futebol como cultura. Jogo como expressão.', guideText: 'A marca não tenta parecer uma multinacional nem um portal esportivo. A ideia é transformar o olhar de quem vive o futebol brasileiro em produto digital próprio.', cards: [['Brasilidade de verdade','Identidade visual, ritmo, humor e referências que partem do nosso futebol — sem transformar brasilidade em caricatura.'],['Olhar de torcedor','A experiência nasce da emoção de quem torce. Menos distância institucional; mais consequência, resenha e identificação.'],['Produto próprio','A Realeiros é construída em cima de jogos e propriedade intelectual próprios, com operação enxuta e evolução baseada em dados.']],
+    band: ['ARQUIBANCADA','JOGO','CULTURA','RESENHA','PAIXÃO','BRASIL','FUTEBOL'], roadmapEyebrow: 'Próximos capítulos', roadmapTitle: 'O Olha a Batida continua em evolução.', roadmapText: 'Estas são as direções que orientam a evolução do jogo. Novidades específicas são anunciadas quando estão próximas de chegar aos jogadores.', roadmap: [['Temporadas mais profundas','Mais continuidade, contexto e significado para cada campanha disputada.'],['Mais conteúdo de futebol','Clubes, competições e experiências continuam crescendo de forma gradual.'],['Mais motivos para voltar','Progressão, desafios e sistemas recorrentes evoluem junto com o jogo.'],['Experiência em evolução','Gameplay, interface, desempenho e qualidade continuam recebendo melhorias.']],
+    finalEyebrow: 'Da arquibancada para o celular', finalTitle: 'Já conhece o Olha a Batida?', finalText: 'Entre nos pênaltis, dispute competições e acompanhe a evolução do jogo. É gratuito para começar.', instagram: 'Acompanhar no Instagram',
+  },
+  en: {
+    description: 'A Brazilian way to live football. Realeiros Play is a Brazilian indie studio behind Olha a Batida, a mobile football game built around penalties, competitions and seasons.',
+    heroEyebrow: 'Brazilian indie studio • Mobile games • Football', heroLeadA: 'Realeiros Play creates games for people who experience football as culture. Our main game,', heroLeadB: 'turns penalties, competitions and seasons into fast, intense decisions with a distinctly Brazilian identity.',
+    oabCta: 'Discover Olha a Batida', aboutCta: 'About Realeiros', heroNote: 'Original products, independent operation and continuous evolution.',
+    heroAlt: 'Official Olha a Batida artwork featuring characters and game screens', sticker: ['BEST','PENALTY','GAME'], mobile: 'AVAILABLE ON MOBILE', metricsAria: 'Public numbers for Realeiros Play and Olha a Batida',
+    metrics: [['460K+','historical Android downloads'],['Android + iOS','available on both platforms'],['3K+','Google Play ratings'],['Brazil-first','football with a local identity']],
+    mainGame: 'Our main game', decisive: 'Football at the decisive moments', gameText: 'Choose your team, enter competitions and decide matches from the penalty spot. The core is easy to learn; seasons, cups, stadiums, customization and progression provide the wider context.', features: ['Shots and saves','Seasons and cups','Clubs and national teams','Stadiums and crowds','Customization','Challenges and rewards'], gamePage: 'Game page', galleryAria: 'Olha a Batida screenshots', galleryAlts: ['Penalty-kick gameplay in Olha a Batida','Competition screen in Olha a Batida','Stadiums available in Olha a Batida'],
+    guideEyebrow: 'What guides Realeiros', guideTitle: 'Football as culture. Games as expression.', guideText: 'The brand does not try to look like a multinational company or a sports portal. The goal is to turn the perspective of people who live Brazilian football into original digital products.', cards: [['Brazilian identity, genuinely','Visual identity, rhythm, humor and references rooted in our football — without turning Brazil into a caricature.'],['A supporter’s perspective','The experience starts with the emotion of supporting a team. Less institutional distance; more consequence, banter and identification.'],['Original products','Realeiros is built around its own games and intellectual property, with a lean operation and data-informed evolution.']],
+    band: ['STANDS','GAME','CULTURE','BANTER','PASSION','BRAZIL','FOOTBALL'], roadmapEyebrow: 'Next chapters', roadmapTitle: 'Olha a Batida keeps evolving.', roadmapText: 'These are the directions guiding the game’s evolution. Specific updates are announced when they are close to reaching players.', roadmap: [['Deeper seasons','More continuity, context and meaning for every campaign.'],['More football content','Clubs, competitions and experiences continue to grow gradually.'],['More reasons to return','Progression, challenges and recurring systems evolve with the game.'],['An evolving experience','Gameplay, interface, performance and overall quality continue to improve.']],
+    finalEyebrow: 'From the stands to your phone', finalTitle: 'Have you tried Olha a Batida?', finalText: 'Step up for penalties, compete in tournaments and follow the game as it evolves. It is free to start.', instagram: 'Follow on Instagram',
+  },
+  es: {
+    description: 'Una forma brasileña de vivir el fútbol. Realeiros Play es un estudio indie brasileño responsable de Olha a Batida, un juego móvil de penaltis, competiciones y temporadas.',
+    heroEyebrow: 'Estudio indie brasileño • Juegos móviles • Fútbol', heroLeadA: 'Realeiros Play crea juegos para quienes viven el fútbol como cultura. Nuestro juego principal,', heroLeadB: 'convierte penaltis, competiciones y temporadas en decisiones rápidas e intensas con identidad brasileña.',
+    oabCta: 'Conoce Olha a Batida', aboutCta: 'Conoce Realeiros', heroNote: 'Producto propio, operación independiente y evolución continua.',
+    heroAlt: 'Arte oficial de Olha a Batida con personajes y pantallas del juego', sticker: ['MEJOR','JUEGO DE','PENALTIS'], mobile: 'DISPONIBLE EN MÓVIL', metricsAria: 'Cifras de Realeiros Play y Olha a Batida',
+    metrics: [['460 mil+','descargas históricas en Android'],['Android + iOS','disponible en ambas plataformas'],['3 mil+','valoraciones en Google Play'],['Brasil-first','fútbol con identidad local']],
+    mainGame: 'Nuestro juego principal', decisive: 'Fútbol en los momentos decisivos', gameText: 'Elige tu equipo, entra en competiciones y decide partidos desde el punto de penalti. El núcleo es fácil de aprender; temporadas, copas, estadios, personalización y progresión aportan el contexto.', features: ['Tiros y paradas','Temporadas y copas','Clubes y selecciones','Estadios y afición','Personalización','Desafíos y recompensas'], gamePage: 'Página del juego', galleryAria: 'Capturas de Olha a Batida', galleryAlts: ['Gameplay de lanzamiento de penalti en Olha a Batida','Pantalla de competiciones de Olha a Batida','Estadios disponibles en Olha a Batida'],
+    guideEyebrow: 'Lo que guía a Realeiros', guideTitle: 'El fútbol como cultura. El juego como expresión.', guideText: 'La marca no intenta parecer una multinacional ni un portal deportivo. La idea es transformar la mirada de quien vive el fútbol brasileño en un producto digital propio.', cards: [['Brasilidad auténtica','Identidad visual, ritmo, humor y referencias que nacen de nuestro fútbol — sin convertir Brasil en una caricatura.'],['Mirada de aficionado','La experiencia nace de la emoción de quien anima a un equipo. Menos distancia institucional; más consecuencias, charla e identificación.'],['Producto propio','Realeiros se construye sobre sus propios juegos y propiedad intelectual, con una operación ágil y una evolución basada en datos.']],
+    band: ['GRADA','JUEGO','CULTURA','CHARLA','PASIÓN','BRASIL','FÚTBOL'], roadmapEyebrow: 'Próximos capítulos', roadmapTitle: 'Olha a Batida sigue evolucionando.', roadmapText: 'Estas son las direcciones que orientan la evolución del juego. Las novedades concretas se anuncian cuando están cerca de llegar a los jugadores.', roadmap: [['Temporadas más profundas','Más continuidad, contexto y significado para cada campaña.'],['Más contenido de fútbol','Clubes, competiciones y experiencias siguen creciendo de forma gradual.'],['Más motivos para volver','La progresión, los desafíos y los sistemas recurrentes evolucionan junto al juego.'],['Una experiencia en evolución','Gameplay, interfaz, rendimiento y calidad siguen recibiendo mejoras.']],
+    finalEyebrow: 'De la grada al móvil', finalTitle: '¿Ya conoces Olha a Batida?', finalText: 'Entra en los penaltis, disputa competiciones y acompaña la evolución del juego. Puedes empezar gratis.', instagram: 'Seguir en Instagram',
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Realeiros Play"
-  description="Jeito brasileiro de viver futebol. A Realeiros Play é um estúdio indie brasileiro responsável pelo Olha a Batida, jogo mobile de pênaltis, competições e temporadas."
->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <p class="eyebrow">Estúdio indie brasileiro • Jogos mobile • Futebol</p>
-        <h1>Jeito brasileiro de <span class="accent">viver futebol.</span></h1>
-        <p class="lead">
-          A Realeiros Play cria jogos para quem vive futebol como cultura. Nosso
-          principal jogo, <strong>Olha a Batida</strong>, transforma pênaltis,
-          competições e temporadas em decisões rápidas, intensas e com
-          identidade brasileira.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="/olha-a-batida"
-            >Conheça o Olha a Batida</a
-          >
-          <a class="button button-secondary" href="/sobre">Quem é a Realeiros</a
-          >
-        </div>
-        <div class="hero-note">
-          Produto próprio, operação independente e evolução contínua.
-        </div>
-      </div>
+<BaseLayout title="Realeiros Play" description={copy.description} locale={locale} localizedAlternates>
+  <section class="hero"><div class="container hero-grid"><div>
+    <p class="eyebrow">{copy.heroEyebrow}</p>
+    <h1>{locale === 'pt-BR' ? <>Jeito brasileiro de <span class="accent">viver futebol.</span></> : locale === 'en' ? <>A Brazilian way to <span class="accent">live football.</span></> : <>Una forma brasileña de <span class="accent">vivir el fútbol.</span></>}</h1>
+    <p class="lead">{copy.heroLeadA} <strong>Olha a Batida</strong> {copy.heroLeadB}</p>
+    <div class="hero-actions"><a class="button button-primary" href={href('/olha-a-batida')}>{copy.oabCta}</a><a class="button button-secondary" href={href('/sobre')}>{copy.aboutCta}</a></div>
+    <div class="hero-note">{copy.heroNote}</div>
+  </div><div class="hero-media" aria-label="Olha a Batida"><div class="hero-game-card">
+    <img src="/images/oab/criativos/1.png" alt={copy.heroAlt} width="526" height="296" />
+    <div class="sticker">{copy.sticker.map((line) => <>{line}<br /></>)}</div><div class="mini-label">{copy.mobile}</div>
+  </div><br /><div class="feature-actions"><StoreButtons compact locale={locale} /></div></div></div></section>
 
-      <div class="hero-media" aria-label="Olha a Batida">
-        <div class="hero-game-card">
-          <img
-            src="/images/oab/criativos/1.png"
-            alt="Arte oficial do Olha a Batida com personagens e telas do jogo"
-            width="526"
-            height="296"
-          />
-          <div class="sticker">MELHOR<br />JOGO DE<br />PÊNALTIS</div>
-          <div class="mini-label">DISPONÍVEL NO CELULAR</div>
-        </div>
-        <br />
-        <div class="feature-actions"><StoreButtons compact /></div>
-      </div>
-    </div>
-  </section>
+  <section class="section section-tight"><div class="container metrics" aria-label={copy.metricsAria}>{copy.metrics.map(([value,label]) => <div class="metric"><strong>{value}</strong><span>{label}</span></div>)}</div></section>
 
-  <section class="section section-tight">
-    <div
-      class="container metrics"
-      aria-label="Números da Realeiros Play e do Olha a Batida"
-    >
-      {
-        publicMetrics.map((metric) => (
-          <div class="metric">
-            <strong>{metric.value}</strong>
-            <span>{metric.label}</span>
-          </div>
-        ))
-      }
-    </div>
-  </section>
+  <section class="section section-muted"><div class="container game-feature"><div class="game-feature-copy">
+    <p class="eyebrow">{copy.mainGame}</p><div class="oab-lockup"><img src="/images/oab/icon.png" alt="Olha a Batida" width="240" height="240" /><div><strong>Olha a Batida</strong><span>{copy.decisive}</span></div></div>
+    <p>{copy.gameText}</p><ul class="feature-list">{copy.features.map((item) => <li>{item}</li>)}</ul><div class="feature-actions"><a class="button button-primary" href={href('/olha-a-batida')}>{copy.gamePage}</a><StoreButtons compact locale={locale} /></div>
+  </div><div class="gallery-stack" aria-label={copy.galleryAria}>{['6.png','4.png','2.png'].map((file,index) => <img src={`/images/oab/criativos/${file}`} alt={copy.galleryAlts[index]} width="526" height="296" loading="lazy" />)}</div></div></section>
 
-  <section class="section section-muted">
-    <div class="container game-feature">
-      <div class="game-feature-copy">
-        <p class="eyebrow">Nosso principal jogo</p>
-        <div class="oab-lockup">
-          <img
-            src="/images/oab/icon.png"
-            alt="Ícone do Olha a Batida"
-            width="240"
-            height="240"
-          />
-          <div>
-            <strong>Olha a Batida</strong>
-            <span>Futebol nos momentos decisivos</span>
-          </div>
-        </div>
-        <p>
-          Escolha seu time, entre em campeonatos e decida partidas nos pênaltis.
-          O core é simples de aprender; o contexto vem de temporadas, copas,
-          estádios, personalização e progressão.
-        </p>
-        <ul class="feature-list">
-          <li>Cobranças e defesas</li>
-          <li>Temporadas e copas</li>
-          <li>Clubes e seleções</li>
-          <li>Estádios e torcida</li>
-          <li>Personalização</li>
-          <li>Desafios e recompensas</li>
-        </ul>
-        <div class="feature-actions">
-          <a class="button button-primary" href="/olha-a-batida"
-            >Página do jogo</a
-          >
-          <StoreButtons compact />
-        </div>
-      </div>
+  <section class="section"><div class="container"><SectionHeading eyebrow={copy.guideEyebrow} title={copy.guideTitle} text={copy.guideText} /><div class="cards">{copy.cards.map(([title,text],index) => <article class="card"><span class="card-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-      <div class="gallery-stack" aria-label="Capturas do Olha a Batida">
-        <img
-          src="/images/oab/criativos/6.png"
-          alt="Gameplay de cobrança de pênalti no Olha a Batida"
-          width="526"
-          height="296"
-          loading="lazy"
-        />
-        <img
-          src="/images/oab/criativos/4.png"
-          alt="Tela de competições do Olha a Batida"
-          width="526"
-          height="296"
-          loading="lazy"
-        />
-        <img
-          src="/images/oab/criativos/2.png"
-          alt="Estádios disponíveis no Olha a Batida"
-          width="526"
-          height="296"
-          loading="lazy"
-        />
-      </div>
-    </div>
-  </section>
+  <div class="social-band" aria-hidden="true"><div class="social-band-track">{copy.band.map((word) => <span>{word}</span>)}</div></div>
 
-  <section class="section">
-    <div class="container">
-      <SectionHeading
-        eyebrow="O que guia a Realeiros"
-        title="Futebol como cultura. Jogo como expressão."
-        text="A marca não tenta parecer uma multinacional nem um portal esportivo. A ideia é transformar o olhar de quem vive o futebol brasileiro em produto digital próprio."
-      />
-      <div class="cards">
-        <article class="card">
-          <span class="card-index">01</span>
-          <h3>Brasilidade de verdade</h3>
-          <p>
-            Identidade visual, ritmo, humor e referências que partem do nosso
-            futebol — sem transformar brasilidade em caricatura.
-          </p>
-        </article>
-        <article class="card">
-          <span class="card-index">02</span>
-          <h3>Olhar de torcedor</h3>
-          <p>
-            A experiência nasce da emoção de quem torce. Menos distância
-            institucional; mais consequência, resenha e identificação.
-          </p>
-        </article>
-        <article class="card">
-          <span class="card-index">03</span>
-          <h3>Produto próprio</h3>
-          <p>
-            A Realeiros é construída em cima de jogos e propriedade intelectual
-            próprios, com operação enxuta e evolução baseada em dados.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <section class="section section-paper"><div class="container"><SectionHeading eyebrow={copy.roadmapEyebrow} title={copy.roadmapTitle} text={copy.roadmapText} /><div class="roadmap-grid">{copy.roadmap.map(([title,text]) => <article class="roadmap-card"><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-  <div class="social-band" aria-hidden="true">
-    <div class="social-band-track">
-      <span>ARQUIBANCADA</span><span>JOGO</span><span>CULTURA</span><span
-        >RESENHA</span
-      ><span>PAIXÃO</span><span>BRASIL</span><span>FUTEBOL</span>
-    </div>
-  </div>
-
-  <section class="section section-paper">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Próximos capítulos"
-        title="O Olha a Batida continua em evolução."
-        text="Estas são as direções que orientam a evolução do jogo. Novidades específicas são anunciadas quando estão próximas de chegar aos jogadores."
-      />
-      <div class="roadmap-grid">
-        {
-          roadmap.map((item) => (
-            <article class="roadmap-card">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container cta-panel">
-      <div>
-        <p class="eyebrow">Da arquibancada para o celular</p>
-        <br />
-        <h2>Já conhece o Olha a Batida?</h2>
-        <p>
-          Entre nos pênaltis, dispute competições e acompanhe a evolução do
-          jogo. É gratuito para começar.
-        </p>
-      </div>
-      <div class="cta-panel-actions">
-        <StoreButtons compact />
-        <a
-          class="button button-secondary instagram-button"
-          href={site.instagram}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            class="button-icon"
-            src="/images/social_media/Instagram_logo.png"
-            alt=""
-            aria-hidden="true"
-          />
-          Acompanhar no Instagram
-        </a>
-      </div>
-    </div>
-  </section>
+  <section class="section"><div class="container cta-panel"><div><p class="eyebrow">{copy.finalEyebrow}</p><br /><h2>{copy.finalTitle}</h2><p>{copy.finalText}</p></div><div class="cta-panel-actions"><StoreButtons compact locale={locale} /><a class="button button-secondary instagram-button" href={site.instagram} target="_blank" rel="noreferrer"><img class="button-icon" src="/images/social_media/Instagram_logo.png" alt="" aria-hidden="true" />{copy.instagram}</a></div></div></section>
 </BaseLayout>

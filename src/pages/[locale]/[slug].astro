@@ -1,0 +1,31 @@
+---
+import OabPage from '../olha-a-batida.astro';
+import AboutPage from '../sobre.astro';
+import NewsPage from '../novidades.astro';
+import ContactPage from '../contato.astro';
+import SupportPage from '../suporte.astro';
+import PressKitPage from '../press-kit.astro';
+import PrivacyPage from '../privacidade.astro';
+import TermsPage from '../termos.astro';
+import DataDeletionPage from '../exclusao-de-dados.astro';
+import { resolveRouteLocale } from '../../i18n/config';
+
+export function getStaticPaths() {
+  const locales = ['en', 'es'];
+  const slugs = ['olha-a-batida','sobre','novidades','contato','suporte','press-kit','privacidade','termos','exclusao-de-dados'];
+  return locales.flatMap((locale) => slugs.map((slug) => ({ params: { locale, slug } })));
+}
+
+const locale = resolveRouteLocale(Astro.params.locale);
+const slug = Astro.params.slug;
+---
+
+{slug === 'olha-a-batida' && <OabPage locale={locale} />}
+{slug === 'sobre' && <AboutPage locale={locale} />}
+{slug === 'novidades' && <NewsPage locale={locale} />}
+{slug === 'contato' && <ContactPage locale={locale} />}
+{slug === 'suporte' && <SupportPage locale={locale} />}
+{slug === 'press-kit' && <PressKitPage locale={locale} />}
+{slug === 'privacidade' && <PrivacyPage locale={locale} />}
+{slug === 'termos' && <TermsPage locale={locale} />}
+{slug === 'exclusao-de-dados' && <DataDeletionPage locale={locale} />}
