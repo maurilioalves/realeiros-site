@@ -1,26 +1,68 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import type { RouteLocale } from '../i18n/config';
+import { localizePath, type RouteLocale } from '../i18n/config';
 
 interface Props { locale?: RouteLocale; }
 const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
 const copy = {
   'pt-BR': {
-    title: 'Novidades', description: 'Atualizações importantes, bastidores de desenvolvimento e comunicados da Realeiros Play e do Olha a Batida.', heroTitle: 'O jogo está vivo. Aqui ficam os capítulos importantes.', heroText: 'Nada de blog diário para encher calendário. Esta área existe para updates relevantes, lançamentos, grandes notas de versão e bastidores que valem registro.',
-    items: [['2026-08','Agosto de 2026','Novo site da Realeiros Play','A casa digital da Realeiros está sendo reconstruída com identidade própria, melhor desempenho e páginas dedicadas ao Olha a Batida.','Institucional'],['2026-06-27','27 de junho de 2026','Copa 2026, recompensas diárias e missões','Atualização do Olha a Batida com conteúdo da Copa, sistema de recompensa diária, missões e melhorias de estabilidade.','Olha a Batida']],
+    title: 'Novidades',
+    description: 'Atualizações importantes, lançamentos e bastidores da Realeiros Play, do Olha a Batida e do Lança a Braba.',
+    heroTitle: 'Os capítulos importantes dos nossos jogos ficam aqui.',
+    heroText: 'Nada de blog diário para encher calendário. Esta área registra lançamentos, grandes atualizações e evoluções de produto que valem ficar na história da Realeiros Play.',
+    readMore: 'Saiba mais',
+    items: [
+      ['2026-09-08','8 de setembro de 2026','Lança a Braba entra em Public Alpha','O novo arcade de futebol americano da Realeiros Play já tem página oficial e versão pública jogável no navegador. Entre como quarterback, leia a defesa, execute os passes e evolua em sessões curtas com progressão e desafios recorrentes.','Lança a Braba','/lancaabraba'],
+      ['2026-09','Setembro de 2026','Modo Europa amplia o Olha a Batida','O Modo Temporadas entra em uma nova escala com a expansão europeia: novos clubes e ligas, competições continentais e uma estrutura sazonal preparada para campanhas na Europa. A atualização está na reta final de preparação para a próxima build do jogo.','Olha a Batida','/olha-a-batida'],
+      ['2026-08','Agosto de 2026','Novo site da Realeiros Play','A casa digital da Realeiros está sendo reconstruída com identidade própria, melhor desempenho e páginas dedicadas aos nossos produtos.','Institucional','/'],
+      ['2026-06-27','27 de junho de 2026','Copa 2026, recompensas diárias e missões','Atualização do Olha a Batida com conteúdo da Copa, sistema de recompensa diária, missões e melhorias de estabilidade.','Olha a Batida','/olha-a-batida'],
+    ],
   },
   en: {
-    title: 'News', description: 'Important updates, development behind the scenes and announcements from Realeiros Play and Olha a Batida.', heroTitle: 'The game is alive. The important chapters live here.', heroText: 'No daily blog just to fill a calendar. This space records meaningful updates, launches, major release notes and development stories worth keeping.',
-    items: [['2026-08','August 2026','New Realeiros Play website','Realeiros’ digital home is being rebuilt with its own identity, better performance and dedicated pages for Olha a Batida.','Institutional'],['2026-06-27','June 27, 2026','World Cup 2026, daily rewards and missions','Olha a Batida update with World Cup content, a daily reward system, missions and stability improvements.','Olha a Batida']],
+    title: 'News',
+    description: 'Important updates, releases and development stories from Realeiros Play, Olha a Batida and Lança a Braba.',
+    heroTitle: 'The important chapters of our games live here.',
+    heroText: 'No daily blog just to fill a calendar. This space records launches, major updates and product milestones worth keeping in Realeiros Play’s history.',
+    readMore: 'Learn more',
+    items: [
+      ['2026-09-08','September 8, 2026','Lança a Braba enters Public Alpha','Realeiros Play’s new arcade American football game now has an official product page and a public version playable in the browser. Step in as the quarterback, read the defense, make the throws and progress through short sessions and recurring challenges.','Lança a Braba','/lancaabraba'],
+      ['2026-09','September 2026','Europe Mode expands Olha a Batida','Season Mode is growing to a new scale with its European expansion: new clubs and leagues, continental competitions and a seasonal structure built for campaigns in Europe. The update is in its final preparation stage for the game’s next build.','Olha a Batida','/olha-a-batida'],
+      ['2026-08','August 2026','New Realeiros Play website','Realeiros’ digital home is being rebuilt with its own identity, better performance and dedicated pages for our products.','Institutional','/'],
+      ['2026-06-27','June 27, 2026','World Cup 2026, daily rewards and missions','Olha a Batida update with World Cup content, a daily reward system, missions and stability improvements.','Olha a Batida','/olha-a-batida'],
+    ],
   },
   es: {
-    title: 'Novedades', description: 'Actualizaciones importantes, desarrollo entre bastidores y comunicados de Realeiros Play y Olha a Batida.', heroTitle: 'El juego está vivo. Aquí quedan los capítulos importantes.', heroText: 'Nada de un blog diario para llenar el calendario. Este espacio existe para actualizaciones relevantes, lanzamientos, grandes notas de versión y bastidores que merecen quedar registrados.',
-    items: [['2026-08','Agosto de 2026','Nuevo sitio de Realeiros Play','La casa digital de Realeiros se está reconstruyendo con identidad propia, mejor rendimiento y páginas dedicadas a Olha a Batida.','Institucional'],['2026-06-27','27 de junio de 2026','Mundial 2026, recompensas diarias y misiones','Actualización de Olha a Batida con contenido del Mundial, sistema de recompensa diaria, misiones y mejoras de estabilidad.','Olha a Batida']],
+    title: 'Novedades',
+    description: 'Actualizaciones importantes, lanzamientos y desarrollo entre bastidores de Realeiros Play, Olha a Batida y Lança a Braba.',
+    heroTitle: 'Los capítulos importantes de nuestros juegos quedan aquí.',
+    heroText: 'Nada de un blog diario para llenar el calendario. Este espacio registra lanzamientos, grandes actualizaciones y hitos de producto que merecen quedar en la historia de Realeiros Play.',
+    readMore: 'Saber más',
+    items: [
+      ['2026-09-08','8 de septiembre de 2026','Lança a Braba entra en Public Alpha','El nuevo arcade de fútbol americano de Realeiros Play ya tiene página oficial y una versión pública jugable en el navegador. Juega como quarterback, lee la defensa, ejecuta los pases y progresa en sesiones cortas con desafíos recurrentes.','Lança a Braba','/lancaabraba'],
+      ['2026-09','Septiembre de 2026','El Modo Europa amplía Olha a Batida','El Modo Temporadas crece a una nueva escala con su expansión europea: nuevos clubes y ligas, competiciones continentales y una estructura estacional preparada para campañas en Europa. La actualización está en su fase final de preparación para la próxima build del juego.','Olha a Batida','/olha-a-batida'],
+      ['2026-08','Agosto de 2026','Nuevo sitio de Realeiros Play','La casa digital de Realeiros se está reconstruyendo con identidad propia, mejor rendimiento y páginas dedicadas a nuestros productos.','Institucional','/'],
+      ['2026-06-27','27 de junio de 2026','Mundial 2026, recompensas diarias y misiones','Actualización de Olha a Batida con contenido del Mundial, sistema de recompensa diaria, misiones y mejoras de estabilidad.','Olha a Batida','/olha-a-batida'],
+    ],
   },
 }[locale];
 ---
 <BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
   <PageHero eyebrow={copy.title} title={copy.heroTitle} text={copy.heroText} />
-  <section class="section"><div class="container news-list">{copy.items.map(([datetime,date,title,text,status]) => <article class="news-card"><time datetime={datetime}>{date}</time><div><h2>{title}</h2><p>{text}</p></div><span class="news-status">{status}</span></article>)}</div></section>
+  <section class="section">
+    <div class="container news-list">
+      {copy.items.map(([datetime,date,title,text,status,path]) => (
+        <article class="news-card">
+          <time datetime={datetime}>{date}</time>
+          <div>
+            <h2>{title}</h2>
+            <p>{text}</p>
+            <a href={href(path)}>{copy.readMore} →</a>
+          </div>
+          <span class="news-status">{status}</span>
+        </article>
+      ))}
+    </div>
+  </section>
 </BaseLayout>
