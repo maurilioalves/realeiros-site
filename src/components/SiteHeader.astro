@@ -1,18 +1,32 @@
 ---
-import { site } from "../data/site";
+import { site } from '../data/site';
+import LocaleSwitcher from './LocaleSwitcher.astro';
+import { commonCopy } from '../i18n/common';
+import { localizePath, type RouteLocale } from '../i18n/config';
 
+interface Props {
+  locale?: RouteLocale;
+  localeSwitcherEnabled?: boolean;
+}
+
+const {
+  locale = 'pt-BR',
+  localeSwitcherEnabled = false,
+} = Astro.props;
 const pathname = Astro.url.pathname;
+const copy = commonCopy[locale];
 const links = [
-  { href: "/olha-a-batida", label: "Olha a Batida" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/novidades", label: "Novidades" },
-  { href: "/contato", label: "Contato" },
-];
+  { href: '/olha-a-batida', label: copy.nav.oab },
+  { href: '/sobre', label: copy.nav.about },
+  { href: '/novidades', label: copy.nav.news },
+  { href: '/contato', label: copy.nav.contact },
+].map((link) => ({ ...link, href: localizePath(link.href, locale) }));
+const homeHref = localizePath('/', locale);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="Realeiros Play — página inicial">
+    <a class="brand" href={homeHref} aria-label={copy.homeLabel}>
       <img
         class="brand-mark"
         src="/images/brand/logo_circulo.png"
@@ -29,12 +43,21 @@ const links = [
       {
         links.map((link) => (
           <a
-            class:list={[pathname.startsWith(link.href) && "is-active"]}
+            class:list={[pathname.startsWith(link.href) && 'is-active']}
             href={link.href}
           >
             {link.label}
           </a>
         ))
+      }
+      {
+        localeSwitcherEnabled && (
+          <LocaleSwitcher
+            locale={locale}
+            currentPath={pathname}
+            ariaLabel={copy.nav.language}
+          />
+        )
       }
     </nav>
 
@@ -44,7 +67,7 @@ const links = [
       target="_blank"
       rel="noreferrer"
     >
-      JOGAR AGORA
+      {copy.nav.playNow}
     </a>
 
     <button
@@ -67,11 +90,20 @@ const links = [
   >
     <div class="container mobile-nav-inner">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
+      {
+        localeSwitcherEnabled && (
+          <LocaleSwitcher
+            locale={locale}
+            currentPath={pathname}
+            ariaLabel={copy.nav.language}
+          />
+        )
+      }
       <a
         class="button button-primary"
         href={site.playStore}
         target="_blank"
-        rel="noreferrer">Jogar Olha a Batida</a
+        rel="noreferrer">{copy.nav.playOab}</a
       >
     </div>
   </nav>

@@ -7,12 +7,23 @@ import '@fontsource-variable/inter/wght.css';
 import '../styles/global.css';
 import { site } from '../data/site';
 import AnalyticsLinkTracking from '../components/AnalyticsLinkTracking.astro';
+import { commonCopy } from '../i18n/common';
+import {
+  defaultRouteLocale,
+  localizePath,
+  localeDefinitions,
+  resolveRouteLocale,
+  routeLocales,
+  type RouteLocale,
+} from '../i18n/config';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   noindex?: boolean;
+  locale?: RouteLocale;
+  localizedAlternates?: boolean;
 }
 
 const {
@@ -20,14 +31,27 @@ const {
   description = site.description,
   image = '/images/oab/criativos/1.png',
   noindex = false,
+  locale: requestedLocale,
+  localizedAlternates = false,
 } = Astro.props;
 
+const locale = resolveRouteLocale(requestedLocale ?? Astro.currentLocale);
+const localeDefinition = localeDefinitions[locale];
+const copy = commonCopy[locale];
 const canonical = new URL(Astro.url.pathname, site.domain);
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
 const socialImage = new URL(image, site.domain);
+const alternateLocales = localizedAlternates
+  ? routeLocales.map((targetLocale) => ({
+      locale: targetLocale,
+      definition: localeDefinitions[targetLocale],
+      url: new URL(localizePath(Astro.url.pathname, targetLocale), site.domain),
+    }))
+  : [];
+const xDefaultUrl = new URL(localizePath(Astro.url.pathname, defaultRouteLocale), site.domain);
 ---
 <!doctype html>
-<html lang="pt-BR">
+<html lang={localeDefinition.languageTag}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,10 +59,28 @@ const socialImage = new URL(image, site.domain);
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.ico"  />
+    <link rel="icon" href="/favicon.ico" />
+
+    {
+      alternateLocales.map((alternate) => (
+        <link
+          rel="alternate"
+          hreflang={alternate.definition.languageTag}
+          href={alternate.url}
+        />
+      ))
+    }
+    {localizedAlternates && <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />}
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={localeDefinition.ogLocale} />
+    {
+      alternateLocales
+        .filter((alternate) => alternate.locale !== locale)
+        .map((alternate) => (
+          <meta property="og:locale:alternate" content={alternate.definition.ogLocale} />
+        ))
+    }
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -53,14 +95,21 @@ const socialImage = new URL(image, site.domain);
     <title>{fullTitle}</title>
   </head>
   <body>
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <SiteHeader />
+    <a class="skip-link" href="#conteudo">{copy.skipLink}</a>
+    <SiteHeader locale={locale} localeSwitcherEnabled={localizedAlternates} />
     <main id="conteudo">
       <slot />
     </main>
-    <SiteFooter />
+    <SiteFooter locale={locale} />
     <AnalyticsConsent />
     <AnalyticsLinkTracking />
+    <script is:inline define:vars={{ labLocale: localeDefinition.labLocale }}>
+      try {
+        localStorage.setItem('LANCA_A_BRABA_LOCALE', labLocale);
+      } catch {
+        // The site keeps working when storage is unavailable.
+      }
+    </script>
     <script is:inline>
       const button = document.querySelector('[data-menu-button]');
       const nav = document.querySelector('[data-mobile-nav]');

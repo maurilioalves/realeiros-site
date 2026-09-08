@@ -1,0 +1,87 @@
+---
+import {
+  localizePath,
+  localeDefinitions,
+  routeLocales,
+  type RouteLocale,
+} from '../i18n/config';
+
+interface Props {
+  locale: RouteLocale;
+  currentPath: string;
+  ariaLabel: string;
+}
+
+const { locale, currentPath, ariaLabel } = Astro.props;
+---
+
+<nav class="locale-switcher" aria-label={ariaLabel}>
+  {
+    routeLocales.map((targetLocale) => {
+      const definition = localeDefinitions[targetLocale];
+      return (
+        <a
+          href={localizePath(currentPath, targetLocale)}
+          hreflang={definition.languageTag}
+          lang={definition.languageTag}
+          aria-current={targetLocale === locale ? 'page' : undefined}
+          data-site-locale={definition.labLocale}
+          title={definition.label}
+        >
+          {definition.shortLabel}
+        </a>
+      );
+    })
+  }
+</nav>
+
+<script is:inline>
+  (() => {
+    const storageKey = 'LANCA_A_BRABA_LOCALE';
+    document.querySelectorAll('[data-site-locale]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const locale = link.getAttribute('data-site-locale');
+        if (!locale) return;
+        try {
+          localStorage.setItem(storageKey, locale);
+        } catch {
+          // Navigation still works if localStorage is unavailable.
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .locale-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .locale-switcher a {
+    min-width: 32px;
+    padding: 5px 7px;
+    border-radius: 999px;
+    color: inherit;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .locale-switcher a[aria-current='page'] {
+    background: rgba(245, 230, 27, 0.16);
+    color: #f5e61b;
+  }
+
+  .locale-switcher a:focus-visible {
+    outline: 2px solid #f5e61b;
+    outline-offset: 2px;
+  }
+</style>

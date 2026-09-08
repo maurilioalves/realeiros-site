@@ -1,6 +1,16 @@
 ---
-import { site } from "../data/site";
+import { site } from '../data/site';
+import { commonCopy } from '../i18n/common';
+import { localizePath, type RouteLocale } from '../i18n/config';
+
+interface Props {
+  locale?: RouteLocale;
+}
+
+const { locale = 'pt-BR' } = Astro.props;
 const year = new Date().getFullYear();
+const copy = commonCopy[locale];
+const href = (path: string) => localizePath(path, locale);
 ---
 
 <footer class="site-footer">
@@ -18,41 +28,41 @@ const year = new Date().getFullYear();
         >
       </div>
       <p class="footer-pitch">{site.slogan}</p>
-      <p class="footer-muted">Estúdio indie brasileiro de jogos mobile.</p>
+      <p class="footer-muted">{copy.footer.studio}</p>
     </div>
 
     <div>
-      <h2>Explore</h2>
-      <a href="/olha-a-batida">Olha a Batida</a>
-      <a href="/sobre">Sobre</a>
-      <a href="/press-kit">Press Kit</a>
-      <a href="/novidades">Novidades</a>
-      <a href="/contato">Contato</a>
+      <h2>{copy.footer.explore}</h2>
+      <a href={href('/olha-a-batida')}>Olha a Batida</a>
+      <a href={href('/sobre')}>{copy.footer.about}</a>
+      <a href={href('/press-kit')}>Press Kit</a>
+      <a href={href('/novidades')}>{copy.footer.news}</a>
+      <a href={href('/contato')}>{copy.footer.contact}</a>
     </div>
 
     <div>
-      <h2>Jogador</h2>
-      <a href="/suporte">Suporte</a>
-      <a href="/privacidade">Privacidade</a>
-      <a href="/termos">Termos de uso</a>
-      <a href="/exclusao-de-dados">Exclusão de dados</a>
+      <h2>{copy.footer.player}</h2>
+      <a href={href('/suporte')}>{copy.footer.support}</a>
+      <a href={href('/privacidade')}>{copy.footer.privacy}</a>
+      <a href={href('/termos')}>{copy.footer.terms}</a>
+      <a href={href('/exclusao-de-dados')}>{copy.footer.deletion}</a>
     </div>
 
     <div>
-      <h2>Redes Sociais</h2>
+      <h2>{copy.footer.social}</h2>
       <a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a>
       <a href={site.tiktok} target="_blank" rel="noreferrer">TikTok</a>
       <a href={site.x} target="_blank" rel="noreferrer">X</a>
       <a href={site.youtube} target="_blank" rel="noreferrer">YouTube</a>
     </div>
     <div>
-      <h2>Apps</h2>
+      <h2>{copy.footer.apps}</h2>
       <a href={site.playStore} target="_blank" rel="noreferrer">Google Play</a>
       <a href={site.appStore} target="_blank" rel="noreferrer">App Store</a>
     </div>
   </div>
   <div class="container footer-bottom">
     <span>© {year} Realeiros Play.</span>
-    <span>Futebol digital com identidade brasileira.</span>
+    <span>{copy.footer.identity}</span>
   </div>
 </footer>
