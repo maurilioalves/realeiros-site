@@ -1,13 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { localizePath, type RouteLocale } from '../i18n/config';
+
+interface Props { locale?: RouteLocale; }
+const { locale = 'pt-BR' } = Astro.props;
+const href = (path: string) => localizePath(path, locale);
+const copy = {
+  'pt-BR': { title: 'Página não encontrada', eyebrow: '404 • A bola saiu do estádio', heading: 'Essa página não existe.', text: 'Pode ter sido movida, aposentada ou só mandou a cobrança lá na arquibancada.', home: 'Voltar para a home', game: 'Ir para o Olha a Batida' },
+  en: { title: 'Page not found', eyebrow: '404 • The ball left the stadium', heading: 'This page does not exist.', text: 'It may have moved, been retired or simply sent the shot into the stands.', home: 'Back to home', game: 'Go to Olha a Batida' },
+  es: { title: 'Página no encontrada', eyebrow: '404 • El balón salió del estadio', heading: 'Esta página no existe.', text: 'Puede haberse movido, retirado o simplemente haber mandado el lanzamiento a la grada.', home: 'Volver al inicio', game: 'Ir a Olha a Batida' },
+}[locale];
 ---
-<BaseLayout title="Página não encontrada" noindex>
-  <section class="page-hero">
-    <div class="container narrow">
-      <p class="eyebrow">404 • A bola saiu do estádio</p>
-      <h1>Essa página não existe.</h1>
-      <p class="lead">Pode ter sido movida, aposentada ou só mandou a cobrança lá na arquibancada.</p>
-      <div class="hero-actions"><a class="button button-primary" href="/">Voltar para a home</a><a class="button button-secondary" href="/olha-a-batida">Ir para o Olha a Batida</a></div>
-    </div>
-  </section>
+<BaseLayout title={copy.title} noindex locale={locale}>
+  <section class="page-hero"><div class="container narrow">
+    <p class="eyebrow">{copy.eyebrow}</p><h1>{copy.heading}</h1><p class="lead">{copy.text}</p>
+    <div class="hero-actions"><a class="button button-primary" href={href('/')}>{copy.home}</a><a class="button button-secondary" href={href('/olha-a-batida')}>{copy.game}</a></div>
+  </div></section>
 </BaseLayout>
+{locale === 'pt-BR' && <script is:inline>
+  (() => {
+    const path = window.location.pathname;
+    if (path.startsWith('/en/') && path !== '/en/404/' && path !== '/en/404') window.location.replace('/en/404/');
+    if (path.startsWith('/es/') && path !== '/es/404/' && path !== '/es/404') window.location.replace('/es/404/');
+  })();
+</script>}
