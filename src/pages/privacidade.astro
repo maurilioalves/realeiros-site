@@ -11,23 +11,60 @@ interface Props { locale?: RouteLocale; }
 const { locale = 'pt-BR' } = Astro.props;
 const href = (path: string) => localizePath(path, locale);
 const copy = locale === 'en' ? enCopy : locale === 'es' ? esCopy : ptCopy;
-const providerUrls = ['https://firebase.google.com/support/privacy','https://unity.com/legal/privacy-policy','https://policies.google.com/privacy','https://www.apple.com/legal/privacy/'];
+const adPolicyCopy = {
+  'pt-BR': {
+    updated: 'Última atualização: 09/09/2026',
+    version: 'Versão 2.3',
+    scope: 'Esta política também se aplica à experiência web do Lança a Braba disponibilizada pela Realeiros Play, inclusive aos recursos de analytics, publicidade e consentimento usados nessa experiência.',
+    siteAdvertising: 'O site institucional realeirosplay.com não possui sistema próprio de criação de conta ou login. As páginas institucionais não exibem publicidade própria, mas a experiência web do Lança a Braba pode utilizar Google AdSense / H5 Games Ads quando esse recurso estiver habilitado.',
+    cmp: 'Para visitantes no Espaço Econômico Europeu (EEE), Reino Unido e Suíça, a gestão de consentimento relacionada à publicidade é realizada por uma plataforma de gestão de consentimento (CMP) certificada pelo Google e compatível com o IAB Transparency & Consent Framework (TCF). A disponibilidade e a personalização de anúncios dependem das escolhas do usuário, da legislação aplicável e das configurações do serviço. A preferência de analytics do site permanece um controle separado.',
+    adsProvider: 'Tecnologias de publicidade do Google',
+  },
+  en: {
+    updated: 'Last updated: September 9, 2026',
+    version: 'Version 2.3',
+    scope: 'This policy also applies to the Lança a Braba web experience made available by Realeiros Play, including the analytics, advertising and consent resources used in that experience.',
+    siteAdvertising: 'The realeirosplay.com institutional website does not have its own account or login system. Institutional pages do not display their own advertising, but the Lança a Braba web experience may use Google AdSense / H5 Games Ads when that feature is enabled.',
+    cmp: 'For visitors in the European Economic Area (EEA), the United Kingdom and Switzerland, advertising consent is managed through a Google-certified consent management platform (CMP) compatible with the IAB Transparency & Consent Framework (TCF). Ad availability and personalization depend on the user’s choices, applicable law and service settings. The website analytics preference remains a separate control.',
+    adsProvider: 'Google advertising technologies',
+  },
+  es: {
+    updated: 'Última actualización: 09/09/2026',
+    version: 'Versión 2.3',
+    scope: 'Esta política también se aplica a la experiencia web de Lança a Braba ofrecida por Realeiros Play, incluidos los recursos de analítica, publicidad y consentimiento utilizados en esa experiencia.',
+    siteAdvertising: 'El sitio institucional realeirosplay.com no cuenta con un sistema propio de creación de cuentas o inicio de sesión. Las páginas institucionales no muestran publicidad propia, pero la experiencia web de Lança a Braba puede utilizar Google AdSense / H5 Games Ads cuando esta función esté habilitada.',
+    cmp: 'Para visitantes del Espacio Económico Europeo (EEE), Reino Unido y Suiza, el consentimiento relacionado con publicidad se gestiona mediante una plataforma de gestión de consentimiento (CMP) certificada por Google y compatible con el IAB Transparency & Consent Framework (TCF). La disponibilidad y personalización de anuncios dependen de las decisiones del usuario, la legislación aplicable y la configuración del servicio. La preferencia de analítica del sitio permanece como un control independiente.',
+    adsProvider: 'Tecnologías publicitarias de Google',
+  },
+}[locale];
+const providerUrls = [
+  'https://firebase.google.com/support/privacy',
+  'https://unity.com/legal/privacy-policy',
+  'https://policies.google.com/privacy',
+  'https://www.apple.com/legal/privacy/',
+  'https://policies.google.com/technologies/ads',
+];
+const providerLinks = [...copy.providerLinks, adPolicyCopy.adsProvider];
 ---
 
 <BaseLayout title={copy.title} description={copy.description} locale={locale} localizedAlternates>
   <PageHero eyebrow="Legal" title={copy.title} text={copy.hero} />
   <section class="section"><div class="container prose">
-    <div class="legal-meta"><span>{copy.updated}</span><span>•</span><span>{copy.version}</span></div>
+    <div class="legal-meta"><span>{adPolicyCopy.updated}</span><span>•</span><span>{adPolicyCopy.version}</span></div>
     <p>{copy.intro[0]}</p>
     <p>{copy.intro[1]} <a href={`${href('/contato')}?tipo=privacy#formulario`}>{copy.contactForm}</a>. <strong>{site.email}</strong>.</p>
+    <p>{adPolicyCopy.scope}</p>
 
     {copy.sections.map((section,index) => <>
       <h2>{section.title}</h2>
-      {section.paragraphs?.map((text) => <p>{text}</p>)}
+      {section.paragraphs?.map((text, paragraphIndex) => index === 8 && paragraphIndex === 0 ? <p>{adPolicyCopy.siteAdvertising}</p> : <p>{text}</p>)}
       {section.list && <ul>{section.list.map((item) => <li>{item}</li>)}</ul>}
       {section.after?.map((text) => <p>{text}</p>)}
-      {index === 7 && <p>{copy.providerLinks.map((label,providerIndex) => <><a href={providerUrls[providerIndex]} target="_blank" rel="noopener noreferrer">{label}</a>{providerIndex < copy.providerLinks.length - 1 ? ' · ' : ''}</>)}</p>}
-      {index === 8 && <p><button class="button button-secondary button-small" type="button" data-analytics-reset>{copy.reset}</button></p>}
+      {index === 7 && <p>{providerLinks.map((label,providerIndex) => <><a href={providerUrls[providerIndex]} target="_blank" rel="noopener noreferrer">{label}</a>{providerIndex < providerLinks.length - 1 ? ' · ' : ''}</>)}</p>}
+      {index === 8 && <>
+        <p>{adPolicyCopy.cmp}</p>
+        <p><button class="button button-secondary button-small" type="button" data-analytics-reset>{copy.reset}</button></p>
+      </>}
       {index === 12 && <p><a href={href('/exclusao-de-dados')}>{copy.deletion}</a> · <a href={`${href('/contato')}?tipo=privacy#formulario`}>{copy.contactForm}</a></p>}
       {index === 13 && <p><a href={`${href('/contato')}?tipo=privacy#formulario`}>{copy.contactForm}</a> · <strong>{site.email}</strong></p>}
       {index === 16 && <p><a href={`${href('/contato')}?tipo=privacy#formulario`}>{copy.contactForm}</a><br /><strong>Realeiros Play</strong><br />{site.email}</p>}
