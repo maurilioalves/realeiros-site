@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 import { commonCopy } from '../i18n/common';
-import { localizePath, type RouteLocale } from '../i18n/config';
+import { localizePath, stripLocalePrefix, type RouteLocale } from '../i18n/config';
 
 interface Props {
   locale?: RouteLocale;
@@ -20,6 +20,9 @@ const links = [
   { href: '/contato', label: copy.nav.contact },
 ].map((link) => ({ ...link, href: localizePath(link.href, locale) }));
 const homeHref = localizePath('/', locale);
+const normalizedPath = stripLocalePrefix(pathname).replace(/\/+$/, '') || '/';
+const isLabProductPage = normalizedPath === '/lancaabraba';
+const labPlayHref = '/lancaabraba/play/';
 ---
 
 <header class="site-header">
@@ -42,9 +45,25 @@ const homeHref = localizePath('/', locale);
       }
     </nav>
 
-    <a class="button button-small button-primary desktop-cta" href={site.playStore} target="_blank" rel="noreferrer">
-      {copy.nav.playNow}
-    </a>
+    {
+      isLabProductPage ? (
+        <a class="button button-small button-primary desktop-cta" href={labPlayHref}>
+          {copy.nav.playLab}
+        </a>
+      ) : (
+        <a
+          class="button button-small button-primary desktop-cta"
+          href={site.playStore}
+          target="_blank"
+          rel="noreferrer"
+          data-oab-store-link
+          data-play-store={site.playStore}
+          data-app-store={site.appStore}
+        >
+          {copy.nav.playOab}
+        </a>
+      )
+    }
 
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
       <span></span><span></span><span></span>
@@ -60,7 +79,46 @@ const homeHref = localizePath('/', locale);
           <LocaleSwitcher locale={locale} currentPath={pathname} ariaLabel={copy.nav.language} />
         )
       }
-      <a class="button button-primary" href={site.playStore} target="_blank" rel="noreferrer">{copy.nav.playOab}</a>
+      {
+        isLabProductPage ? (
+          <a class="button button-primary" href={labPlayHref}>{copy.nav.playLab}</a>
+        ) : (
+          <a
+            class="button button-primary"
+            href={site.playStore}
+            target="_blank"
+            rel="noreferrer"
+            data-oab-store-link
+            data-play-store={site.playStore}
+            data-app-store={site.appStore}
+          >
+            {copy.nav.playOab}
+          </a>
+        )
+      }
     </div>
   </nav>
 </header>
+
+<script is:inline>
+  (() => {
+    const ua = navigator.userAgent?.toLowerCase() || '';
+    const legacyPlatform = navigator.platform?.toLowerCase() || '';
+    const modernPlatform = navigator.userAgentData?.platform?.toLowerCase?.() || '';
+    const platform = modernPlatform || legacyPlatform;
+    const maxTouchPoints = navigator.maxTouchPoints || 0;
+
+    const isApple =
+      /iphone|ipad|ipod|macintosh|mac os x/.test(ua) ||
+      /iphone|ipad|ipod|mac/.test(platform) ||
+      (platform === 'macintel' && maxTouchPoints > 1);
+
+    document.querySelectorAll('[data-oab-store-link]').forEach((element) => {
+      if (!(element instanceof HTMLAnchorElement)) return;
+      const playStore = element.dataset.playStore;
+      const appStore = element.dataset.appStore;
+      const target = isApple ? appStore : playStore;
+      if (target) element.href = target;
+    });
+  })();
+</script>
