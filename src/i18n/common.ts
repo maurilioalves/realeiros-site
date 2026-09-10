@@ -13,6 +13,7 @@ export const commonCopy: Record<
       contact: string;
       playNow: string;
       playOab: string;
+      playLab: string;
       language: string;
       primary: string;
       mobile: string;
@@ -47,6 +48,7 @@ export const commonCopy: Record<
       contact: 'Contato',
       playNow: 'JOGAR AGORA',
       playOab: 'Jogar Olha a Batida',
+      playLab: 'Jogar Lança a Braba',
       language: 'Idioma',
       primary: 'Navegação principal',
       mobile: 'Navegação móvel',
@@ -80,6 +82,7 @@ export const commonCopy: Record<
       contact: 'Contact',
       playNow: 'PLAY NOW',
       playOab: 'Play Olha a Batida',
+      playLab: 'Play Lança a Braba',
       language: 'Language',
       primary: 'Primary navigation',
       mobile: 'Mobile navigation',
@@ -113,6 +116,7 @@ export const commonCopy: Record<
       contact: 'Contacto',
       playNow: 'JUGAR AHORA',
       playOab: 'Jugar Olha a Batida',
+      playLab: 'Jugar Lança a Braba',
       language: 'Idioma',
       primary: 'Navegación principal',
       mobile: 'Navegación móvil',
