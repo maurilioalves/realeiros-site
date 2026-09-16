@@ -182,9 +182,12 @@ const screenshots = [1, 2, 3, 4, 5, 6];
   .lab-hero-art { overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:28px; background:#0c1930; box-shadow:0 28px 70px rgba(0,0,0,.34); transform:perspective(1000px) rotateY(-3deg); }
   .lab-hero-art img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
   .lab-feature-grid .feature-box { min-height:230px; }
-  .lab-gallery-section { background:#f4f7fb; }
+  .lab-gallery-section { background:linear-gradient(180deg,#06142d 0%,#081a38 100%); color:#fff; border-top:1px solid rgba(255,255,255,.06); }
+  .lab-gallery-section :global(.section-heading .eyebrow) { color:#f5e61b; }
+  .lab-gallery-section :global(.section-heading h2) { color:#f4f1e8; }
+  .lab-gallery-section :global(.section-heading p:not(.eyebrow)) { color:#b9c6db; }
   .lab-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
-  .lab-gallery figure { margin:0; overflow:hidden; border-radius:20px; background:#fff; box-shadow:0 14px 36px rgba(8,18,38,.12); }
+  .lab-gallery figure { margin:0; overflow:hidden; border-radius:20px; background:#0b1e3b; box-shadow:0 14px 36px rgba(0,0,0,.28); }
   .lab-gallery img { display:block; width:100%; height:auto; }
   .lab-loop-section { background:#081226; color:#fff; }.lab-loop-section :global(.section-heading p){color:#b7c5db;}
   .lab-loop { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }.lab-loop article { padding:22px; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:rgba(255,255,255,.045); }.lab-loop article > span { color:#f5e61b; font-family:Anton,sans-serif; font-size:1.5rem; }.lab-loop h3 { margin:.5rem 0; }.lab-loop p { color:#b7c5db; font-size:.92rem; }
