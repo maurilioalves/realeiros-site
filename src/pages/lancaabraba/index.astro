@@ -192,7 +192,13 @@ const screenshots = [1, 2, 3, 4, 5, 6];
   .lab-loop-section { background:#081226; color:#fff; }.lab-loop-section :global(.section-heading p){color:#b7c5db;}
   .lab-loop { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }.lab-loop article { padding:22px; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:rgba(255,255,255,.045); }.lab-loop article > span { color:#f5e61b; font-family:Anton,sans-serif; font-size:1.5rem; }.lab-loop h3 { margin:.5rem 0; }.lab-loop p { color:#b7c5db; font-size:.92rem; }
   .lab-browser-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.8fr); gap:54px; align-items:start; }.lab-browser-grid h2{font-size:clamp(2.2rem,4vw,4rem);}.lab-browser-grid > div:first-child > p:not(.eyebrow){max-width:720px;}
-  .lab-facts { display:grid; gap:16px; }.lab-facts dl { margin:0; border:1px solid #d9e0e9; border-radius:20px; background:#fff; overflow:hidden; }.lab-facts dl div{display:flex;justify-content:space-between;gap:20px;padding:15px 18px;border-bottom:1px solid #e8edf3}.lab-facts dl div:last-child{border-bottom:0}.lab-facts dt{font-weight:700;color:#66748a}.lab-facts dd{margin:0;font-weight:900;text-align:right}.lab-facts aside{padding:20px;border-radius:20px;background:#081226;color:#fff}.lab-facts aside strong{color:#f5e61b}.lab-facts aside p{margin-bottom:0;color:#c3cfe0}
+  .lab-facts { display:grid; gap:16px; }
+  .lab-facts dl { margin:0; border:1px solid #cbd5e1; border-radius:20px; background:#f8fafc; overflow:hidden; color:#0b1b36; }
+  .lab-facts dl div { display:flex; justify-content:space-between; gap:20px; padding:15px 18px; border-bottom:1px solid #dbe3ec; }
+  .lab-facts dl div:last-child { border-bottom:0; }
+  .lab-facts dt { font-weight:800; color:#475569; }
+  .lab-facts dd { margin:0; color:#0b1b36; font-weight:900; text-align:right; }
+  .lab-facts aside{padding:20px;border-radius:20px;background:#081226;color:#fff}.lab-facts aside strong{color:#f5e61b}.lab-facts aside p{margin-bottom:0;color:#c3cfe0}
   @media (max-width:900px){
     .lab-hero-grid,.lab-browser-grid{grid-template-columns:1fr}
     .lab-hero-art{transform:none}
